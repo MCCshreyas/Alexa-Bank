@@ -70,7 +70,7 @@ namespace WPFBankApplication
 
                 if (WithDrawMoneyTextBox.Text == "0")
                 {
-                    DialogBox.Show("Warning", "0 is not valid input", "OK");
+                    DialogBox.Show("Warning", "0 is not valid input", "Got it");
                     return false;
                 }
             }
