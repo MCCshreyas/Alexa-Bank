@@ -1,0 +1,49 @@
+﻿<Window x:Class="WPFBankApplication.AccountSettings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFBankApplication"
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="AccountSettings" Width="354" Height="342" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <ResourceDictionary>
+        <ResourceDictionary.MergedDictionaries>
+            <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+            <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
+            <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
+        </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate DataType="{x:Type system:DateTime}">
+                <StackPanel Margin="16">
+                    <TextBlock>England win the World Cup:</TextBlock>
+                    <TextBlock Margin="0 8 0 0" Text="{Binding }" />
+                    <TextBlock Margin="0 8 0 0" >You will never see that again.</TextBlock>
+                    <Button  Margin="0 8 0 0" IsDefault="True" Command="{x:Static md:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}">AWESOME</Button>
+                </StackPanel>
+            </DataTemplate>
+        </ResourceDictionary>
+
+        
+
+
+    </Window.Resources>
+    
+    
+    
+    <Grid>
+        
+        
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Select from following option" VerticalAlignment="Top" Margin="10,25,0,0" Height="20" Width="272"/>
+        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" Margin="10,60,0,0" Height="35" Name="ComboBox">
+            <ComboBoxItem Content="Edit Account holder name" HorizontalAlignment="Left" Width="300" Margin="0,0,-2,0"/>
+            <ComboBoxItem Content="Change password" HorizontalAlignment="Left" Width="300" Margin="0,0,-2,0"/>
+        </ComboBox>
+        <Button Content="Proceed" HorizontalAlignment="Left" VerticalAlignment="Top" Width="125" Margin="85,195,0,0" Height="35" Click="Button_Click"/>
+
+      
+
+    </Grid>
+</Window>

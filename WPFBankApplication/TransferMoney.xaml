@@ -1,0 +1,28 @@
+﻿<Window x:Class="WPFBankApplication.TransferMoney"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFBankApplication"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="TransferMoney" Height="412.5" Width="424.5" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" >
+    <Grid>
+        <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2"
+                                  Mode="Accent" Height="46">
+            <Grid Margin="-10,-11,-11,-10" >
+                <TextBlock Text="Transfer Money" Style="{DynamicResource MaterialDesignHeadlineTextBlock}" Margin="125,1,68,2"></TextBlock>
+                <Button Style="{x:Null}" BorderBrush="#FF00B8D4" Background="#FF00B8D4" Name="BackButton" ToolTip="Go back" Margin="0,0,360,0">
+                    <materialDesign:PackIcon Kind="ArrowLeft" Height="22" Width="26"></materialDesign:PackIcon>
+                </Button>
+            </Grid>
+        </materialDesign:ColorZone>
+        <TextBlock FontSize="20" x:Name="textBlock" Margin="21,69,71,0" Style="{DynamicResource MaterialDesignBody2TextBlock}" Text="Enter following fields carefully" VerticalAlignment="Top" Height="27"/>
+        <Button Content="Transfer Money" HorizontalAlignment="Left" Margin="148,316,0,0" VerticalAlignment="Top" Width="140" Click="Button_Click"/>
+        <TextBox PreviewTextInput="TextBoxAccoutPassword_OnPreviewTextInput" InputScope="Number" Name="TextBoxAccountNumber" Style="{DynamicResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Reciver Account number" Height="47" Margin="22,109,24,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox PreviewTextInput="TextBoxAccoutPassword_OnPreviewTextInput" InputScope="Number" Name="TextBoxMoneyAmount" Style="{DynamicResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Enter money amount" HorizontalAlignment="Left" Height="51" Margin="24,162,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="370" TextChanged="TextBoxMoneyAmount_TextChanged"/>
+        <PasswordBox PreviewTextInput="TextBoxAccoutPassword_OnPreviewTextInput" InputScope="Number" Name="TextBoxAccountPassword" Style="{DynamicResource MaterialDesignFloatingHintPasswordBox}" materialDesign:HintAssist.Hint="Current account password" HorizontalAlignment="Left" Height="48" Margin="24,231,0,0" VerticalAlignment="Top" Width="370"/>
+        <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="MainSnackbar"
+        />
+    </Grid>
+</Window>
