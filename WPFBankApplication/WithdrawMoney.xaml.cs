@@ -2,6 +2,7 @@
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
+using ExtraTools;
 using java.lang;
 using java.sql;
 using Twilio;
@@ -63,13 +64,13 @@ namespace WPFBankApplication
             {
                 if (WithDrawMoneyTextBox.Text == string.Empty)
                 {
-                    MessageBox.Show("You havent entered any amount to withdraw","Warning",MessageBoxButton.OK,MessageBoxImage.Warning);
+                    DialogBox.Show("Warning", "You havent entered any amount to withdraw","OK");
                     return false;
                 }
 
                 if (WithDrawMoneyTextBox.Text == "0")
                 {
-                    MessageBox.Show("0 is not valid input", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    DialogBox.Show("Warning", "0 is not valid input", "OK");
                     return false;
                 }
             }
@@ -112,8 +113,7 @@ namespace WPFBankApplication
                         SendMobileNotification();
                     }
 
-                    MessageBox.Show("Trasaction done sucessfully", "Sucess", MessageBoxButton.OK,
-                        MessageBoxImage.Information);
+                    DialogBox.Show("Sucess", "Trasaction done sucessfully", "OK");
                     WithDrawMoneyTextBox.Text = "";
                 }
             }
@@ -161,7 +161,6 @@ namespace WPFBankApplication
 
         private void BackButton_OnClick(object sender, RoutedEventArgs e)
         {
-           this.Hide();
            new Welcome(accountNum).Show();
         }
     }

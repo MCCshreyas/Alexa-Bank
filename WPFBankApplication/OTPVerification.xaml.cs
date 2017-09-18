@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using ExtraTools;
 using Twilio;
 using Twilio.Rest.Api.V2010.Account;
 using Twilio.Types;
@@ -41,7 +42,7 @@ namespace WPFBankApplication
             (
                 to,
                 from: new PhoneNumber("+16674018291"),
-                body: OTP.ToString()
+                body: "Your OTP for Alexa account is " + OTP
             );
         }
 
@@ -49,7 +50,7 @@ namespace WPFBankApplication
         {
             if (Convert.ToString(OTP) == TextBoxOTP.Text)
             {
-                MessageBox.Show("Thank you for confirming your account.","Success",MessageBoxButton.OK,MessageBoxImage.Information);
+                DialogBox.Show("Sucess", "Thank you for confirming your account.","OK");
                 new LoggedIn().Show();
                 this.Hide();
             }

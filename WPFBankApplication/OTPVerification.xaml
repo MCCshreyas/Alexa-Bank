@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WPFBankApplication"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="OTPVerification" Height="371.506" Width="491.774" WindowStartupLocation="CenterScreen">
+        Title="OTPVerification" Height="349.5" Width="558" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
 
         <materialDesign:DialogHost Name="ThankYouDialog">
@@ -18,19 +18,21 @@
                 </StackPanel>
             </materialDesign:DialogHost.DialogContent>
         </materialDesign:DialogHost>
-        
-        
+
+
         <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="MainSnackbar"
         />
-        <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth3"
-                                  Mode="PrimaryMid" DockPanel.Dock="Top" Background="#FF5BBAE2" Height="56" >
-
-            <TextBlock Text="OTP Verification" HorizontalAlignment="Center" FontSize="20" Margin="132,0,89,-11" FontWeight="Bold" Width="231" ></TextBlock>
-
-
-
+        <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2"
+                                  Mode="Accent" Height="46">
+            <Grid Margin="-10,-11,-11,-10" >
+                <TextBlock Text="OTP verification" Style="{DynamicResource MaterialDesignHeadlineTextBlock}" Margin="124,3,103,0"></TextBlock>
+                <Button Margin="0,3,474,0" Style="{x:Null}" BorderBrush="#FF00B8D4" Background="#FF00B8D4" Name="BackButton" ToolTip="Go back">
+                    <materialDesign:PackIcon Kind="ArrowLeft" Height="22" Width="26"></materialDesign:PackIcon>
+                </Button>
+            </Grid>
         </materialDesign:ColorZone>
-        <TextBlock FontSize="20" HorizontalAlignment="Left" Margin="23,97,0,0" TextWrapping="Wrap" Text="Enter the OTP below which you have received on your registered mobile number" VerticalAlignment="Top" Height="56" Width="446"/>
+
+        <TextBlock FontSize="20"  Style="{DynamicResource MaterialDesignSubheadingTextBlock}" HorizontalAlignment="Left" Margin="23,87,0,0" TextWrapping="Wrap" Text="Enter the OTP below which you have received on your registered mobile number" VerticalAlignment="Top" Height="56" Width="446"/>
         <TextBox Name="TextBoxOTP" PreviewTextInput="TextBoxOTP_OnPreviewTextInput" HorizontalAlignment="Left" Height="30" Margin="37,206,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" materialDesign:HintAssist.Hint="OTP" Width="291"/>
         <Button HorizontalAlignment="Left" Margin="357,206,0,0" VerticalAlignment="Top" Width="112" Click="Button_Click" >
             <Grid>
