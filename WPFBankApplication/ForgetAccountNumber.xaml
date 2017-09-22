@@ -6,34 +6,31 @@
         xmlns:local="clr-namespace:WPFBankApplication"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="ForgetAccountNumber" Height="293.571" Width="480.714" WindowStartupLocation="CenterScreen" >
+        Title="ForgetAccountNumber" Height="368.571" Width="512.214" WindowStartupLocation="CenterScreen" >
     <Grid>
-        <materialDesign:DialogHost Name="ErrorDialog">
-            <materialDesign:DialogHost.DialogContent>
-                <StackPanel Margin="16">
-                    <TextBlock FontSize="15">Please enter all fields</TextBlock>
-                    <Button FontSize="15" Margin="0 8 0 0" IsDefault="True" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}">OK</Button>
-                </StackPanel>
-            </materialDesign:DialogHost.DialogContent>
-        </materialDesign:DialogHost>
+
+        <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2"
+                                  Mode="Accent" Height="61">
+            <Grid Margin="0,0,0,-14" >
+                <TextBlock Text="Forget Password" Style="{DynamicResource MaterialDesignHeadlineTextBlock}" Margin="133,-7,36,7" ></TextBlock>
+                <Button Style="{x:Null}" BorderBrush="#FF00B8D4" Background="#FF00B8D4"  ToolTip="Go back" Margin="0,-8,412,10" Click="ButtonBase_OnClick">
+                    <materialDesign:PackIcon Kind="ArrowLeft" Height="30" Width="44"></materialDesign:PackIcon>
+                </Button>
+            </Grid>
+        </materialDesign:ColorZone>
 
 
-        <materialDesign:DialogHost Name="EmailErrorDialog">
-            <materialDesign:DialogHost.DialogContent>
-                <StackPanel Margin="16">
-                    <TextBlock FontSize="15">Email is not valid</TextBlock>
-                    <Button FontSize="15" Margin="0 8 0 0" IsDefault="True" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}">OK</Button>
-                </StackPanel>
-            </materialDesign:DialogHost.DialogContent>
-            <Button Click="ButtonSubmit_OnClick" HorizontalAlignment="Left" Margin="181,189,0,0" VerticalAlignment="Top" Width="111" >
+
+        
+            <Button Click="ButtonSubmit_OnClick" HorizontalAlignment="Left" Margin="213,279,0,0" VerticalAlignment="Top" Width="111" >
                 <Grid>
                     <TextBlock Text="SUBMIT" Margin="10,0,-10,0"></TextBlock>
                     <materialDesign:PackIcon Kind="Check" Margin="-20,2,0,0" />
                 </Grid>
             </Button>
-        </materialDesign:DialogHost>
-        <TextBlock HorizontalAlignment="Left" Margin="42,23,0,0" TextWrapping="Wrap" Text="Enter following information to retrive account number" VerticalAlignment="Top" Height="20" Width="468"/>
-        <TextBox materialDesign:HintAssist.IsFloating="True" Name="TextBoxEmailAddresss" HorizontalAlignment="Left" Height="49" Margin="42,48,0,0" TextWrapping="Wrap" Text="" materialDesign:HintAssist.Hint="Registered email address" VerticalAlignment="Top" Width="345"/>
-        <PasswordBox materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Hint="Password" Style="{DynamicResource MaterialDesignFloatingHintPasswordBox}" Height="51" HorizontalAlignment="Left"  Name="TextBoxPassword" VerticalAlignment="Top" Width="345" Margin="42,116,0,0" />
+        
+        <TextBlock FontSize="19"  Style="{DynamicResource MaterialDesignSubheadingTextBlock}" HorizontalAlignment="Left" Margin="28,94,0,0" TextWrapping="Wrap" Text="Enter following information to retrive account number" VerticalAlignment="Top" Height="33" Width="458"/>
+        <TextBox materialDesign:HintAssist.IsFloating="True" Name="TextBoxEmailAddresss" HorizontalAlignment="Left" Height="49" Margin="28,132,0,0" TextWrapping="Wrap" Text="" materialDesign:HintAssist.Hint="Registered email address" VerticalAlignment="Top" Width="452"/>
+        <PasswordBox materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Hint="Password" Style="{DynamicResource MaterialDesignFloatingHintPasswordBox}" Height="51" HorizontalAlignment="Left"  Name="TextBoxPassword" VerticalAlignment="Top" Width="452" Margin="28,193,0,0" />
     </Grid>
 </Window>

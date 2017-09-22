@@ -71,7 +71,6 @@ namespace WPFBankApplication
             //Getting password from user password box
 
             string userPassword = PasswordBox.Password;
-
             //checking the input password and the password saved in database
             if (userPassword == pass)
             {

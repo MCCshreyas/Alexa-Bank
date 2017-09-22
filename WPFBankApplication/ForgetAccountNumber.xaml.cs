@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using ExtraTools;
 using java.lang;
 using java.sql;
 
@@ -23,12 +24,12 @@ namespace WPFBankApplication
 
             if (TextBoxEmailAddresss.Text == "" || TextBoxPassword.Password == "")
             {
-                ErrorDialog.IsOpen = true;
+                DialogBox.Show("Error", "Please enter all fields","OK");
                 return false;
             }
-            else if (!IsEmailValid || !IsEmailValid2)
+            if (!IsEmailValid || !IsEmailValid2)
             {
-                EmailErrorDialog.IsOpen = true;
+                DialogBox.Show("Error", "Please enter valid email", "OK");
                 return false;
             }
 
@@ -68,10 +69,16 @@ namespace WPFBankApplication
         {
             if (DoValidation())
             {
-                MessageBox.Show("Your account number is " + GetAccountNumber(),"Sucess",MessageBoxButton.OK,MessageBoxImage.Information);
+                DialogBox.Show("Sucess", "Your account number is " + GetAccountNumber(),"OK");
                 Hide();
                 new LoggedIn().Show();
             }
+        }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            new LoggedIn().Show();
+            this.Hide();
         }
     }
 }

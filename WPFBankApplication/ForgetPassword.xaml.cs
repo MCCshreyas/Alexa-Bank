@@ -35,7 +35,7 @@ namespace WPFBankApplication
         {
             if (TextBoxEmail.Text == "")
             {
-                ErrorDialog.IsOpen = true;
+                DialogBox.Show("Error", "Email field is empty","OK");
                 return false;
             }
 
@@ -44,13 +44,16 @@ namespace WPFBankApplication
 
             if (!isEmailValid || !isEmailValid2)
             {
-                ErrorDialog.IsOpen = true;
+                DialogBox.Show("Error", "Please enter valid email to proceed", "OK");
                 return false;
             }
 
             return true;
         }
 
+
+
+        //here we are getting Password and registered phone number from database by using email 
 
         public string GetDetails()
         {
@@ -70,6 +73,8 @@ namespace WPFBankApplication
                     pass = result.getString("Password");
                     phone = result.getString("phone_number");
                 }
+
+                //sending message to user 
 
                 SendMobileNotification(pass,phone);
 

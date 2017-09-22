@@ -88,7 +88,7 @@
 
         <GroupBox Style="{DynamicResource MaterialDesignCardGroupBox}" materialDesign:ShadowAssist.ShadowDepth="Depth3" Header="Work details" BorderBrush="#ED3D3D" HorizontalAlignment="Left" Height="232" VerticalAlignment="Top" Width="350"  Margin="397,102,0,0" >
             <Grid Name="WorkDetailsGrid">
-                <ComboBox SelectionChanged="MyComboBox_OnSelectionChanged" Name="MyComboBox" materialDesign:HintAssist.Hint="Select from following option" Margin="20,32,31,104" Height="44" >
+                <ComboBox SelectionChanged="MyComboBox_OnSelectionChanged" Name="MyComboBox" materialDesign:HintAssist.Hint="Select from following option" Margin="20,44,31,104" Height="32" >
                     <ComboBoxItem Content="Employee" HorizontalAlignment="Left" Width="280" />
                     <ComboBoxItem Content="Self-Employee" HorizontalAlignment="Left" Width="280"/>
                     <ComboBoxItem Content="Student" HorizontalAlignment="Left" Width="280"/>

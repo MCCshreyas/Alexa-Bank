@@ -10,8 +10,22 @@
     TextOptions.TextRenderingMode="Auto">
     <Grid Background="White">
 
+
+        <TextBlock
+            Margin="35,192,530,365"
+            Style="{StaticResource MaterialDesignDisplay1TextBlock}"
+            Text="Trending news - "
+            />
+            
+        
+
+
+
         <materialDesign:Card Margin="50,130,410,0" Height="435">
 
+            
+            
+            
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="140" />

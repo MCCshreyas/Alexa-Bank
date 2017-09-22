@@ -6,6 +6,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using ExtraTools;
 using java.lang;
 using java.sql;
 using MessageBox = System.Windows.MessageBox;
@@ -28,23 +29,6 @@ namespace WPFBankApplication
             RadioButtonMale.IsChecked = true;
             myDatePicker.Focusable = false;
             MyComboBox.SelectedIndex = 2;
-
-            if (MyComboBox.SelectedIndex == 0)
-            {
-                MaterialDesignThemes.Wpf.HintAssist.SetIsFloating(WorkDetailsTextBox , true);
-                MaterialDesignThemes.Wpf.HintAssist.SetHint(WorkDetailsTextBox, "Company name");
-            }
-            else if (MyComboBox.SelectedIndex == 1)
-            {
-                MaterialDesignThemes.Wpf.HintAssist.SetIsFloating(WorkDetailsTextBox, true);
-                MaterialDesignThemes.Wpf.HintAssist.SetHint(WorkDetailsTextBox, "Corporation name");
-            }
-            else if (MyComboBox.SelectedIndex == 2)
-            {
-                MaterialDesignThemes.Wpf.HintAssist.SetIsFloating(WorkDetailsTextBox, true);
-                MaterialDesignThemes.Wpf.HintAssist.SetHint(WorkDetailsTextBox, "College name");
-            }
-
         }
 
 
@@ -188,6 +172,7 @@ namespace WPFBankApplication
                 {
                     SaveDataToDatabase();
                     this.Hide();
+                    DialogBox.Show("Loading", "Please wait", "OK");
                     new OTPVerification(textBox_phonenumber.Text).ShowDialog();
                 }
             }
