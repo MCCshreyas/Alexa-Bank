@@ -163,8 +163,6 @@ namespace WPFBankApplication
 
         private void btn_save_Click(object sender, RoutedEventArgs e)
         {
-
-
             bool internetStatus = IsInternetAvailable();  //checking internet connection for generation of OTP
             if (internetStatus)
             {
@@ -253,6 +251,22 @@ namespace WPFBankApplication
             {
                 MainSnackbar.MessageQueue.Enqueue("Make sure you give correct phone number to recive OTP to activate your acoount");
             }, TaskScheduler.FromCurrentSynchronizationContext());
+        }
+
+        private void BackButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            new LoggedIn().Show();
+            this.Hide();
+        }
+
+        private void Btn_clear_details_OnClick(object sender, RoutedEventArgs e)
+        {
+            textBox_phonenumber.Text = textBox_address.Text = textBox_email.Text = textBox_firstname.Text =
+                textBox_lastname.Text = textBox_pass.Password = myDatePicker.Text = "";
+
+            ImageSourceConverter img = new ImageSourceConverter();
+            AccountHolderImage.Source = null;
+
         }
     }
 }

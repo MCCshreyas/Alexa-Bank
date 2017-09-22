@@ -4,7 +4,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.FontWeight="Regular"
         
-        Title="NewAccountRegistration" mc:Ignorable="d" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Height="632" Width="1300.5">
+        Title="NewAccountRegistration" mc:Ignorable="d" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Height="723.366" Width="862.5">
     <Grid>
 
         <materialDesign:DialogHost Name="FieldErrorDialog">
@@ -21,28 +21,17 @@
 
 
 
-        <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth3"
-                                  Mode="PrimaryMid" DockPanel.Dock="Top" Background="#FF5BBAE2" Height="76" >
-            <Grid>
-
-                <Button Click="ButtonBase_OnClick" Style="{x:Null}" Foreground="#FF080909" Background="#FF5BB7E2" BorderBrush="#FF5DAFE5" Margin="0,0,1142,0">
-                    <Grid>
-                        <materialDesign:PackIcon Kind="ArrowLeft" Height="Auto" Width="68" VerticalAlignment="Stretch" Margin="-3,0,0,0"/>
-                        <Image  Margin="0,6,1015,0" MouseDown="UIElement_OnMouseDown" >
-                        </Image>
-                    </Grid>
+        <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2"
+                                  Mode="Accent" Height="46">
+            <Grid Margin="-10,-11,-11,-10" >
+                <TextBlock Text="New account registration" Style="{DynamicResource MaterialDesignHeadlineTextBlock}" Margin="269,1,10,2"></TextBlock>
+                <Button Margin="0,3,778,0" Style="{x:Null}" BorderBrush="#FF00B8D4" Background="#FF00B8D4" Name="BackButton" Click="BackButton_OnClick"  ToolTip="Go back">
+                    <materialDesign:PackIcon Kind="ArrowLeft" Height="22" Width="26"></materialDesign:PackIcon>
                 </Button>
-                <TextBlock FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Height="43" Width="703" Text="    New account registration"/>
             </Grid>
         </materialDesign:ColorZone>
-        <Button Height="39" HorizontalAlignment="Left" Margin="788,552,0,0" Name="btn_save" VerticalAlignment="Top" Width="136" ClipToBounds="False" Click="btn_save_Click">
-            <Grid Width="81">
-                <materialDesign:PackIcon Kind="ContentSave" Margin="-11,-1,0,-3" Height="22" Width="33" />
-                <TextBlock Text="SUBMIT" Margin="26,2,-16,-6" Height="22" VerticalAlignment="Top" />
-            </Grid>
-        </Button>
 
-        <GroupBox Style="{DynamicResource MaterialDesignCardGroupBox}" materialDesign:ShadowAssist.ShadowDepth="Depth3" Header="Personal details&#xD;&#xA;" BorderBrush="#ED3D3D" HorizontalAlignment="Left" Height="483" VerticalAlignment="Top" Width="350" Margin="10,100,0,0" Background="White" >
+        <GroupBox Style="{DynamicResource MaterialDesignCardGroupBox}" materialDesign:ShadowAssist.ShadowDepth="Depth3" Header="Personal details&#xD;&#xA;" BorderBrush="#ED3D3D" HorizontalAlignment="Left" Height="483" VerticalAlignment="Top" Width="350" Margin="32,85,0,0" Background="White" >
             <Grid>
                 <Grid Margin="185,78,42,270">
                     <RadioButton Name="RadioButtonMale" Content="Male" Margin="0,0,10,10"/>
@@ -70,7 +59,7 @@
 
 
         <Grid>
-            <GroupBox Style="{DynamicResource MaterialDesignCardGroupBox}" materialDesign:ShadowAssist.ShadowDepth="Depth3" Header="          Account Details" BorderBrush="#ED3D3D" HorizontalAlignment="Left" Height="235" VerticalAlignment="Top" Width="350"   Margin="397,348,0,0" >
+            <GroupBox Style="{DynamicResource MaterialDesignCardGroupBox}" materialDesign:ShadowAssist.ShadowDepth="Depth3" Header="          Account Details" BorderBrush="#ED3D3D" HorizontalAlignment="Left" Height="235" VerticalAlignment="Top" Width="350"   Margin="443,339,0,0" >
                 <Grid>
                     <CheckBox Content="Need ATM Card" Margin="18,8,106,142"/>
                     <CheckBox Content="Need check book" Margin="18,33,106,117"/>
@@ -81,12 +70,12 @@
 
 
             </GroupBox>
-            <materialDesign:PackIcon Kind="Account" Margin="401,359,0,0" Height="26" Width="39"/>
+            <materialDesign:PackIcon Kind="Account" Margin="447,353,0,0" Height="26" Width="39"/>
         </Grid>
 
 
 
-        <GroupBox Style="{DynamicResource MaterialDesignCardGroupBox}" materialDesign:ShadowAssist.ShadowDepth="Depth3" Header="Work details" BorderBrush="#ED3D3D" HorizontalAlignment="Left" Height="232" VerticalAlignment="Top" Width="350"  Margin="397,102,0,0" >
+        <GroupBox Style="{DynamicResource MaterialDesignCardGroupBox}" materialDesign:ShadowAssist.ShadowDepth="Depth3" Header="Work details" BorderBrush="#ED3D3D" HorizontalAlignment="Left" Height="232" VerticalAlignment="Top" Width="350"  Margin="441,87,0,0" >
             <Grid Name="WorkDetailsGrid">
                 <ComboBox SelectionChanged="MyComboBox_OnSelectionChanged" Name="MyComboBox" materialDesign:HintAssist.Hint="Select from following option" Margin="20,44,31,104" Height="32" >
                     <ComboBoxItem Content="Employee" HorizontalAlignment="Left" Width="280" />
@@ -100,6 +89,15 @@
 
         <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="MainSnackbar"
         />
+        <Button Height="39" Background="DarkRed" BorderBrush="Red" HorizontalAlignment="Left" Margin="492,612,0,0" Name="btn_clear_details" Click="Btn_clear_details_OnClick" VerticalAlignment="Top" Width="58" ClipToBounds="False" >
+            <materialDesign:PackIcon Kind="UndoVariant"  Height="23" Width="28" />
+        </Button>
+        <Button Height="39"  HorizontalAlignment="Left" Margin="588,612,0,0" Name="btn_save" VerticalAlignment="Top" Width="203" ClipToBounds="False" Click="btn_save_Click">
+            <Grid>
+                <TextBlock FontSize="20" Margin="0,-1,0,-5">SUBMIT</TextBlock>
+                <materialDesign:PackIcon Kind="ContentSave" Margin="-44,2,0,-1" Height="20" Width="30" />
+                </Grid>
+        </Button>
 
 
     </Grid>
