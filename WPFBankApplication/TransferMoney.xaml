@@ -25,7 +25,7 @@
             </Grid>
         </Button>
         <TextBox PreviewTextInput="TextBoxAccoutPassword_OnPreviewTextInput" InputScope="Number" Name="TextBoxAccountNumber" Style="{DynamicResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Reciver Account number" Height="47" Margin="22,109,24,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBox PreviewTextInput="TextBoxAccoutPassword_OnPreviewTextInput" InputScope="Number" Name="TextBoxMoneyAmount" Style="{DynamicResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Enter money amount" HorizontalAlignment="Left" Height="51" Margin="24,162,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="370" TextChanged="TextBoxMoneyAmount_TextChanged"/>
+        <TextBox PreviewTextInput="TextBoxAccoutPassword_OnPreviewTextInput" InputScope="Number" Name="TextBoxMoneyAmount" Style="{DynamicResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Enter money amount" HorizontalAlignment="Left" Height="51" Margin="24,166,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="370" TextChanged="TextBoxMoneyAmount_TextChanged"/>
         <PasswordBox PreviewTextInput="TextBoxAccoutPassword_OnPreviewTextInput" InputScope="Number" Name="TextBoxAccountPassword" Style="{DynamicResource MaterialDesignFloatingHintPasswordBox}" materialDesign:HintAssist.Hint="Current account password" HorizontalAlignment="Left" Height="48" Margin="24,231,0,0" VerticalAlignment="Top" Width="370"/>
         <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="MainSnackbar"
         />
