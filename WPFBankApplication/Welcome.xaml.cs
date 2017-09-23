@@ -53,7 +53,7 @@ namespace WPFBankApplication
                 }
 
                 ImageSourceConverter img = new ImageSourceConverter();
-                ImageBox.SetValue(System.Windows.Controls.Image.SourceProperty, img.ConvertFromString(imageFilePath));
+               // ImageBox.SetValue(System.Windows.Controls.Image.SourceProperty, img.ConvertFromString(imageFilePath));
             }
             catch (SQLException exception)
             {
@@ -88,6 +88,12 @@ namespace WPFBankApplication
         private void TransferMoneyButton_OnClick(object sender, RoutedEventArgs e)
         {
             new TransferMoney(accountNumber).Show();
+            this.Hide();
+        }
+
+        private void ButtonLogOut_OnClick(object sender, RoutedEventArgs e)
+        {
+           new LoggedIn().Show();
             this.Hide();
         }
     }

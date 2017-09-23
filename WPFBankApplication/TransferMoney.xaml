@@ -12,13 +12,18 @@
                                   Mode="Accent" Height="46">
             <Grid Margin="-10,-11,-11,-10" >
                 <TextBlock Text="Transfer Money" Style="{DynamicResource MaterialDesignHeadlineTextBlock}" Margin="125,1,68,2"></TextBlock>
-                <Button Style="{x:Null}" BorderBrush="#FF00B8D4" Background="#FF00B8D4" Name="BackButton" ToolTip="Go back" Margin="0,0,360,0">
-                    <materialDesign:PackIcon Kind="ArrowLeft" Height="22" Width="26"></materialDesign:PackIcon>
+                <Button Style="{x:Null}" BorderBrush="#FF00B8D4" Background="#FF00B8D4" Name="BackButton" ToolTip="Go back" Margin="0,0,360,0" Click="BackButton_Click">
+                    <materialDesign:PackIcon Kind="ArrowLeft" Height="31" Width="40"></materialDesign:PackIcon>
                 </Button>
             </Grid>
         </materialDesign:ColorZone>
         <TextBlock FontSize="20" x:Name="textBlock" Margin="21,69,71,0" Style="{DynamicResource MaterialDesignBody2TextBlock}" Text="Enter following fields carefully" VerticalAlignment="Top" Height="27"/>
-        <Button Content="Transfer Money" HorizontalAlignment="Left" Margin="148,316,0,0" VerticalAlignment="Top" Width="140" Click="Button_Click"/>
+        <Button HorizontalAlignment="Left" Margin="130,316,0,0" VerticalAlignment="Top" Width="170" Click="Button_Click">
+            <Grid>
+                <TextBlock Text="Transfer Money"/>
+                <materialDesign:PackIcon Kind="Transfer" Margin="-35,3,0,0" Width="26" />
+            </Grid>
+        </Button>
         <TextBox PreviewTextInput="TextBoxAccoutPassword_OnPreviewTextInput" InputScope="Number" Name="TextBoxAccountNumber" Style="{DynamicResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Reciver Account number" Height="47" Margin="22,109,24,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBox PreviewTextInput="TextBoxAccoutPassword_OnPreviewTextInput" InputScope="Number" Name="TextBoxMoneyAmount" Style="{DynamicResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Enter money amount" HorizontalAlignment="Left" Height="51" Margin="24,162,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="370" TextChanged="TextBoxMoneyAmount_TextChanged"/>
         <PasswordBox PreviewTextInput="TextBoxAccoutPassword_OnPreviewTextInput" InputScope="Number" Name="TextBoxAccountPassword" Style="{DynamicResource MaterialDesignFloatingHintPasswordBox}" materialDesign:HintAssist.Hint="Current account password" HorizontalAlignment="Left" Height="48" Margin="24,231,0,0" VerticalAlignment="Top" Width="370"/>

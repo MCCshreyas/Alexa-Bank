@@ -223,5 +223,11 @@ namespace WPFBankApplication
                 }
             }
         }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            new Welcome(accountNum).Show();
+            this.Hide();
+        }
     }
 }

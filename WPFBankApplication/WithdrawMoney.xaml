@@ -13,13 +13,18 @@
                                   Mode="Accent" Height="46">
             <Grid Margin="-10,-11,-11,-10" >
                 <TextBlock Text="Withdraw Money" Style="{DynamicResource MaterialDesignHeadlineTextBlock}" Margin="67,1,10,2"></TextBlock>
-                <Button Margin="0,3,324,0" Style="{x:Null}" BorderBrush="#FF00B8D4" Background="#FF00B8D4" Name="BackButton" Click="BackButton_OnClick" >
-                    <materialDesign:PackIcon Kind="ArrowLeft" Height="22" Width="26"></materialDesign:PackIcon>
+                <Button Margin="0,3,320,0" Style="{x:Null}" BorderBrush="#FF00B8D4" Background="#FF00B8D4" Name="BackButton" Click="BackButton_OnClick" >
+                    <materialDesign:PackIcon Kind="ArrowLeft" Height="28" Width="36"></materialDesign:PackIcon>
                 </Button>
             </Grid>
         </materialDesign:ColorZone>
 
-        <Button x:Name="WithDrawMoney"  Content="Withdraw Money" HorizontalAlignment="Left" Margin="128,239,0,0" VerticalAlignment="Top" Width="161" Height="31" Click="WithDrawMoney_Click"/>
+        <Button x:Name="WithDrawMoney" HorizontalAlignment="Left" Margin="108,240,0,0" VerticalAlignment="Top" Width="179" Height="33" Click="WithDrawMoney_Click" >
+            <Grid>
+                <TextBlock Text="Withdraw money"/>
+                <materialDesign:PackIcon Kind="ChevronDoubleDown" Margin="-28,0,0,0" Width="31" Height="19" />
+            </Grid>
+        </Button>
         <TextBox FontWeight="Bold" FontSize="13" PreviewTextInput="WithDrawMoneyTextBox_OnPreviewTextInput" x:Name="WithDrawMoneyTextBox" HorizontalAlignment="Left" Height="23" Margin="85,127,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194" TextChanged="WithDrawMoneyTextBox_TextChanged"/>
         <TextBlock FontSize="20" x:Name="textBlock" Margin="39,69,53,0" Style="{DynamicResource MaterialDesignSubheadingTextBlock}" Text="Enter Money amount below" VerticalAlignment="Top" Height="27"/>
         <TextBlock FontSize="18" Style="{DynamicResource MaterialDesignSubheadingTextBlock}" HorizontalAlignment="Left" Margin="47,186,0,0" TextWrapping="Wrap" Text="Your current balance is Rs" VerticalAlignment="Top" Name="BalanceText"/>
