@@ -117,21 +117,19 @@ namespace WPFBankApplication
 
         //following method will save the data to database;
 
+        /// <summary>
+        /// Following is a JAVA code which saves data to database 
+        /// </summary>
         private void SaveDataToDatabase()
         {
-            //creating a user full name and saving it to variable fullName;
-
             string fullName = textBox_firstname.Text + " " + textBox_lastname.Text;
 
-            //following code will generate a random value and same value will be account number of the user. value < 1000000000
 
+            // following code will generate random number which will be users account number 
             Random r = new Random();
             accc = r.Next(1000000000);
 
-            //following code will save data to database.
-            //NOTE - Follwing code is in JAVA :) 
-
-          
+            
             try
             {
                 Class.forName("com.mysql.jdbc.Driver");
@@ -160,16 +158,17 @@ namespace WPFBankApplication
             }
         }
 
+        /// <summary>
+        /// Following code will execute when save button gets clicked
+        /// </summary>
         private void btn_save_Click(object sender, RoutedEventArgs e)
         {
-            bool internetStatus = IsInternetAvailable();  //checking internet connection for generation of OTP
+            bool internetStatus = IsInternetAvailable();  
             if (internetStatus)
             {
                 if (DoDataValidation())
                 {
                     SaveDataToDatabase();
-                    this.Hide();
-                    DialogBox.Show("Loading", "Please wait", "OK");
                     new OTPVerification(textBox_phonenumber.Text).ShowDialog();
                 }
             }
@@ -187,8 +186,12 @@ namespace WPFBankApplication
         }
 
 
-        //following method will check for internet connection if its there it will return true otherwise false
 
+
+        /// <summary>
+        ///following method will check for internet connection if its there it will return true otherwise false
+        /// </summary>
+        
         [DllImport("wininet.dll")]
         public static extern bool InternetGetConnectedState(out int description, int reservedValue);
 
@@ -224,9 +227,13 @@ namespace WPFBankApplication
         }
 
 
-        // following method will always execute whenever user changes the mobile number in 
-        //phone number text box
+       
 
+
+
+        /// <summary>
+        /// following method will execute whenever the text in phone number textbox gets changed
+        /// </summary>
         private void textBox_phonenumber_TextChanged(object sender, TextChangedEventArgs e)
         {
             Task.Factory.StartNew(() =>
@@ -238,12 +245,22 @@ namespace WPFBankApplication
             }, TaskScheduler.FromCurrentSynchronizationContext());
         }
 
+
+
+        /// <summary>
+        /// back button code which is at top left corner
+        /// </summary>
         private void BackButton_OnClick(object sender, RoutedEventArgs e)
         {
             new LoggedIn().Show();
             this.Hide();
         }
 
+
+       
+        /// <summary>
+        /// following method will clear the textbox values
+        /// </summary>
         private void Btn_clear_details_OnClick(object sender, RoutedEventArgs e)
         {
             textBox_phonenumber.Text = textBox_address.Text = textBox_email.Text = textBox_firstname.Text =

@@ -26,28 +26,6 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Green.Named.Primary.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-
-       <!-- <Style x:Key="ToolbarButton" BasedOn="{StaticResource MahApps.Metro.Styles.MetroButton}" TargetType="Button">
-            <Setter Property="Margin" Value="5 5 5 5"/>
-            <Setter Property="FontSize" Value="24" />
-            <Setter Property="Width" Value="auto"/>
-        </Style>
-
--->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
     </Application.Resources>
 </Application>
