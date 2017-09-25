@@ -76,7 +76,7 @@ namespace WPFBankApplication
             }
             catch (Exception e)
             {
-                MessageBox.Show("Something went wrong. " + e.Message,"Exception",MessageBoxButton.OK,MessageBoxImage.Error);
+                DialogBox.Show("Exception", "Something went wrong. " + e.Message,"OK");
                 return false;
 
             }
@@ -137,7 +137,7 @@ namespace WPFBankApplication
             }
             catch (SQLException exception)
             {
-                MessageBox.Show("Something went wrong. " + exception.Message);
+                DialogBox.Show("Error","Something went wrong. " + exception.Message,"OK");
             }
 
         }

@@ -13,7 +13,8 @@ namespace WPFBankApplication
     /// </summary>
     public partial class Welcome
     {
-        public static string accountNumber = string.Empty;
+        public static string accountNumber = "";
+
         public Welcome(string accountNum)
         {
             InitializeComponent();
@@ -59,16 +60,10 @@ namespace WPFBankApplication
             }
             catch (SQLException exception)
             {
-                MessageBox.Show(exception.ToString());
+                DialogBox.Show("Eror",exception.ToString(),"OK");
             }
         }
-
-        private void ButtonCheckAccountDetails_Click(object sender, RoutedEventArgs e)
-        {
-            new AccountDetails(accountNumber).Show();
-            this.Hide();
-        }
-
+        
         private void ButtonWithdrawMoney_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();

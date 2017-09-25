@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using ExtraTools;
 using java.lang;
@@ -51,7 +50,7 @@ namespace WPFBankApplication
             }
             catch (Exception e)
             {
-                MessageBox.Show("Something went wrong. " + e.Message);
+                DialogBox.Show("Error","Something went wrong. " + e.Message,"OK");
                 return false;
 
             }
@@ -73,9 +72,7 @@ namespace WPFBankApplication
                 }
 
                 DialogBox.Show("Sucess", "Trasaction done sucessfully","OK");
-                SaveMoneyTextBox.Text = string.Empty;
-
-
+                SaveMoneyTextBox.Text = "";
             }
         }
 

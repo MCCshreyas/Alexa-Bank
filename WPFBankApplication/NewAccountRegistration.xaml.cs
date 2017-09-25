@@ -20,8 +20,8 @@ namespace WPFBankApplication
     public partial class NewAccountRegistration
     {
         private OpenFileDialog _fileDialog;
-        private int accc;
-        private string imageFilePath = string.Empty;
+        public int accc;
+        public string imageFilePath = "";
         
         public NewAccountRegistration()
         {
@@ -44,7 +44,7 @@ namespace WPFBankApplication
             else if ((bool) RadioButtonFemale.IsChecked)
                 return "Female";
             else
-                return string.Empty;
+                return null;
         }
 
 
@@ -68,8 +68,7 @@ namespace WPFBankApplication
             }
             catch (Exception exception)
             {
-                MessageBox.Show("Something went wrong. " + exception.Message, "Error", MessageBoxButton.OK,
-                    MessageBoxImage.Error);
+                DialogBox.Show("Error", "Something went wrong. " + exception.Message);
             }
         }
         
@@ -84,22 +83,21 @@ namespace WPFBankApplication
 
             if (textBox_firstname.Text == "" || textBox_lastname.Text == "" || textBox_email.Text == "" || textBox_pass.Password == "" || textBox_address.Text == "" || textBox_phonenumber.Text == "" || AccountHolderImage.Source == null || myDatePicker.Text == "")
             {
-               // MessageBox.Show("Please fill all the information before proceding", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-                FieldErrorDialog.IsOpen = true;
+                DialogBox.Show("Error", "Please enter all field", "OK");
                 return false;
             }
 
             // we are checking phone number here
             if (length < 10 || length == 0 || length > 10)
             {
-                MessageBox.Show("Please check your phone number","Error",MessageBoxButton.OK,MessageBoxImage.Stop);
+                DialogBox.Show("Error","Please check your phone number","OK");
                 return false;
             }
                 
             // we are checking email validation here
             if (!isEmailValid || !isEmailValid2)
             {
-                MessageBox.Show("Please check your email ID","Error",MessageBoxButton.OK,MessageBoxImage.Stop);
+                DialogBox.Show("Error","Please check your email ID","OK");
                 return false;
             }
 
@@ -151,13 +149,13 @@ namespace WPFBankApplication
                 ps.setString(10,myDatePicker.Text);
                 ps.executeUpdate();
                 c.close();
-                MessageBox.Show("Account created sucessfully","Sucess",MessageBoxButton.OK,MessageBoxImage.Information);
+                DialogBox.Show("Sucess","Account created sucessfully","OK");
 
-                MessageBox.Show("Your account number is " + accc, "Sucess", MessageBoxButton.OK, MessageBoxImage.Information);
+                DialogBox.Show("Sucess","Your account number is " + accc,"OK");
             }
             catch (SQLException exception)
             {
-                MessageBox.Show("Something went wrong." + exception.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Stop);
+                DialogBox.Show("Error", "Something went wrong." + exception.Message,"OK");
             }
         }
 
@@ -198,20 +196,6 @@ namespace WPFBankApplication
             int description;
             return InternetGetConnectedState(out description, 0);
         }
-
-      
-        private void UIElement_OnMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            this.Hide();
-            new LoggedIn().Show();
-        }
-
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-        {
-            this.Hide();
-            new LoggedIn().Show();
-        }
-
 
         private void MyComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {

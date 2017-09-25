@@ -16,7 +16,6 @@ namespace WPFBankApplication
     {
         public LoggedIn()
         {
-
             InitializeComponent();
             Task.Factory.StartNew(() =>
             {
@@ -33,7 +32,6 @@ namespace WPFBankApplication
             if (textBox_acc.Text == string.Empty || PasswordBox.Password == string.Empty)
             {
                 DialogBox.Show("Error", "Please fill all the information and then proceed","OK");
-             
                 return false;
             }
             return true;
@@ -42,35 +40,35 @@ namespace WPFBankApplication
         
         public void DoLogIn()
         {
-            string pass = string.Empty;
+            string pass = "";
 
             try
             {
                 Class.forName("com.mysql.jdbc.Driver");
-                Connection c =
-                    (Connection) DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root",
-                        "9970209265");
+                Connection c = DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root", "9970209265");
 
-                java.sql.PreparedStatement ps =
-                    c.prepareStatement("select Password from info where account_number = ?");
+                java.sql.PreparedStatement ps = c.prepareStatement("select Password from info where account_number = ?");
                 ps.setString(1, textBox_acc.Text);
+
                 ResultSet rs = ps.executeQuery();
-
-
+                
                 while (rs.next())
                 {
                     pass = rs.getString("Password");
                 }
-                c.close();
+                
             }
             catch (SQLException exception)
             {
-                MessageBox.Show(exception.ToString());
+                DialogBox.Show("Error","Something went wrong - " + exception.Message,"OK");
 
             }
+
+
             //Getting password from user password box
 
             string userPassword = PasswordBox.Password;
+
             //checking the input password and the password saved in database
             if (userPassword == pass)
             {
@@ -112,7 +110,6 @@ namespace WPFBankApplication
             var regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
-
         
         private void ForgetAccountNumberHyperLink_OnClick(object sender, RoutedEventArgs e)
         {
