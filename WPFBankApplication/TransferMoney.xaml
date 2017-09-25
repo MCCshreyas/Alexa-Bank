@@ -11,7 +11,7 @@
         <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2"
                                   Mode="Accent" Height="46">
             <Grid Margin="-10,-11,-11,-10" >
-                <TextBlock Text="Transfer Money" Style="{DynamicResource MaterialDesignHeadlineTextBlock}" Margin="125,1,68,2"></TextBlock>
+                <TextBlock Text="Transfer Money" Style="{DynamicResource MaterialDesignTitleTextBlock}" Margin="105,3,88,0"></TextBlock>
                 <Button Style="{x:Null}" BorderBrush="#FF00B8D4" Background="#FF00B8D4" Name="BackButton" ToolTip="Go back" Margin="0,0,360,0" Click="BackButton_Click">
                     <materialDesign:PackIcon Kind="ArrowLeft" Height="31" Width="40"></materialDesign:PackIcon>
                 </Button>
@@ -21,7 +21,7 @@
         <Button HorizontalAlignment="Left" Margin="130,316,0,0" VerticalAlignment="Top" Width="170" Click="Button_Click">
             <Grid>
                 <TextBlock Text="Transfer Money"/>
-                <materialDesign:PackIcon Kind="Transfer" Margin="-35,3,0,0" Width="26" />
+                <materialDesign:PackIcon Kind="Transfer" Margin="-33,2,0,0" Width="26" />
             </Grid>
         </Button>
         <TextBox PreviewTextInput="TextBoxAccoutPassword_OnPreviewTextInput" InputScope="Number" Name="TextBoxAccountNumber" Style="{DynamicResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Reciver Account number" Height="47" Margin="22,109,24,0" TextWrapping="Wrap" VerticalAlignment="Top"/>

@@ -8,7 +8,7 @@
     TextElement.FontSize="13"
     TextOptions.TextFormattingMode="Ideal" 
     TextOptions.TextRenderingMode="Auto">
-    <Grid Background="White">
+    <Grid Background="#FF78BF81">
 
 
         <TextBlock

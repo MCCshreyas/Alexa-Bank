@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Media;
 using System.Threading.Tasks;
+using ExtraTools;
 using java.lang;
 using java.sql;
 using Connection = com.mysql.jdbc.Connection;
@@ -10,15 +11,16 @@ namespace WPFBankApplication
     /// <summary>
     /// Interaction logic for Welcome.xaml
     /// </summary>
-    public partial class Welcome : Window
+    public partial class Welcome
     {
-        private static string accountNumber = string.Empty;
+        public static string accountNumber = string.Empty;
         public Welcome(string accountNum)
         {
             InitializeComponent();
             accountNumber = accountNum;
             TextBlockWelcome.Text = "Hello " + Operations.GetAccountHolderName(accountNumber);
-            TextBlockAccountNo.Text = accountNum;
+            TextBlockAccountNumber.Text = accountNum;
+            TextBlockAvaiableBalance.Text = Operations.GetCurrentbalance(accountNum);
             GetAccountHolderImage();
             ShowWelcomeSnakbar();
         }
@@ -53,7 +55,7 @@ namespace WPFBankApplication
                 }
 
                 ImageSourceConverter img = new ImageSourceConverter();
-               // ImageBox.SetValue(System.Windows.Controls.Image.SourceProperty, img.ConvertFromString(imageFilePath));
+               ImageBox.SetValue(System.Windows.Controls.Image.SourceProperty, img.ConvertFromString(imageFilePath));
             }
             catch (SQLException exception)
             {
@@ -93,8 +95,16 @@ namespace WPFBankApplication
 
         private void ButtonLogOut_OnClick(object sender, RoutedEventArgs e)
         {
-           new LoggedIn().Show();
-            this.Hide();
+            int result = (int)DialogBox.Show("Log out ?", "Are you sure you want to log out?", "YES", "NO");
+            
+            switch (DialogBox.Result)
+            {
+                case DialogBox.ResultEnum.LeftButtonClicked:
+                    new LoggedIn().Show();
+                    this.Hide();
+                    break;
+            }
+
         }
     }
 

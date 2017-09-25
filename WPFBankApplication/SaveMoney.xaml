@@ -9,10 +9,10 @@
         Title="SaveMoney" Height="333" Width="384" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2"
-                                  Mode="Accent" Height="46">
+                                  Mode="Accent" Height="46" Background="#FF209B20" BorderBrush="#FF209B20">
             <Grid Margin="-10,-11,-11,-10" >
-                <TextBlock Text="Deposite Money" Style="{DynamicResource MaterialDesignHeadlineTextBlock}" Margin="67,1,10,2"></TextBlock>
-                <Button Margin="0,3,324,0" Style="{x:Null}" BorderBrush="#FF00B8D4" Background="#FF00B8D4" Name="BackButton" Click="BackButton_OnClick"  ToolTip="Go back">
+                <TextBlock Text="Deposite Money" Style="{DynamicResource MaterialDesignTitleTextBlock}" Margin="67,3,10,0"></TextBlock>
+                <Button Margin="0,3,305,0"  materialDesign:ShadowAssist.ShadowDepth="Depth0"  Background="#FF209B20" BorderBrush="#FF209B20" Name="BackButton" Click="BackButton_OnClick"  ToolTip="Go back">
                     <materialDesign:PackIcon Kind="ArrowLeft" Height="22" Width="26"></materialDesign:PackIcon>
                 </Button>
             </Grid>
