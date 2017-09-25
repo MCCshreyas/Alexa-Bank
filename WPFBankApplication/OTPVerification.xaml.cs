@@ -16,13 +16,21 @@ namespace WPFBankApplication
     /// </summary>
     public partial class OTPVerification
     {
-        public readonly string userPhoneNumber = "";
+        public string UserPhoneNumber = "";
         private int OTP;
+
         public OTPVerification(string phoneNumber)
         {
             InitializeComponent();
-            userPhoneNumber = phoneNumber;
-            OTPOperations();
+            UserPhoneNumber = phoneNumber;
+            Task.Factory.StartNew(() =>
+                {
+                    Thread.Sleep(1000);
+                }).ContinueWith(t =>
+            {
+
+                 OTPOperations();
+            }, TaskScheduler.FromCurrentSynchronizationContext());
         }
 
 
@@ -37,12 +45,12 @@ namespace WPFBankApplication
             const string accountSid = "ACa4e91ac77184d82e6b7e7db26612c8d0";
             const string authToken = "cf88bc0c7f9a1c67f9ea49d5917a9be6";
             TwilioClient.Init(accountSid, authToken);
-            var to = new PhoneNumber("+91" + userPhoneNumber);    
+            var to = new PhoneNumber("+91" + UserPhoneNumber);    
             var message = MessageResource.Create
             (
                 to,
                 from: new PhoneNumber("+16674018291"),
-                body: "Your OTP for Alexa account is " + OTP
+                body: "Thank you for creating account in Alexa Bank of India. Following is OTP for your account - " + OTP
             );
         }
 
@@ -52,7 +60,7 @@ namespace WPFBankApplication
             {
                 DialogBox.Show("Sucess", "Thank you for confirming your account.","OK");
                 new LoggedIn().Show();
-                this.Hide();
+                Hide();
             }
             else
             {
@@ -61,8 +69,7 @@ namespace WPFBankApplication
                     Thread.Sleep(1000);
                 }).ContinueWith(t =>
                 {
-                    //note you can use the message queue from any thread, but just for the demo here we 
-                    //need to get the message queue from the snackbar, so need to be on the dispatcher
+
                     MainSnackbar.MessageQueue.Enqueue("Sorry entered One Time Password is incorrect");
                 }, TaskScheduler.FromCurrentSynchronizationContext());
             }

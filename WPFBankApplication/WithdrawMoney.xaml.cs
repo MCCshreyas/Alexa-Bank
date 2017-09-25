@@ -18,7 +18,7 @@ namespace WPFBankApplication
     public partial class WithdrawMoney
     {
         private string accountNum;
-        private string remainingBalance;
+        public string remainingBalance;
 
 
        // NOTE - Please refer Operations.cs file in this project. We have called bunch of methods from there
@@ -30,7 +30,6 @@ namespace WPFBankApplication
             accountNum = accountNumber;
             string accountBalance = Operations.GetCurrentbalance(accountNum);   //this will return the current balance of the logged in account holder
             CurrentBalance.Text = accountBalance;                               // and will save that in accountBalance variable
-
         }
 
 
@@ -93,9 +92,7 @@ namespace WPFBankApplication
         {
             if (DoValidation())
             {
-
                 //following condition will check is there sufficent balance in account holder itself before withdrawing money
-
 
                 if (Convert.ToInt32(WithDrawMoneyTextBox.Text) > Convert.ToInt32(Operations.GetCurrentbalance(accountNum)))
                 {
@@ -105,6 +102,7 @@ namespace WPFBankApplication
                 {
                     remainingBalance = Convert.ToString(Convert.ToInt32(Operations.GetCurrentbalance(accountNum)) -
                                                         Convert.ToInt32(WithDrawMoneyTextBox.Text));
+
                     CurrentBalance.Text = remainingBalance;
                     SaveFinalBalance();
                    

@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using ExtraTools;
 using java.lang;
 using java.sql;
 using Connection = com.mysql.jdbc.Connection;
@@ -14,7 +15,7 @@ namespace WPFBankApplication
 
         public static bool DoesSendMobileNotifications(string accountNumber)
         {
-            string status = string.Empty;
+            string status = "";
 
             try
             {
@@ -38,14 +39,14 @@ namespace WPFBankApplication
             }
             catch (SQLException exception)
             {
-                MessageBox.Show(exception.ToString());
+                DialogBox.Show("Error", "Something went wrong " + exception.Message, "OK");
                 return false;
             }
         }
 
         public static string GetAccountHolderMobileNumber(string accountNumber)
         {
-            string phoneNum = string.Empty;
+            string phoneNum = "";
 
             try
             {
@@ -64,7 +65,7 @@ namespace WPFBankApplication
             }
             catch (SQLException exception)
             {
-                MessageBox.Show("Something went wrong. " + exception.Message,"Error",MessageBoxButton.OK,MessageBoxImage.Error);
+                DialogBox.Show("Error", "Something went wrong " + exception.Message, "OK");
                 return null;
             }
         }
@@ -72,7 +73,7 @@ namespace WPFBankApplication
 
         public static string GetCurrentbalance(string accountNumber)
         {
-            string balance = string.Empty;
+            string balance = "";
             try
             {
                 Class.forName("com.mysql.jdbc.Driver");
@@ -90,10 +91,11 @@ namespace WPFBankApplication
             }
             catch (SQLException exception)
             {
-                MessageBox.Show(exception.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Stop);
+                DialogBox.Show("Error", "Something went wrong " + exception.Message, "OK");
+                return "";
             }
 
-            return string.Empty;
+            
         }
 
 
@@ -118,14 +120,13 @@ namespace WPFBankApplication
             catch (SQLException exception)
             {
                 MessageBox.Show(exception.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Stop);
+                return null;
             }
-
-            return string.Empty;
         }
 
         public static string GetAccountHolderName(string accountNumber)
         {
-            string name = string.Empty;
+            string name = "";
             try
             {
                 Class.forName("com.mysql.jdbc.Driver");
@@ -144,9 +145,8 @@ namespace WPFBankApplication
             catch (SQLException exception)
             {
                 MessageBox.Show(exception.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Stop);
+                return null;
             }
-
-            return string.Empty;
         }
     }
 }

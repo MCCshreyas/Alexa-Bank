@@ -2,6 +2,7 @@
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
+using ExtraTools;
 using java.lang;
 using java.sql;
 using Twilio;
@@ -14,11 +15,11 @@ namespace WPFBankApplication
     /// <summary>
     /// Interaction logic for TransferMoney.xaml
     /// </summary>
-    public partial class TransferMoney : Window
+    public partial class TransferMoney
     {
         string accountNum = "";
-        private string remainingReceiverBalance = "";
-        private string remainingSenderBalance = "";
+        public  string remainingReceiverBalance = "";
+        public string remainingSenderBalance = "";
 
 
         public TransferMoney(string accountNumber)
@@ -31,7 +32,7 @@ namespace WPFBankApplication
         {
             if (TextBoxAccountNumber.Text == "" || TextBoxAccountPassword.Password == "" || TextBoxMoneyAmount.Text == "")
             {
-                MessageBox.Show("Please fill up all the fields before procedding.","Error",MessageBoxButton.OK,MessageBoxImage.Stop);
+                DialogBox.Show("Error", "Please fill up all the fields before procedding.","OK");
                 return false;
             }
         
@@ -44,6 +45,7 @@ namespace WPFBankApplication
             remainingReceiverBalance =
                 Convert.ToString(
                     Convert.ToInt32(Operations.GetCurrentbalance(TextBoxAccountNumber.Text)) + Convert.ToInt32(TextBoxMoneyAmount.Text));
+
 
             remainingSenderBalance =
                 Convert.ToString(Convert.ToInt32(Operations.GetCurrentbalance(accountNum)) -
@@ -59,15 +61,15 @@ namespace WPFBankApplication
             }
            else if (Convert.ToInt32(Operations.GetCurrentbalance(accountNum)) < Convert.ToInt32(TextBoxMoneyAmount.Text))
             {
-                MessageBox.Show("You don't have sufficient amount in your account to transfer. Your currrent balance is  " + Operations.GetCurrentbalance(accountNum), "Error", MessageBoxButton.OK, MessageBoxImage.Stop);
+                DialogBox.Show("Error", "You don't have sufficient amount in your account to transfer. Your currrent balance is  " + Operations.GetCurrentbalance(accountNum),"OK");
             }
-            else if (TextBoxAccountPassword.Password != Operations.GetPassword(accountNum).ToString())
+            else if (TextBoxAccountPassword.Password != Operations.GetPassword(accountNum))
             {
-                MessageBox.Show("Entered password for this account is incorrect. ", "Error", MessageBoxButton.OK, MessageBoxImage.Stop);
+                DialogBox.Show("Error","Entered password for this account is incorrect.","OK");
             }
             else if (!CheckReceiverAccountNumber())
             {
-                MessageBox.Show("Account does not exist");
+                DialogBox.Show("Error", "Account does not exist", "OK");
             }
             else
             {
@@ -82,11 +84,11 @@ namespace WPFBankApplication
                         SendMobileNotification();
                         SendMobileNotificationToReciver();
                     }
-                    MessageBox.Show("Transfer done sucessfully.", "Sucess", MessageBoxButton.OK, MessageBoxImage.Information);
+                    DialogBox.Show("Sucess", "Transfer done sucessfully.","OK");
                 }
                 catch (SQLException error)
                 {
-                    MessageBox.Show(error.Message,"Error",MessageBoxButton.OK,MessageBoxImage.Error);
+                    DialogBox.Show("Error", "Something went wrong. " + error.Message, "OK");
                 }
             }
         }
@@ -139,10 +141,9 @@ namespace WPFBankApplication
                    
                     Class.forName("com.mysql.jdbc.Driver");
                     Connection c =
-                        (Connection) DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root",
-                            "9970209265");
-
-                    java.sql.PreparedStatement ps =
+                        (Connection) DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root", "9970209265");
+                
+                java.sql.PreparedStatement ps =
                         c.prepareStatement("update info set Balance = ? where account_number = ?");
                     ps.setString(1, bal);
                     ps.setString(2, accountNum);
@@ -150,7 +151,7 @@ namespace WPFBankApplication
                 }
                 catch (SQLException exception)
                 {
-                    MessageBox.Show("Something went wrong. " + exception.Message);
+                    DialogBox.Show("Error", "Something went wrong " + exception.Message, "OK");
                 }
             }
 
@@ -173,7 +174,7 @@ namespace WPFBankApplication
                 }
                 catch (SQLException exception)
                 {
-                    MessageBox.Show("Something went wrong. " + exception.Message);
+                    DialogBox.Show("Error", "Something went wrong " + exception.Message, "OK");
                 }
             }
 
@@ -193,14 +194,14 @@ namespace WPFBankApplication
 
                     if (result.next() == false)
                     {
-                        MessageBox.Show("Account does not exist");
+                        DialogBox.Show("Error","Account does not exist","OK");
                         return false;
                     }
 
                 }
                 catch (SQLException exception)
                 {
-                    MessageBox.Show(exception.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Stop);
+                     DialogBox.Show("Error", "Something went wrong " + exception.Message, "OK");
                 }
 
                 return true;

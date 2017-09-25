@@ -10,38 +10,40 @@
     TextOptions.TextRenderingMode="Auto">
     <Grid Background="#FF78BF81">
 
-
         <TextBlock
             Margin="35,192,530,365"
             Style="{StaticResource MaterialDesignDisplay1TextBlock}"
-            Text="Trending news - "
-            />
+            Text="Trending news - " />
             
-        
-
-
 
         <materialDesign:Card Margin="50,130,410,0" Height="435">
-
-            
-            
-            
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="140" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <Image Source="notification.jpg"  Margin="10,10,10,0" />
-                <Button Grid.Row="0" Style="{DynamicResource MaterialDesignFloatingActionMiniAccentButton}" 
-                        HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                        Margin="0 0 16 -20" Background="#FF8F64EA" BorderBrush="#FF8F64EA">
+
+                <Image 
+                    Source="notification.jpg"  
+                    Margin="10,10,10,0" />
+
+                <Button Grid.Row="0" 
+                        Style="{DynamicResource MaterialDesignFloatingActionMiniAccentButton}" 
+                        HorizontalAlignment="Right" 
+                        VerticalAlignment="Bottom"
+                        Margin="0 0 16 -20" 
+                        Background="#FF8F64EA" 
+                        BorderBrush="#FF8F64EA">
+
                     <materialDesign:PackIcon Kind="Bank" />
                 </Button>
+
                 <StackPanel Grid.Row="1" Margin="8 24 8 0" >
                     <TextBlock FontWeight="Bold">Trending news</TextBlock>
                     <TextBlock TextWrapping="Wrap" VerticalAlignment="Center">Alexa bank of india now supoports mobile notifications to track account changes</TextBlock>
                 </StackPanel>
+
                 <StackPanel HorizontalAlignment="Right" Grid.Row="2" Orientation="Horizontal" Margin="8">
                     <Button Style="{DynamicResource MaterialDesignToolButton}" Width="30" Padding="2 0 2 0"
                             materialDesign:RippleAssist.IsCentered="True">
@@ -52,18 +54,15 @@
                         <materialDesign:PackIcon Kind="Heart"/>
                     </Button>
                 </StackPanel>
+
             </Grid>
         </materialDesign:Card>
 
         <materialDesign:ColorZone materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="85" Background="#FF464CCF">
             <Grid>
-
-
                 <Grid HorizontalAlignment="Center">
-
                     <TextBlock Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40" FontWeight="Bold">Alexa Bank of India</TextBlock>
                 </Grid>
-
                 <Grid/>
             </Grid>
 
@@ -95,8 +94,7 @@
                 </Button>
                 <Button ToolTip="Email"
                         Background="Blue"
-                        Foreground="{DynamicResource SecondaryAccentForegroundBrush}"
-                >
+                        Foreground="{DynamicResource SecondaryAccentForegroundBrush}">
                     <materialDesign:PackIcon Kind="Email" />
                 </Button>
             </StackPanel>
@@ -157,16 +155,12 @@
                         materialDesign:RippleAssist.IsCentered="True">
                         <materialDesign:PackIcon Kind="Heart" />
                     </Button>
-
                 </StackPanel>
             </Grid>
         </materialDesign:Card>
 
         <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="MainSnackbar"
                                             Background="RoyalBlue" />
-
-
     </Grid>
-
 </Window>
     
