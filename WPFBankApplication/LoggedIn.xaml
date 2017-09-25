@@ -55,7 +55,7 @@
             </Grid>
         </materialDesign:Card>
 
-        <materialDesign:ColorZone materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="85" Background="Teal">
+        <materialDesign:ColorZone materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="85" Background="#FF464CCF">
             <Grid>
 
 
