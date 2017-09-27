@@ -121,6 +121,6 @@ namespace WPFBankApplication
         {
             new ForgetPassword().Show();
             this.Hide();
-        }
+        }   
     }
 }

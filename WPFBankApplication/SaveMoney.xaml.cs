@@ -25,8 +25,7 @@ namespace WPFBankApplication
             InitializeComponent();
             accountNum = accountNumber;
 
-            //please refer operations.cs file for GetCurrentBalance method
-
+            // please refer operations.cs file for GetCurrentBalance method
             string accountBalance = Operations.GetCurrentbalance(accountNum);   
             CurrentBalance.Text = accountBalance;
         }
@@ -88,15 +87,11 @@ namespace WPFBankApplication
 
 
             var to = new PhoneNumber("+91" + Operations.GetAccountHolderMobileNumber(accountNum));
-            var message = MessageResource.Create
-            (
+            var message = MessageResource.Create(
                 to,
                 from: new PhoneNumber("+16674018291"),
-                body: SentMessage
-            );
+                body: SentMessage);
         }
-
-
 
         private void SaveFinalBalance()
         {

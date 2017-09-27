@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using ExtraTools;
 using java.lang;
 using java.sql;
-using MessageBox = System.Windows.MessageBox;
 using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
 using Connection = com.mysql.jdbc.Connection;
 using Exception = System.Exception;
@@ -32,9 +31,10 @@ namespace WPFBankApplication
         }
 
 
-        //following code will check is user is Male or Female as per the radiobuttons in design
-        //if Male it will return "Male" otherwise "Female" if user wont select either of them it will return empty string see line no 65 of the file
-
+       
+        /// <summary>
+        /// Following method will check which radiobutton is checked Male or Female. And will return result accordingly.
+        /// </summary>
         public string GetGenderInfo()
         {
             if ((bool) RadioButtonMale.IsChecked)
@@ -48,10 +48,10 @@ namespace WPFBankApplication
         }
 
 
-        //following code will execute when upload image button gets clicked
-        //Please refer design
-
-
+     
+        /// <summary>
+        /// Following code will execute when upload image button gets clicked
+        /// </summary>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -74,13 +74,15 @@ namespace WPFBankApplication
         
         private bool DoDataValidation()
         {
-            int length = textBox_phonenumber.Text.Length;   //saving phone number leangh into a length variable
+            //saving phone number leangh into a length variable
+            int length = textBox_phonenumber.Text.Length;  
 
             //checking email validation which returns bool value 
             bool isEmailValid = textBox_email.Text.Contains("@");
             bool isEmailValid2 = textBox_email.Text.Contains(".com");
 
 
+            // Is there any textbox is empty or not. If there then it will fire error message
             if (textBox_firstname.Text == "" || textBox_lastname.Text == "" || textBox_email.Text == "" || textBox_pass.Password == "" || textBox_address.Text == "" || textBox_phonenumber.Text == "" || AccountHolderImage.Source == null || myDatePicker.Text == "")
             {
                 DialogBox.Show("Error", "Please enter all field", "OK");
@@ -104,10 +106,11 @@ namespace WPFBankApplication
             return true;
         }
 
-
-        //following code will check is MobileNotification checkbox is check or not by user. Please refer design
-        // if it is check it will return Yes otherwise No
-
+        
+        /// <summary>
+        /// following code will check is MobileNotification checkbox is check or not by user. Please refer design for it. 
+        //  if it is check it will return Yes otherwise No
+        /// </summary>
         public string EnableMobileNotifications()
         {
             bool isMobileNotifications = (bool)CheckBoxMobileNotification.IsChecked;
@@ -115,8 +118,7 @@ namespace WPFBankApplication
             return isMobileNotifications ? "Yes" : "No";
         }
 
-        //following method will save the data to database;
-
+       
         /// <summary>
         /// Following is a JAVA code which saves data to database 
         /// </summary>
@@ -125,7 +127,7 @@ namespace WPFBankApplication
             string fullName = textBox_firstname.Text + " " + textBox_lastname.Text;
 
 
-            // following code will generate random number which will be users account number 
+            // following code will generate random number which will be user account number 
             Random r = new Random();
             accc = r.Next(1000000000);
 

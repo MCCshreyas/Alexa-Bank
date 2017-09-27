@@ -13,8 +13,8 @@
                                   Mode="Accent" Height="46" Background="#FFD34B4B" BorderBrush="#FFD34B4B">
             <Grid Margin="-10,-11,-11,-10" >
                 <TextBlock Text="Withdraw money" Style="{DynamicResource MaterialDesignTitleTextBlock}" Margin="67,5,10,-2"></TextBlock>
-                <Button Margin="-7,2,311,1" materialDesign:ShadowAssist.ShadowDepth="Depth0" BorderBrush="#FFD34B4B" Background="#FFD34B4B" Name="BackButton" Click="BackButton_OnClick" >
-                    <materialDesign:PackIcon Kind="ArrowLeft" Height="28" Width="44"></materialDesign:PackIcon>
+                <Button Margin="0,3,305,0"  materialDesign:ShadowAssist.ShadowDepth="Depth0"  Background="#FFD34B4B" BorderBrush="#FFD34B4B" Name="BackButton" Click="BackButton_OnClick"  ToolTip="Go back">
+                    <materialDesign:PackIcon Kind="ArrowLeft" Height="22" Width="26"></materialDesign:PackIcon>
                 </Button>
             </Grid>
         </materialDesign:ColorZone>

@@ -12,18 +12,15 @@ using Exception = System.Exception;
 
 namespace WPFBankApplication
 {
-    /// <summary>
-    /// Interaction logic for WithdrawMoney.xaml
-    /// </summary>
     public partial class WithdrawMoney
     {
         private string accountNum;
         public string remainingBalance;
 
-
-       // NOTE - Please refer Operations.cs file in this project. We have called bunch of methods from there
-
-
+        /// <summary>
+        /// Following is a constructor and will also set the text of current balance
+        /// </summary>
+      
         public WithdrawMoney(string accountNumber)
         {
             InitializeComponent();
@@ -34,9 +31,12 @@ namespace WPFBankApplication
 
 
 
-        //following method will send mobile notification to the account holder number as per the trasaction 
-        // also refer Operations.cs file . We have used its method at line no 51
+        
 
+        /// <summary>
+        /// Following method will send mobile notification to the account holder number as per the trasaction 
+        // also refer Operations.cs file . We have used its method at line no 51
+        /// </summary>
         public void SendMobileNotification()
         {
             const string accountSid = "ACa4e91ac77184d82e6b7e7db26612c8d0";

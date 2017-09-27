@@ -49,19 +49,13 @@
                 <materialDesign:PackIcon Kind="ChevronDoubleDown" Margin="-36,0,0,0" Width="31" Height="19" />
             </Grid>
         </Button>
-        <Button x:Name="ButtonSaveMoney" HorizontalAlignment="Left" Margin="636,184,0,0" VerticalAlignment="Top" Width="192" Height="35" Click="ButtonSaveMoney_Click" Background="#FF209B20" BorderBrush="#FF209B20" >
+        <Button x:Name="ButtonSaveMoney" HorizontalAlignment="Left" Margin="636,224,0,0" VerticalAlignment="Top" Width="192" Height="35" Click="ButtonSaveMoney_Click" Background="#FF209B20" BorderBrush="#FF209B20" >
             <Grid>
                 <TextBlock Text="Deposite money"/>
                 <materialDesign:PackIcon Kind="ChevronDoubleDown" Margin="-43,0,0,0" Width="31" Height="19" />
             </Grid>
         </Button>
-        <Button HorizontalAlignment="Left" Margin="636,350,0,0" VerticalAlignment="Top" Width="192" Click="Button_Click" Background="DarkMagenta" BorderBrush="DarkMagenta" >
-            <Grid>
-                <TextBlock Text="Account settings"/>
-                <materialDesign:PackIcon Kind="AccountSettingsVariant" Margin="-31,3,0,0" Width="26" />
-            </Grid>
-        </Button>
-        <Button HorizontalAlignment="Left" Margin="636,269,0,0" VerticalAlignment="Top" Width="192" Name="TransferMoneyButton" Click="TransferMoneyButton_OnClick" >
+        <Button HorizontalAlignment="Left" Margin="636,345,0,0" VerticalAlignment="Top" Width="192" Name="TransferMoneyButton" Click="TransferMoneyButton_OnClick" >
             <Grid>
                 <TextBlock Text="Transfer Money"/>
                 <materialDesign:PackIcon Kind="Transfer" Margin="-35,3,0,0" Width="26" />

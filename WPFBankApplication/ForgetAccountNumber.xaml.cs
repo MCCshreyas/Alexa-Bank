@@ -32,9 +32,7 @@ namespace WPFBankApplication
                 DialogBox.Show("Error", "Please enter valid email", "OK");
                 return false;
             }
-
             return true;
-
         }
 
 
