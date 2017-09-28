@@ -228,11 +228,7 @@ namespace WPFBankApplication
             e.Handled = regex.IsMatch(e.Text);
         }
 
-
-       
-
-
-
+        
         /// <summary>
         /// following method will execute whenever the text in phone number textbox gets changed
         /// </summary>

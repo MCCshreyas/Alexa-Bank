@@ -133,6 +133,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>bankapplicationDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="EditPersonalDetails.xaml.cs">
+      <DependentUpon>EditPersonalDetails.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ForgetAccountNumber.xaml.cs">
       <DependentUpon>ForgetAccountNumber.xaml</DependentUpon>
     </Compile>
@@ -183,6 +186,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditPassword.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditPersonalDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

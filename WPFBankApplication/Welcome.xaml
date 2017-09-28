@@ -55,7 +55,7 @@
                 <materialDesign:PackIcon Kind="ChevronDoubleDown" Margin="-43,0,0,0" Width="31" Height="19" />
             </Grid>
         </Button>
-        <Button HorizontalAlignment="Left" Margin="636,282,0,0" VerticalAlignment="Top" Width="192" Name="TransferMoneyButton" Click="TransferMoneyButton_OnClick" >
+        <Button HorizontalAlignment="Left"  Margin="636,282,0,0" VerticalAlignment="Top" Width="192" Name="TransferMoneyButton" Click="TransferMoneyButton_OnClick" Background="#FF5E2FFF" >
             <Grid>
                 <TextBlock Text="Transfer Money"/>
                 <materialDesign:PackIcon Kind="Transfer" Margin="-35,3,0,0" Width="26" />

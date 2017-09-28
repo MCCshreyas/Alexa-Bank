@@ -33,7 +33,8 @@ namespace WPFBankApplication
         {
             if (ComboBox.Text == "Edit personal details")
             {
-                this.Content = new EditAccountHolderName(_accnum);
+                this.Hide();
+                new EditPersonalDetails(_accnum).Show();
             }
             else if (ComboBox.Text == "Change account password")
             {

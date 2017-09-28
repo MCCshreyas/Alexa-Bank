@@ -62,7 +62,8 @@ namespace WPFBankApplication
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            throw new System.NotImplementedException();
+            Window parentWindow = Window.GetWindow(new AccountSettings(_accNum));
+            parentWindow.Show();
         }
     }
 }
