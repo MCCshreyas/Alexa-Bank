@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WPFBankApplication"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="WPFBankApplication.EditPersonalDetails"
         mc:Ignorable="d"
-        Title="EditPersonalDetails" Height="597.026" Width="1189.759">
+        Title="EditPersonalDetails" Height="535.526" Width="1189.759">
     <Grid>
         <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2"
                                   Mode="Accent" Height="55">
@@ -18,7 +18,7 @@
             </Grid>
         </materialDesign:ColorZone>
 
-        <GroupBox Style="{DynamicResource MaterialDesignCardGroupBox}" materialDesign:ShadowAssist.ShadowDepth="Depth3" Header="Personal details&#xA;" BorderBrush="#ED3D3D" HorizontalAlignment="Left" Height="349" VerticalAlignment="Top" Width="1094" Margin="44,117,0,0" Background="White" >
+        <GroupBox Style="{DynamicResource MaterialDesignCardGroupBox}" materialDesign:ShadowAssist.ShadowDepth="Depth3" Header="Personal details&#xA;" BorderBrush="#ED3D3D" HorizontalAlignment="Left" Height="295" VerticalAlignment="Top" Width="1094" Margin="44,117,0,0" Background="White" >
             <Grid>
                 <Grid Margin="162,94,772,224">
                     <RadioButton x:Name="RadioButtonMale" Content="Male" Margin="0,10,10,55"/>
@@ -26,23 +26,21 @@
                 </Grid>
 
 
-                <Button HorizontalAlignment="Left" VerticalAlignment="Top" Width="152" Height="31" Margin="170,37,0,0" Click="Button_Click" >
+                <Button HorizontalAlignment="Left" VerticalAlignment="Top" Width="152" Height="31" Margin="24,169,0,0" Click="Button_Click" >
                     <Grid>
                         <TextBlock Text="Upload photo"/>
                         <materialDesign:PackIcon Kind="Image" Margin="-23,2,0,0" />
                     </Grid>
                 </Button>
                 <Image Source="person.png" x:Name="AccountHolderImage" HorizontalAlignment="Left" Height="130" VerticalAlignment="Top" Width="152" Margin="10,10,0,0"/>
-                <TextBox materialDesign:HintAssist.Hint="First name" TabIndex="1" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"  Height="36" HorizontalAlignment="Left" Margin="350,37,0,0" x:Name="textBox_firstname" VerticalAlignment="Top" Width="308" />
-                <TextBox TabIndex="3" materialDesign:HintAssist.Hint="Address" Style="{DynamicResource MaterialDesignFloatingHintTextBox}" Height="38" HorizontalAlignment="Left" x:Name="textBox_address" VerticalAlignment="Top" Width="310" Margin="348,163,0,0" />
-                <TextBox PreviewTextInput=" TextBox_phonenumber_OnPreviewTextInput" TabIndex="4" materialDesign:HintAssist.Hint="Phone number" Height="39" HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignFloatingHintTextBox}" x:Name="textBox_phonenumber" VerticalAlignment="Top" Width="309" Margin="725,34,0,0"  />
-                <TextBox TabIndex="5" materialDesign:HintAssist.Hint="Email" Height="38" HorizontalAlignment="Left" x:Name="textBox_email" VerticalAlignment="Top" Width="310" Style="{DynamicResource MaterialDesignFloatingHintTextBox}" Margin="725,94,0,0" />
-
-                <TextBox TabIndex="2" Style="{DynamicResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Last name" Height="37" HorizontalAlignment="Left" x:Name="textBox_lastname" VerticalAlignment="Top" Width="310" Margin="350,95,0,0" />
-                <DatePicker x:Name="myDatePicker" Style="{DynamicResource MaterialDesignDatePicker}" materialDesign:HintAssist.Hint="Birth Date" HorizontalAlignment="Left" Margin="725,184,0,0" VerticalAlignment="Top" Width="308" Height="29"/>
+                <TextBox TabIndex="3" materialDesign:HintAssist.Hint="Address" Style="{DynamicResource MaterialDesignFloatingHintTextBox}" Height="38" HorizontalAlignment="Left" x:Name="textBox_address" VerticalAlignment="Top" Width="310" Margin="231,99,0,0" />
+                <TextBox PreviewTextInput=" TextBox_phonenumber_OnPreviewTextInput" TabIndex="4" materialDesign:HintAssist.Hint="Phone number" Height="39" HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignFloatingHintTextBox}" x:Name="textBox_phonenumber" VerticalAlignment="Top" Width="309" Margin="590,34,0,0"  />
+                <TextBox TabIndex="5" materialDesign:HintAssist.Hint="Email" Height="38" HorizontalAlignment="Left" x:Name="textBox_email" VerticalAlignment="Top" Width="310" Style="{DynamicResource MaterialDesignFloatingHintTextBox}" Margin="589,99,0,0" />
+                <DatePicker x:Name="myDatePicker" Style="{DynamicResource MaterialDesignDatePicker}" materialDesign:HintAssist.Hint="Birth Date" HorizontalAlignment="Left" Margin="231,169,0,0" VerticalAlignment="Top" Width="308" Height="28"/>
+                <TextBox TabIndex="3" materialDesign:HintAssist.Hint="Name" Style="{DynamicResource MaterialDesignFloatingHintTextBox}" Height="38" HorizontalAlignment="Left" x:Name="TextBoxName" VerticalAlignment="Top" Width="310" Margin="231,35,0,0" />
             </Grid>
         </GroupBox>
-        <Button  HorizontalAlignment="Left" VerticalAlignment="Top" Width="168" Margin="948,508,0,0" Height="34" Click="SaveButton_Click" >
+        <Button  HorizontalAlignment="Left" VerticalAlignment="Top" Width="168" Margin="945,440,0,0" Height="34" Click="SaveButton_Click" >
             <Grid>
                 <TextBlock Text="SUBMIT" Margin="-13,0,0,-3" ></TextBlock>
                 <materialDesign:PackIcon Kind="ContentSave" Margin="52,1,-17,0" />

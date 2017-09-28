@@ -58,7 +58,7 @@
             </Grid>
         </materialDesign:Card>
 
-        <materialDesign:ColorZone materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="85" Background="#FF464CCF">
+        <materialDesign:ColorZone materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="85" Background="#FF39396A">
             <Grid>
                 <Grid HorizontalAlignment="Center">
                     <TextBlock Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40" FontWeight="Bold">Alexa Bank of India</TextBlock>
