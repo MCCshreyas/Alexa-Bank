@@ -59,5 +59,10 @@ namespace WPFBankApplication
             }
 
         }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
