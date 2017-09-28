@@ -22,7 +22,7 @@
 
 
         <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2"
-                                  Mode="Accent" Height="46">
+                                  Mode="Accent" Height="50">
             <Grid Margin="-10,-11,-11,-10" >
                 <TextBlock Text="New account registration" Style="{DynamicResource MaterialDesignHeadlineTextBlock}" Margin="269,1,10,2"></TextBlock>
                 <Button Margin="0,3,778,0" Style="{x:Null}" BorderBrush="#FF00B8D4" Background="#FF00B8D4" Name="BackButton" Click="BackButton_OnClick"  ToolTip="Go back">
@@ -45,7 +45,7 @@
                         <materialDesign:PackIcon Kind="Image" Margin="-23,2,0,0" />
                     </Grid>
                 </Button>
-                <Image  Name="AccountHolderImage" HorizontalAlignment="Left" Height="130" VerticalAlignment="Top" Width="152" Margin="10,10,0,0"/>
+                <Image Source="person.png" Name="AccountHolderImage" HorizontalAlignment="Left" Height="130" VerticalAlignment="Top" Width="152" Margin="10,10,0,0"/>
                 <TextBox materialDesign:HintAssist.Hint="First name" TabIndex="1" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"  Height="36" HorizontalAlignment="Left" Margin="14,167,0,0" Name="textBox_firstname" VerticalAlignment="Top" Width="308" >
                 </TextBox>
                 <TextBox TabIndex="3" materialDesign:HintAssist.Hint="Address" Style="{DynamicResource MaterialDesignFloatingHintTextBox}" Height="38" HorizontalAlignment="Left" Name="textBox_address" VerticalAlignment="Top" Width="310" Margin="12,250,0,0" />
@@ -86,7 +86,7 @@
                 <TextBox Name="WorkDetailsTextBox" Margin="20,100,31,39" />
             </Grid>
         </GroupBox>
-        <Button Height="39" Background="DarkRed" BorderBrush="Red" HorizontalAlignment="Left" Margin="492,612,0,0" x:Name="btn_clear_details" Click="Btn_clear_details_OnClick" VerticalAlignment="Top" Width="58" ClipToBounds="False" >
+        <Button Height="39" Background="DarkRed" BorderBrush="DarkRed" HorizontalAlignment="Left" Margin="492,612,0,0" x:Name="btn_clear_details" Click="Btn_clear_details_OnClick" VerticalAlignment="Top" Width="58" ClipToBounds="False" >
             <materialDesign:PackIcon Kind="UndoVariant"  Height="23" Width="28" />
         </Button>
         <Button Height="39"  HorizontalAlignment="Left" Margin="588,612,0,0" x:Name="btn_save" VerticalAlignment="Top" Width="203" ClipToBounds="False" Click="btn_save_Click">

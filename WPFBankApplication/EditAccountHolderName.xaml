@@ -4,14 +4,20 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WPFBankApplication"
-      Width="340" Height="330"
-      Title="EditAccountHolderName">
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      Title="EditAccountHolderName" Width="354" Height="342">
 
     <Grid>
-        <Grid.ColumnDefinitions>
-
-        </Grid.ColumnDefinitions>
-        <TextBlock HorizontalAlignment="Left" Margin="10,37,0,0" TextWrapping="Wrap" Text="Enter account holder name" VerticalAlignment="Top" Height="24" Width="320"/>
+        <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2"
+                                  Mode="Accent" Height="46">
+            <Grid Margin="-10,-11,-11,-10" >
+                <TextBlock Text="Edit Password" Style="{DynamicResource MaterialDesignTitleTextBlock}" Margin="93,7,79,-4"></TextBlock>
+                <Button Style="{x:Null}" BorderBrush="#FF00B8D4" Background="#FF00B8D4" Name="BackButton" ToolTip="Go back" Margin="6,2,278,-2" Click="BackButton_Click">
+                    <materialDesign:PackIcon Kind="ArrowLeft" Height="31" Width="40"></materialDesign:PackIcon>
+                </Button>
+            </Grid>
+        </materialDesign:ColorZone>
+        <TextBlock HorizontalAlignment="Left" Margin="10,67,0,0" TextWrapping="Wrap" Text="Enter account holder name" VerticalAlignment="Top" Height="24" Width="320"/>
         <TextBox Name="FirstNameTextBox" HorizontalAlignment="Left" Height="23" Margin="104,104,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="226"/>
         <TextBox Name="LastNameTextBox" HorizontalAlignment="Left" Height="23" Margin="104,160,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="226"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,108,0,0" TextWrapping="Wrap" Text="First name" VerticalAlignment="Top"/>

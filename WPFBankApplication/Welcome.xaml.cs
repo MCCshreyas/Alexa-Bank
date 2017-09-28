@@ -101,6 +101,13 @@ namespace WPFBankApplication
             }
 
         }
+
+        private void ButtonAccountSettings_OnClick(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            new AccountSettings(accountNumber).Show();
+         
+        }
     }
 
    

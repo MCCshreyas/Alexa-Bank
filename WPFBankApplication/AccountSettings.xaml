@@ -7,43 +7,35 @@
         xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="AccountSettings" Width="354" Height="342" WindowStartupLocation="CenterScreen">
-    <Window.Resources>
-        <ResourceDictionary>
-        <ResourceDictionary.MergedDictionaries>
-            <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
-            <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
-            <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
-        </ResourceDictionary.MergedDictionaries>
-
-            <DataTemplate DataType="{x:Type system:DateTime}">
-                <StackPanel Margin="16">
-                    <TextBlock>England win the World Cup:</TextBlock>
-                    <TextBlock Margin="0 8 0 0" Text="{Binding }" />
-                    <TextBlock Margin="0 8 0 0" >You will never see that again.</TextBlock>
-                    <Button  Margin="0 8 0 0" IsDefault="True" Command="{x:Static md:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}">AWESOME</Button>
-                </StackPanel>
-            </DataTemplate>
-        </ResourceDictionary>
-
-        
+        Title="AccountSettings" Width="450" Height="374" MaxHeight="374" MaxWidth="450" WindowStartupLocation="CenterScreen">
 
 
-    </Window.Resources>
-    
-    
-    
     <Grid>
-        
-        
-        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Select from following option" VerticalAlignment="Top" Margin="10,25,0,0" Height="20" Width="272"/>
-        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" Margin="10,60,0,0" Height="35" Name="ComboBox">
-            <ComboBoxItem Content="Edit Account holder name" HorizontalAlignment="Left" Width="300" Margin="0,0,-2,0"/>
-            <ComboBoxItem Content="Change password" HorizontalAlignment="Left" Width="300" Margin="0,0,-2,0"/>
-        </ComboBox>
-        <Button Content="Proceed" HorizontalAlignment="Left" VerticalAlignment="Top" Width="125" Margin="85,195,0,0" Height="35" Click="Button_Click"/>
+        <md:ColorZone Padding="16" md:ShadowAssist.ShadowDepth="Depth2"
+                                  Mode="Accent" Height="46">
+            <Grid Margin="-10,-11,-11,-10" >
+                <TextBlock Text="Account settings" Style="{DynamicResource MaterialDesignTitleTextBlock}" Margin="89,3,83,0"></TextBlock>
+                <Button Style="{x:Null}" BorderBrush="#FF00B8D4" Background="#FF00B8D4" Name="BackButton" ToolTip="Go back" Margin="0,0,367,0" Click="BackButton_Click">
+                    <md:PackIcon Kind="ArrowLeft" Height="31" Width="40"></md:PackIcon>
+                </Button>
+            </Grid>
+        </md:ColorZone>
 
-      
+
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Select from following option"  Style="{DynamicResource MaterialDesignSubheadingTextBlock}" VerticalAlignment="Top" Margin="36,81,0,0" Height="25" Width="298" />
+        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="358" Margin="36,154,0,0" Height="35" Name="ComboBox">
+            <ComboBoxItem Content="Edit personal details" HorizontalAlignment="Left" Width="300" Margin="0,0,-2,0"/>
+            <ComboBoxItem Content="Change account password" HorizontalAlignment="Left" Width="300" Margin="0,0,-2,0"/>
+        </ComboBox>
+        <Button  HorizontalAlignment="Left" VerticalAlignment="Top" Width="168" Margin="160,273,0,0" Height="35" Click="Button_Click" >
+            <Grid>
+                <TextBlock Text="Proceed" Margin="-13,0,0,-3" ></TextBlock>
+                <md:PackIcon Kind="ArrowRight" Margin="52,1,-17,0" />
+            </Grid>
+        </Button>
+
+
 
     </Grid>
 </Window>
+

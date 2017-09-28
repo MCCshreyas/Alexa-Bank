@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using Exception = System.Exception;
+using Process = System.Diagnostics.Process;
 
 namespace WPFBankApplication
 {
@@ -121,6 +122,26 @@ namespace WPFBankApplication
         {
             new ForgetPassword().Show();
             this.Hide();
-        }   
+        }
+
+        private void ButtonGitHub_OnClick(object sender, RoutedEventArgs e)
+        {
+            Process.Start("https://github.com/MCCshreyas");
+        }
+
+        private void ButtonChat_OnClick(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void ButtonEmail_OnClick(object sender, RoutedEventArgs e)
+        {
+            DialogBox.Show("Contact", "Email - shreyasjejurkar123@live.com",  "OK");
+        }
+
+        private void ButtonTwitter_OnClick(object sender, RoutedEventArgs e)
+        {
+            Process.Start("https://twitter.com/MCCshreyas");
+        }
     }
 }

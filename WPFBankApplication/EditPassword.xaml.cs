@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using ExtraTools;
 using java.lang;
 using java.sql;
 using static System.Windows.MessageBoxButton;
@@ -20,9 +21,9 @@ namespace WPFBankApplication
         
         private bool DoValidation()
         {
-            if (ReEnterPasswordBox.Text == string.Empty || NewPasswordTextBox.Text == string.Empty || OldPasswordTextBox.Text == string.Empty)
+            if (ReEnterPasswordBox.Password == "" || NewPasswordTextBox.Password == "" || OldPasswordTextBox.Password == "")
             {
-                MessageBox.Show("Please fill all the fields");
+                DialogBox.Show("Error","Please fill all the fields","OK");
                 return false;
             }
             return true;
@@ -34,20 +35,20 @@ namespace WPFBankApplication
             if (DoValidation())
             {
                 string oldPassword = Operations.GetPassword(_acc);
-                if (oldPassword == OldPasswordTextBox.Text)
+                if (oldPassword == OldPasswordTextBox.Password)
                 {
-                    if (NewPasswordTextBox.Text.Equals(ReEnterPasswordBox.Text))
+                    if (NewPasswordTextBox.Password.Equals(ReEnterPasswordBox.Password))
                     {
-                        SaveNewPassword(NewPasswordTextBox.Text.ToString());
+                        SaveNewPassword(NewPasswordTextBox.Password);
                     }
                     else
                     {
-                        MessageBox.Show("Your new password is incorret","Error",MessageBoxButton.OK,MessageBoxImage.Error);
+                        DialogBox.Show("Error", "Your new password is incorret","OK");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Your old password is incorrect","Error",MessageBoxButton.OK,MessageBoxImage.Error);
+                    DialogBox.Show("Error", "Your old password is incorrect","OK");
                 }
             }
         }
@@ -72,6 +73,12 @@ namespace WPFBankApplication
             {
                 MessageBox.Show(exception.ToString(), "Error", OK, MessageBoxImage.Stop);
             }
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            Window parentWindow = Window.GetWindow(new AccountSettings(_acc));
+            parentWindow.Show();
         }
     }
 }

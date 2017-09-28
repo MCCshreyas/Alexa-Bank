@@ -39,7 +39,7 @@
 
         </materialDesign:Card>
 
-        <TextBlock HorizontalAlignment="Left" Height="44" Margin="204,184,0,0" TextWrapping="Wrap" Text="Account Summary" Style="{DynamicResource MaterialDesignHeadlineTextBlock}" VerticalAlignment="Top" Width="321"/>
+        <TextBlock HorizontalAlignment="Left" Height="44" Margin="204,181,0,0" TextWrapping="Wrap" Text="Account Summary" Style="{DynamicResource MaterialDesignHeadlineTextBlock}" VerticalAlignment="Top" Width="321"/>
         <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="MainSnackbar"
         />
         <TextBlock x:Name="TextBlockAccountNo" HorizontalAlignment="Left" Margin="600,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text=""></TextBlock>
@@ -49,13 +49,13 @@
                 <materialDesign:PackIcon Kind="ChevronDoubleDown" Margin="-36,0,0,0" Width="31" Height="19" />
             </Grid>
         </Button>
-        <Button x:Name="ButtonSaveMoney" HorizontalAlignment="Left" Margin="636,224,0,0" VerticalAlignment="Top" Width="192" Height="35" Click="ButtonSaveMoney_Click" Background="#FF209B20" BorderBrush="#FF209B20" >
+        <Button x:Name="ButtonSaveMoney" HorizontalAlignment="Left" Margin="636,190,0,0" VerticalAlignment="Top" Width="192" Height="35" Click="ButtonSaveMoney_Click" Background="#FF209B20" BorderBrush="#FF209B20" >
             <Grid>
                 <TextBlock Text="Deposite money"/>
                 <materialDesign:PackIcon Kind="ChevronDoubleDown" Margin="-43,0,0,0" Width="31" Height="19" />
             </Grid>
         </Button>
-        <Button HorizontalAlignment="Left" Margin="636,345,0,0" VerticalAlignment="Top" Width="192" Name="TransferMoneyButton" Click="TransferMoneyButton_OnClick" >
+        <Button HorizontalAlignment="Left" Margin="636,282,0,0" VerticalAlignment="Top" Width="192" Name="TransferMoneyButton" Click="TransferMoneyButton_OnClick" >
             <Grid>
                 <TextBlock Text="Transfer Money"/>
                 <materialDesign:PackIcon Kind="Transfer" Margin="-35,3,0,0" Width="26" />
@@ -66,6 +66,12 @@
         <TextBlock HorizontalAlignment="Left" Name="TextBlockAccountNumber" Height="35" Margin="337,222,0,0" TextWrapping="Wrap" Text="" Style="{DynamicResource MaterialDesignSubheadingTextBlock}" VerticalAlignment="Top" Width="128"/>
         <TextBlock HorizontalAlignment="Left" Name="TextBlockAvaiableBalance" Height="35" Margin="354,257,0,0" TextWrapping="Wrap" Style="{DynamicResource MaterialDesignSubheadingTextBlock}" VerticalAlignment="Top" Width="128"/>
         <TextBlock HorizontalAlignment="Left" Text="Rs" Height="35" Margin="332,257,0,0" TextWrapping="Wrap" Style="{DynamicResource MaterialDesignSubheadingTextBlock}" VerticalAlignment="Top" Width="17"/>
+        <Button HorizontalAlignment="Left" Margin="636,362,0,0" VerticalAlignment="Top" Width="192" x:Name="ButtonAccountSettings" Click="ButtonAccountSettings_OnClick" >
+            <Grid>
+                <TextBlock Text="Account settings"  />
+                <materialDesign:PackIcon Kind="AccountSettingsVariant" Margin="-28,2,0,0" />
+            </Grid>
+        </Button>
 
 
     </Grid>

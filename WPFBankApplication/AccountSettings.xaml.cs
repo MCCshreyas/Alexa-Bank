@@ -26,20 +26,25 @@ namespace WPFBankApplication
             InitializeComponent();
             _accnum = accountNumber;
            
-
         }
 
        
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (ComboBox.Text == "Edit Account holder name")
+            if (ComboBox.Text == "Edit personal details")
             {
                 this.Content = new EditAccountHolderName(_accnum);
             }
-            else if (ComboBox.Text == "Change password")
+            else if (ComboBox.Text == "Change account password")
             {
                 this.Content  = new EditPassword(_accnum);
             }
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            new Welcome(_accnum).Show();
+            this.Hide();
         }
     }
 }

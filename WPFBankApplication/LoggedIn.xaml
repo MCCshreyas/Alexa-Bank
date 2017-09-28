@@ -75,15 +75,15 @@
                                  Margin="1066,16,0,547"
                                  ToolTip="Follow us" Height="Auto" Background="Yellow">
             <StackPanel>
-                <Button ToolTip="Contribute to this project on GitHub" >
+                <Button ToolTip="Contribute to this project on GitHub" Name="ButtonGitHub" Click="ButtonGitHub_OnClick" >
                     <materialDesign:PackIcon Kind="GithubCircle" Height="20" Width="20" />
                 </Button>
-                <Button ToolTip="Follow us on twitter"
+                <Button ToolTip="Follow us on twitter" Name="ButtonTwitter" Click="ButtonTwitter_OnClick"
                         Background="Chartreuse" 
                         Foreground="{DynamicResource PrimaryHueMidForegroundBrush}">
-                    <materialDesign:PackIcon Kind="Twitter" />
+                    <materialDesign:PackIcon Kind="Twitter"  />
                 </Button>
-                <Button ToolTip="Chat" >
+                <Button ToolTip="Chat" Name="ButtonChat" Click="ButtonChat_OnClick" >
                     <Button.Background>
                         <SolidColorBrush Color="Chocolate" />
                     </Button.Background>
@@ -92,7 +92,7 @@
                     </Button.Foreground>
                     <materialDesign:PackIcon Kind="Message" />
                 </Button>
-                <Button ToolTip="Email"
+                <Button ToolTip="Email" Name="ButtonEmail" Click="ButtonEmail_OnClick"
                         Background="Blue"
                         Foreground="{DynamicResource SecondaryAccentForegroundBrush}">
                     <materialDesign:PackIcon Kind="Email" />
@@ -105,8 +105,8 @@
 
             <Grid Name="LogInGrid">
                 <TextBlock Height="35" FontSize="30" HorizontalAlignment="Left" Margin="127,10,0,0" Name="txt_loginheader" Text="Log in" VerticalAlignment="Top" Width="160" FontWeight="Bold" />
-                <TextBox Text="991425773" PreviewTextInput="TextBox_acc_OnPreviewTextInput" materialDesign:HintAssist.Hint="Account number" Style="{DynamicResource MaterialDesignFloatingHintTextBox}" Height="60" HorizontalAlignment="Left" Margin="10,92,0,0" Name="textBox_acc" VerticalAlignment="Top" Width="306" Background="Transparent" CaretBrush="#FF2D35E4" />
-                <PasswordBox Password="1234" materialDesign:HintAssist.Hint="Password" Style="{DynamicResource MaterialDesignFloatingHintPasswordBox}" HorizontalAlignment="Left" Margin="10,168,0,123" Width="306" Name="PasswordBox"/>
+                <TextBox Text="790216903" PreviewTextInput="TextBox_acc_OnPreviewTextInput" materialDesign:HintAssist.Hint="Account number" Style="{DynamicResource MaterialDesignFloatingHintTextBox}" Height="60" HorizontalAlignment="Left" Margin="10,92,0,0" Name="textBox_acc" VerticalAlignment="Top" Width="306" Background="Transparent" CaretBrush="#FF2D35E4" />
+                <PasswordBox Password="123456" materialDesign:HintAssist.Hint="Password" Style="{DynamicResource MaterialDesignFloatingHintPasswordBox}" HorizontalAlignment="Left" Margin="10,168,0,123" Width="306" Name="PasswordBox"/>
                 <Button Style="{StaticResource MaterialDesignFlatButton}" Height="36" Margin="74,0,0,44" HorizontalAlignment="Left" x:Name="button1" VerticalAlignment="Bottom" Width="200" Click="button1_Click">
                     <Grid HorizontalAlignment="left" Width="151" Height="26">
                         <TextBlock Margin="58,0,23,0" FontSize="20" Foreground="Brown" Height="26" VerticalAlignment="Top"  ><Run FontWeight="Bold" Text="Log in "/></TextBlock>
