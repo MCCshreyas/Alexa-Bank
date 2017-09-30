@@ -94,8 +94,6 @@ namespace WPFBankApplication
                 DialogBox.Show("Error", "Something went wrong " + exception.Message, "OK");
                 return "";
             }
-
-            
         }
 
 

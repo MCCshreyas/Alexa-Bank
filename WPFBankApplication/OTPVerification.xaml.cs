@@ -59,8 +59,8 @@ namespace WPFBankApplication
             if (Convert.ToString(OTP) == TextBoxOTP.Text)
             {
                 DialogBox.Show("Sucess", "Thank you for confirming your account.","OK");
+                this.Hide();
                 new LoggedIn().Show();
-                Hide();
             }
             else
             {

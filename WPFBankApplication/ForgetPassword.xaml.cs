@@ -124,7 +124,6 @@ namespace WPFBankApplication
         {
             this.Hide();
             new LoggedIn().Show();
-
         }
     }
 }
