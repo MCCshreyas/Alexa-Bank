@@ -71,7 +71,7 @@ namespace WPFBankApplication
         }
 
 
-        public static string GetCurrentbalance(string accountNumber)
+        public static string GetCurrentBalance(string accountNumber)
         {
             string balance = "";
             try

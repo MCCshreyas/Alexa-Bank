@@ -15,26 +15,22 @@ namespace WPFBankApplication
     public partial class WithdrawMoney
     {
         private string accountNum;
-        public string remainingBalance;
+        private string _remainingBalance;
 
         /// <summary>
-        /// Following is a constructor and will also set the text of current balance
+        /// Following is constructor. Line no 27 code will read the current balance from database user account. Refer Operations.cs and 
+        /// look for method GetCurrentBalance
         /// </summary>
-      
         public WithdrawMoney(string accountNumber)
         {
             InitializeComponent();
             accountNum = accountNumber;
-            string accountBalance = Operations.GetCurrentbalance(accountNum);   //this will return the current balance of the logged in account holder
-            CurrentBalance.Text = accountBalance;                               // and will save that in accountBalance variable
+            string accountBalance = Operations.GetCurrentBalance(accountNum);
+            CurrentBalance.Text = accountBalance;                            
         }
-
-
-
         
-
         /// <summary>
-        /// Following method will send mobile notification to the account holder number as per the trasaction 
+        // Following method will send mobile notification to the account holder number as per the trasaction 
         // also refer Operations.cs file . We have used its method at line no 51
         /// </summary>
         public void SendMobileNotification()
@@ -44,19 +40,24 @@ namespace WPFBankApplication
 
             TwilioClient.Init(accountSid, authToken);
 
-            string SentMessage =
-                string.Format("Your Alexa bank account (Acc no = {0}) has been debited with Rs.{1} . Your current balance is Rs.{2}", accountNum,WithDrawMoneyTextBox.Text ,remainingBalance);
+            string sentMessage =
+                string.Format("Your Alexa bank account (Acc no = {0}) has been debited with Rs.{1} . Your current balance is Rs.{2}", accountNum,WithDrawMoneyTextBox.Text ,_remainingBalance);
 
-
+            
             var to = new PhoneNumber("+91" + Operations.GetAccountHolderMobileNumber(accountNum));
+
             var message = MessageResource.Create
             (
                 to,
                 from: new PhoneNumber("+16674018291"),
-                body: SentMessage
+                body: sentMessage
             );
         }
         
+        
+        /// <summary>
+        /// Following method will check for input data from user and check for validation
+        /// </summary>
         public bool DoValidation()
         {
             try
@@ -77,33 +78,30 @@ namespace WPFBankApplication
             {
                 DialogBox.Show("Exception", "Something went wrong. " + e.Message,"OK");
                 return false;
-
             }
             return true;
         }
-        
 
-
-        //following method will execute when withdraw money button gets clicked
-
-
-
+        /// <summary>
+        /// following method will execute when withdraw money button gets clicked 
+        /// </summary>
         private void WithDrawMoney_Click(object sender, RoutedEventArgs e)
         {
             if (DoValidation())
             {
                 //following condition will check is there sufficent balance in account holder itself before withdrawing money
 
-                if (Convert.ToInt32(WithDrawMoneyTextBox.Text) > Convert.ToInt32(Operations.GetCurrentbalance(accountNum)))
+                if (Convert.ToInt32(WithDrawMoneyTextBox.Text) > Convert.ToInt32(Operations.GetCurrentBalance(accountNum)))
                 {
                     MainSnackbar.MessageQueue.Enqueue("You don't have sufficient balance to withdraw");
                 }
                 else
                 {
-                    remainingBalance = Convert.ToString(Convert.ToInt32(Operations.GetCurrentbalance(accountNum)) -
+                    _remainingBalance = Convert.ToString(Convert.ToInt32(Operations.GetCurrentBalance(accountNum)) -
                                                         Convert.ToInt32(WithDrawMoneyTextBox.Text));
 
-                    CurrentBalance.Text = remainingBalance;
+                    CurrentBalance.Text = _remainingBalance;
+
                     SaveFinalBalance();
                    
                     if (Operations.DoesSendMobileNotifications(accountNum))
@@ -117,46 +115,55 @@ namespace WPFBankApplication
             }
         }
 
-
-        //following method will save the final balance to user account.
-
-
+        /// <summary>
+        /// Following method will save the final balance to user account number
+        /// </summary>
         private void SaveFinalBalance()
         {
             try
             {
                 Class.forName("com.mysql.jdbc.Driver");
-                Connection c = DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root", "9970209265");
-
-                java.sql.PreparedStatement ps = c.prepareStatement("update info set Balance = ? where account_number = ?");
-                ps.setString(1, remainingBalance);
+                Connection c = DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root",
+                    "9970209265");
+                java.sql.PreparedStatement ps =
+                    c.prepareStatement("update info set Balance = ? where account_number = ?");
+                ps.setString(1, _remainingBalance);
                 ps.setString(2, accountNum);
                 ps.executeUpdate();
             }
             catch (SQLException exception)
             {
-                DialogBox.Show("Error","Something went wrong. " + exception.Message,"OK");
+                DialogBox.Show("Error", "Something went wrong. " + exception.Message, "OK");
             }
-
         }
         
+        /// <summary>
+        /// Following code will restrict textbox to only accepts numbers and not chars. 
+        /// As details will be numerics and not char
+        /// </summary>
         private void WithDrawMoneyTextBox_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             var regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
-
+        
+        /// <summary>
+        /// Following event handler will execute as soon as user will enter amount
+        /// </summary>
         private void WithDrawMoneyTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
             if (WithDrawMoneyTextBox.Text != "" && WithDrawMoneyTextBox.Text != "")
             {
-                if (Convert.ToInt32(WithDrawMoneyTextBox.Text) > Convert.ToInt32(Operations.GetCurrentbalance(accountNum)))
+                if (Convert.ToInt32(WithDrawMoneyTextBox.Text) > Convert.ToInt32(Operations.GetCurrentBalance(accountNum)))
                 {
                     MainSnackbar.MessageQueue.Enqueue("You don't have sufficient balance to withdraw");
                 }
             }
         }
 
+        /// <summary>
+        /// Back button code
+        /// </summary>
         private void BackButton_OnClick(object sender, RoutedEventArgs e)
         {
            new Welcome(accountNum).Show();

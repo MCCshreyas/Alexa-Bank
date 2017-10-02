@@ -23,7 +23,7 @@ namespace WPFBankApplication
                 Thread.sleep(1000);
             }).ContinueWith(t =>
             {
-                
+
                 MainSnackbar.MessageQueue.Enqueue("Welcome to Alexa Bank Of India");
             }, TaskScheduler.FromCurrentSynchronizationContext());
         }
@@ -32,37 +32,34 @@ namespace WPFBankApplication
         {
             if (textBox_acc.Text == string.Empty || PasswordBox.Password == string.Empty)
             {
-                DialogBox.Show("Error", "Please fill all the information and then proceed","OK");
+                DialogBox.Show("Error", "Please fill all the information and then proceed", "OK");
                 return false;
             }
             return true;
         }
 
-        
+
         public void DoLogIn()
         {
-            string pass = "";
-
+            string pass = null;
             try
             {
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection c = DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root", "9970209265");
 
-                java.sql.PreparedStatement ps = c.prepareStatement("select Password from info where account_number = ?");
+               PreparedStatement ps = c.prepareStatement("select Password from info where account_number = ?");
                 ps.setString(1, textBox_acc.Text);
-
                 ResultSet rs = ps.executeQuery();
-                
+
                 while (rs.next())
                 {
                     pass = rs.getString("Password");
                 }
-                
+
             }
             catch (SQLException exception)
             {
-                DialogBox.Show("Error","Something went wrong - " + exception.Message,"OK");
-
+                DialogBox.Show("Error", "Something went wrong - " + exception.Message, "OK");
             }
 
 
@@ -79,9 +76,9 @@ namespace WPFBankApplication
             }
             else
             {
-                DialogBox.Show("Error", "Please enter valid account number and password","OK");
+                DialogBox.Show("Error", "Please enter valid account number and password", "OK");
             }
-            
+
         }
 
 
@@ -99,7 +96,7 @@ namespace WPFBankApplication
                 DialogBox.Show("Exception", "Something went wrong " + error.Message, "OK");
             }
         }
-        
+
         private void Hyperlink_OnClick(object sender, RoutedEventArgs e)
         {
             new NewAccountRegistration().Show();
@@ -111,7 +108,7 @@ namespace WPFBankApplication
             var regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
-        
+
         private void ForgetAccountNumberHyperLink_OnClick(object sender, RoutedEventArgs e)
         {
             new ForgetAccountNumber().Show();
@@ -129,14 +126,9 @@ namespace WPFBankApplication
             Process.Start("https://github.com/MCCshreyas");
         }
 
-        private void ButtonChat_OnClick(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
         private void ButtonEmail_OnClick(object sender, RoutedEventArgs e)
         {
-            DialogBox.Show("Contact", "Email - shreyasjejurkar123@live.com",  "OK");
+            DialogBox.Show("Contact", "Email - shreyasjejurkar123@live.com", "OK");
         }
 
         private void ButtonTwitter_OnClick(object sender, RoutedEventArgs e)

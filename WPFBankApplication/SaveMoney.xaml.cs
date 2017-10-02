@@ -26,7 +26,7 @@ namespace WPFBankApplication
             accountNum = accountNumber;
 
             // please refer operations.cs file for GetCurrentBalance method
-            string accountBalance = Operations.GetCurrentbalance(accountNum);   
+            string accountBalance = Operations.GetCurrentBalance(accountNum);   
             CurrentBalance.Text = accountBalance;
         }
         
@@ -60,7 +60,7 @@ namespace WPFBankApplication
         {
             if (DoValidation())
             {
-                remainingBalance = Convert.ToString(Convert.ToInt32(Operations.GetCurrentbalance(accountNum)) +
+                remainingBalance = Convert.ToString(Convert.ToInt32(Operations.GetCurrentBalance(accountNum)) +
                                                         Convert.ToInt32(SaveMoneyTextBox.Text));
                 CurrentBalance.Text = remainingBalance;
                 SaveFinalBalance();
@@ -100,7 +100,7 @@ namespace WPFBankApplication
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection c = (Connection)DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root", "9970209265");
 
-                java.sql.PreparedStatement ps = c.prepareStatement("update info set Balance = ? where account_number = ?");
+                PreparedStatement ps = c.prepareStatement("update info set Balance = ? where account_number = ?");
                 ps.setString(1, remainingBalance);
                 ps.setString(2, accountNum);
                 ps.executeUpdate();

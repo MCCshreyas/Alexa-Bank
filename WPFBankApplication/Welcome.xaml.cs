@@ -21,11 +21,12 @@ namespace WPFBankApplication
             accountNumber = accountNum;
             TextBlockWelcome.Text = "Hello " + Operations.GetAccountHolderName(accountNumber);
             TextBlockAccountNumber.Text = accountNum;
-            TextBlockAvaiableBalance.Text = Operations.GetCurrentbalance(accountNum);
+            TextBlockAvaiableBalance.Text = Operations.GetCurrentBalance(accountNum);
             GetAccountHolderImage();
             ShowWelcomeSnakbar();
         }
 
+        
         public void ShowWelcomeSnakbar()
         {
             Task.Factory.StartNew(() =>

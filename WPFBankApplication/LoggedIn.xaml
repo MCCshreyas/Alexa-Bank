@@ -83,7 +83,7 @@
                         Foreground="{DynamicResource PrimaryHueMidForegroundBrush}">
                     <materialDesign:PackIcon Kind="Twitter"  />
                 </Button>
-                <Button ToolTip="Chat" Name="ButtonChat" Click="ButtonChat_OnClick" >
+                <Button ToolTip="Chat" Name="ButtonChat" >
                     <Button.Background>
                         <SolidColorBrush Color="Chocolate" />
                     </Button.Background>
