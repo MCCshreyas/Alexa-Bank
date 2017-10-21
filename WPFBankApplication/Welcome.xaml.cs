@@ -18,16 +18,19 @@ namespace WPFBankApplication
     /// </summary>
     public partial class Welcome
     {
-        private static string accountNumber = string.Empty;
+        private static string _accountNumber = string.Empty;
 
         public Welcome(string accountNum)
         {
             InitializeComponent();
-            accountNumber = accountNum;
-            TextBlockWelcome.Text = "Hello " + Operations.GetAccountHolderName(accountNumber);
+            _accountNumber = accountNum;
+            TextBlockWelcome.Text = "Hello " + Operations.GetAccountHolderName(_accountNumber);
             TextBlockAccountNumber.Text = accountNum;
             TextBlockAvaiableBalance.Text = Operations.GetCurrentBalance(accountNum);
             GetAccountHolderImage();
+
+            
+
             ShowWelcomeSnakbar();
         }
 
@@ -39,7 +42,7 @@ namespace WPFBankApplication
                     t =>
                     {
                             MainSnackbar.MessageQueue.Enqueue(
-                                "Welcome " + Operations.GetAccountHolderName(accountNumber));
+                                "Welcome " + Operations.GetAccountHolderName(_accountNumber));
                         },
                     TaskScheduler.FromCurrentSynchronizationContext());
         }
@@ -57,7 +60,7 @@ namespace WPFBankApplication
                     "9970209265");
 
                 var ps = c.prepareStatement("select ImagePath from info where account_number = ?");
-                ps.setString(1, accountNumber);
+                ps.setString(1, _accountNumber);
                 var rs = ps.executeQuery();
                 while (rs.next())
                     imageFilePath = rs.getString("ImagePath");
@@ -74,18 +77,18 @@ namespace WPFBankApplication
         private void ButtonWithdrawMoneyClick(object sender, RoutedEventArgs e)
         {
             Hide();
-            new WithdrawMoney(accountNumber).Show();
+            new WithdrawMoney(_accountNumber).Show();
         }
 
         private void ButtonSaveMoneyClick(object sender, RoutedEventArgs e)
         {
-            new SaveMoney(accountNumber).Show();
+            new SaveMoney(_accountNumber).Show();
             Hide();
         }
 
         private void TransferMoneyButton_OnClick(object sender, RoutedEventArgs e)
         {
-            new TransferMoney(accountNumber).Show();
+            new TransferMoney(_accountNumber).Show();
             Hide();
         }
 
@@ -102,7 +105,7 @@ namespace WPFBankApplication
         private void ButtonAccountSettings_OnClick(object sender, RoutedEventArgs e)
         {
             Hide();
-            new AccountSettings(accountNumber).Show();
+            new AccountSettings(_accountNumber).Show();
         }
     }
 }

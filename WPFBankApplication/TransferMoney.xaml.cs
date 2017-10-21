@@ -26,7 +26,7 @@ namespace WPFBankApplication
         public TransferMoney(string accountNumber)
         {
             InitializeComponent();
-            this.accountNum = accountNumber;
+            accountNum = accountNumber;
         }
 
         /// <summary>
@@ -48,13 +48,13 @@ namespace WPFBankApplication
         /// </summary>
         private void TransferMoneyLogic()
         {
-            this.remainingReceiverBalance =
+            remainingReceiverBalance =
                 Convert.ToString(
                     Convert.ToInt32(Operations.GetCurrentBalance(TextBoxAccountNumber.Text)) +
                     Convert.ToInt32(TextBoxMoneyAmount.Text));
 
-            this.remainingSenderBalance =
-                Convert.ToString(Convert.ToInt32(Operations.GetCurrentBalance(this.accountNum)) -
+            remainingSenderBalance =
+                Convert.ToString(Convert.ToInt32(Operations.GetCurrentBalance(accountNum)) -
                                  Convert.ToInt32(TextBoxMoneyAmount.Text));
         }
 
@@ -68,12 +68,12 @@ namespace WPFBankApplication
         {
             if (!DoValidation())
                 return;
-            if (Convert.ToInt32(Operations.GetCurrentBalance(this.accountNum)) <
+            if (Convert.ToInt32(Operations.GetCurrentBalance(accountNum)) <
                 Convert.ToInt32(TextBoxMoneyAmount.Text))
                 DialogBox.Show("Error",
                     "You don't have sufficient amount in your account to transfer. Your currrent balance is  " +
-                    Operations.GetCurrentBalance(this.accountNum), "OK");
-            else if (TextBoxAccountPassword.Password != Operations.GetPassword(this.accountNum))
+                    Operations.GetCurrentBalance(accountNum), "OK");
+            else if (TextBoxAccountPassword.Password != Operations.GetPassword(accountNum))
                 DialogBox.Show("Error", "Entered password for this account is incorrect.", "OK");
             else if (!CheckReceiverAccountNumber())
                 DialogBox.Show("Error", "Account does not exist", "OK");
@@ -81,10 +81,10 @@ namespace WPFBankApplication
                 try
                 {
                     TransferMoneyLogic();
-                    UpdateSenderAccount(this.remainingSenderBalance);
-                    UpdateReceiverAccount(this.remainingReceiverBalance);
+                    UpdateSenderAccount(remainingSenderBalance);
+                    UpdateReceiverAccount(remainingReceiverBalance);
 
-                    if (Operations.DoesSendMobileNotifications(this.accountNum))
+                    if (Operations.DoesSendMobileNotifications(accountNum))
                     {
                         SendMobileNotification();
                         SendMobileNotificationToReciver();
@@ -106,7 +106,7 @@ namespace WPFBankApplication
             App.InitializeTwilioAccount();
 
             var sentMessage =
-                $"Rs.{TextBoxMoneyAmount.Text} has been transfered to your Alexa bank account (Acc no - {TextBoxAccountNumber.Text}) from other account (Acc no -  {TextBoxAccountNumber.Text}). Your current balance is {this.remainingReceiverBalance} .";
+                $"Rs.{TextBoxMoneyAmount.Text} has been transfered to your Alexa bank account (Acc no - {TextBoxAccountNumber.Text}) from other account (Acc no -  {TextBoxAccountNumber.Text}). Your current balance is {remainingReceiverBalance} .";
 
             var to = new PhoneNumber("+91" + Operations.GetAccountHolderMobileNumber(TextBoxAccountNumber.Text));
             var message = MessageResource.Create
@@ -122,10 +122,10 @@ namespace WPFBankApplication
         {
             App.InitializeTwilioAccount();
             var sentMessage =
-                $"Rs.{TextBoxMoneyAmount.Text} has been transfered from your Alexa bank account (Acc no - {this.accountNum}) to other account (Acc no -  {TextBoxAccountNumber.Text})";
+                $"Rs.{TextBoxMoneyAmount.Text} has been transfered from your Alexa bank account (Acc no - {accountNum}) to other account (Acc no -  {TextBoxAccountNumber.Text})";
 
 
-            var to = new PhoneNumber("+91" + Operations.GetAccountHolderMobileNumber(this.accountNum));
+            var to = new PhoneNumber("+91" + Operations.GetAccountHolderMobileNumber(accountNum));
             var message = MessageResource.Create
             (
                 to,
@@ -146,7 +146,7 @@ namespace WPFBankApplication
                 var ps =
                     connection.prepareStatement("update info set Balance = ? where account_number = ?");
                 ps.setString(1, bal);
-                ps.setString(2, this.accountNum);
+                ps.setString(2, accountNum);
                 ps.executeUpdate();
             }
             catch (SQLException exception)
@@ -219,13 +219,13 @@ namespace WPFBankApplication
             if (TextBoxMoneyAmount.Text == "" || TextBoxMoneyAmount.Text == "")
                 return;
             if (Convert.ToInt32(TextBoxMoneyAmount.Text) >
-                Convert.ToInt32(Operations.GetCurrentBalance(this.accountNum)))
+                Convert.ToInt32(Operations.GetCurrentBalance(accountNum)))
                 MainSnackbar.MessageQueue.Enqueue("You don't have sufficient balance to withdraw");
         }
 
         private void BackButtonClick(object sender, RoutedEventArgs e)
         {
-            new Welcome(this.accountNum).Show();
+            new Welcome(accountNum).Show();
             Hide();
         }
     }

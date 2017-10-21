@@ -24,29 +24,29 @@ namespace WPFBankApplication
         public EditPersonalDetails(string accountNumber)
         {
             InitializeComponent();
-            this.Accc = accountNumber;
+            Accc = accountNumber;
             GetDetails();
         }
 
         private void BackButtonClick(object sender, RoutedEventArgs e)
         {
             Hide();
-            new AccountSettings(this.Accc).Show();
+            new AccountSettings(Accc).Show();
         }
 
         private void ButtonClick(object sender, RoutedEventArgs e)
         {
             try
             {
-                this.fileDialog = new OpenFileDialog
+                fileDialog = new OpenFileDialog
                 {
                     Filter = "Image files | *.jpg"
                 };
 
-                this.fileDialog.ShowDialog();
-                this.ImageFilePath = this.fileDialog.FileName;
+                fileDialog.ShowDialog();
+                ImageFilePath = fileDialog.FileName;
                 ImageSourceConverter img = new ImageSourceConverter();
-                AccountHolderImage.SetValue(Image.SourceProperty, img.ConvertFromString(this.fileDialog.FileName));
+                AccountHolderImage.SetValue(Image.SourceProperty, img.ConvertFromString(fileDialog.FileName));
             }
             catch (Exception exception)
             {
@@ -83,9 +83,9 @@ namespace WPFBankApplication
                 ps.setString(2, textBox_address.Text);
                 ps.setString(3, textBox_phonenumber.Text);
                 ps.setString(4, textBox_email.Text);
-                ps.setString(5, this.ImageFilePath);
+                ps.setString(5, ImageFilePath);
                 ps.setString(6, myDatePicker.Text);
-                ps.setString(7, this.Accc);
+                ps.setString(7, Accc);
                 ps.executeUpdate();
                 c.close();
                 DialogBox.Show("Sucess", "Changes done sucessfully", "OK");
@@ -104,7 +104,7 @@ namespace WPFBankApplication
                 Connection c = (Connection)DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root", "9970209265");
 
                 java.sql.PreparedStatement ps = c.prepareStatement("select * from info where account_number = ?");
-                ps.setString(1,this.Accc);
+                ps.setString(1, Accc);
                 ResultSet rs = ps.executeQuery();
                 ImageSourceConverter img = new ImageSourceConverter();
 

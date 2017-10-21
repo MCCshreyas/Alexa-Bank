@@ -24,10 +24,10 @@ namespace WPFBankApplication
         public SaveMoney(string accountNumber)
         {
             InitializeComponent();
-            this.accountNum = accountNumber;
+            accountNum = accountNumber;
 
             // please refer operations.cs file for GetCurrentBalance method
-            var accountBalance = Operations.GetCurrentBalance(this.accountNum);
+            var accountBalance = Operations.GetCurrentBalance(accountNum);
             CurrentBalance.Text = accountBalance;
         }
 
@@ -60,12 +60,12 @@ namespace WPFBankApplication
         {
             if (!DoValidation())
                 return;
-            this.remainingBalance = Convert.ToString(Convert.ToInt32(Operations.GetCurrentBalance(this.accountNum)) +
+            remainingBalance = Convert.ToString(Convert.ToInt32(Operations.GetCurrentBalance(accountNum)) +
                                                  Convert.ToInt32(SaveMoneyTextBox.Text));
-            CurrentBalance.Text = this.remainingBalance;
+            CurrentBalance.Text = remainingBalance;
             SaveFinalBalance();
 
-            if (Operations.DoesSendMobileNotifications(this.accountNum))
+            if (Operations.DoesSendMobileNotifications(accountNum))
                 SendMobileNotification();
 
             DialogBox.Show("Sucess", "Trasaction done sucessfully", "OK");
@@ -77,10 +77,10 @@ namespace WPFBankApplication
             App.InitializeTwilioAccount();
 
             var sentMessage =
-                $"Your Alexa bank account (Acc no = {this.accountNum}) has been credited with Rs.{SaveMoneyTextBox.Text} . Your current balance is Rs.{this.remainingBalance}";
+                $"Your Alexa bank account (Acc no = {accountNum}) has been credited with Rs.{SaveMoneyTextBox.Text} . Your current balance is Rs.{remainingBalance}";
 
 
-            var to = new PhoneNumber("+91" + Operations.GetAccountHolderMobileNumber(this.accountNum));
+            var to = new PhoneNumber("+91" + Operations.GetAccountHolderMobileNumber(accountNum));
             MessageResource.Create(
                 to,
                 @from: new PhoneNumber("+16674018291"),
@@ -96,8 +96,8 @@ namespace WPFBankApplication
                     "9970209265");
 
                 var ps = connection.prepareStatement("update info set Balance = ? where account_number = ?");
-                ps.setString(1, this.remainingBalance);
-                ps.setString(2, this.accountNum);
+                ps.setString(1, remainingBalance);
+                ps.setString(2, accountNum);
                 ps.executeUpdate();
             }
             catch (SQLException exception)
@@ -116,7 +116,7 @@ namespace WPFBankApplication
         private void BackButton_OnClick(object sender, RoutedEventArgs e)
         {
             Hide();
-            new Welcome(this.accountNum).Show();
+            new Welcome(accountNum).Show();
         }
     }
 }

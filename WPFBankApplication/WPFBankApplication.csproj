@@ -125,6 +125,7 @@
     <Compile Include="AccountSettings.xaml.cs">
       <DependentUpon>AccountSettings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Applicant.cs" />
     <Compile Include="bankapplicationDataSet.cs">
       <DependentUpon>bankapplicationDataSet.xsd</DependentUpon>
     </Compile>
@@ -133,6 +134,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>bankapplicationDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="CustomException.cs" />
     <Compile Include="EditPersonalDetails.xaml.cs">
       <DependentUpon>EditPersonalDetails.xaml</DependentUpon>
     </Compile>

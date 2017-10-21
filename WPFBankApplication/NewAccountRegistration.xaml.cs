@@ -1,26 +1,36 @@
-﻿using System;
-using System.Runtime.InteropServices;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Media;
-using ExtraTools;
-using java.lang;
-using java.sql;
-using MaterialDesignThemes.Wpf;
-using Microsoft.Win32;
-using Connection = com.mysql.jdbc.Connection;
-using Exception = System.Exception;
+﻿
 
 namespace WPFBankApplication
 {
+    using System;
+    using System.Runtime.InteropServices;
+    using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Input;
+    using System.Windows.Media;
+
+    using ExtraTools;
+
+    using java.lang;
+    using java.sql;
+
+    using MaterialDesignThemes.Wpf;
+
+    using Microsoft.Win32;
+
+    using Connection = com.mysql.jdbc.Connection;
+    using Exception = System.Exception;
+
     public partial class NewAccountRegistration
     {
         private OpenFileDialog fileDialog;
-        private int accc;
-        private string imageFilePath = "";
+
+        private Applicant newApplicant = null;
+        private int _accc;
+
+        private string _imageFilePath = "";
 
         public NewAccountRegistration()
         {
@@ -33,15 +43,12 @@ namespace WPFBankApplication
         /// <summary>
         ///     Following method will check which radiobutton is checked Male or Female. And will return result accordingly.
         /// </summary>
-        public string GetGenderInfo()
+        private string GetGenderInfo()
         {
-            if (RadioButtonMale.IsChecked != null && (bool) RadioButtonMale.IsChecked)
-                return "Male";
-            if (RadioButtonFemale.IsChecked != null && (bool) RadioButtonFemale.IsChecked)
-                return "Female";
+            if (RadioButtonMale.IsChecked != null && (bool)RadioButtonMale.IsChecked) return "Male";
+            if (RadioButtonFemale.IsChecked != null && (bool)RadioButtonFemale.IsChecked) return "Female";
             return null;
         }
-
 
         /// <summary>
         ///     Following code will execute when upload image button gets clicked
@@ -50,15 +57,12 @@ namespace WPFBankApplication
         {
             try
             {
-                this.fileDialog = new OpenFileDialog
-                {
-                    Filter = "Image files | *.jpg"
-                };
+                fileDialog = new OpenFileDialog { Filter = "Image files | *.jpg" };
 
-                this.fileDialog.ShowDialog();
-                this.imageFilePath = this.fileDialog.FileName;
+                fileDialog.ShowDialog();
+                _imageFilePath = fileDialog.FileName;
                 var img = new ImageSourceConverter();
-                AccountHolderImage.SetValue(Image.SourceProperty, img.ConvertFromString(this.fileDialog.FileName));
+                AccountHolderImage.SetValue(Image.SourceProperty, img.ConvertFromString(fileDialog.FileName));
             }
             catch (Exception exception)
             {
@@ -75,11 +79,11 @@ namespace WPFBankApplication
             var isEmailValid = textBox_email.Text.Contains("@");
             var isEmailValid2 = textBox_email.Text.Contains(".com");
 
-
             // Is there any textbox is empty or not. If there then it will fire error message
-            if (textBox_firstname.Text == "" || textBox_lastname.Text == "" || textBox_email.Text == "" ||
-                textBox_pass.Password == "" || textBox_address.Text == "" || textBox_phonenumber.Text == "" ||
-                AccountHolderImage.Source == null || myDatePicker.Text == "")
+            if (textBox_firstname.Text == "" || textBox_lastname.Text == "" || textBox_email.Text == ""
+                || textBox_pass.Password == "" || textBox_address.Text == ""
+                || textBox_phonenumber.Text == "" || AccountHolderImage.Source == null
+                || myDatePicker.Text == "")
             {
                 DialogBox.Show("Error", "Please enter all field", "OK");
                 return false;
@@ -93,12 +97,10 @@ namespace WPFBankApplication
             }
 
             // we are checking email validation here
-            if (isEmailValid && isEmailValid2)
-                return true;
+            if (isEmailValid && isEmailValid2) return true;
             DialogBox.Show("Error", "Please check your email ID", "OK");
             return false;
         }
-
 
         //  if it is check it will return Yes otherwise No
         /// <summary>
@@ -106,12 +108,13 @@ namespace WPFBankApplication
         /// </summary>
         private string EnableMobileNotifications()
         {
-            var isMobileNotifications = CheckBoxMobileNotification.IsChecked != null && (bool) CheckBoxMobileNotification.IsChecked;
+            var isMobileNotifications = CheckBoxMobileNotification.IsChecked != null
+                                        && (bool)CheckBoxMobileNotification.IsChecked;
 
             return isMobileNotifications ? "Yes" : "No";
         }
 
-
+        
         /// <summary>
         ///     Following is a JAVA code which saves data to database
         /// </summary>
@@ -120,31 +123,33 @@ namespace WPFBankApplication
             var fullName = textBox_firstname.Text + " " + textBox_lastname.Text;
 
             // following code will generate random number which will be user account number 
-            this.accc = new Random().Next(1000000000);
+            _accc = new Random().Next(1000000000);
 
             try
             {
                 Class.forName("com.mysql.jdbc.Driver");
-                var connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root",
+                var connection = (Connection)DriverManager.getConnection(
+                    "jdbc:mysql://localhost/bankapplication",
+                    "root",
                     "9970209265");
 
                 var ps = connection.prepareStatement(
                     "insert into info(Name,Address,phone_number,Email,Password,account_number,Balance,ImagePath,Gender,MobileVerification,BirthDate)values(?,?,?,?,?,?,'100',?,?,?,?)");
-                ps.setString(1, fullName);
-                ps.setString(2, textBox_address.Text);
+                ps.setString(1, newApplicant.Name);
+                ps.setString(2, newApplicant.Address);
                 ps.setString(3, textBox_phonenumber.Text);
-                ps.setString(4, textBox_email.Text);
-                ps.setString(5, textBox_pass.Password);
-                ps.setString(6, this.accc.ToString());
-                ps.setString(7, this.imageFilePath);
+                ps.setString(4, newApplicant.Email);
+                ps.setString(5, newApplicant.Password);
+                ps.setString(6, _accc.ToString());
+                ps.setString(7, _imageFilePath);
                 ps.setString(8, GetGenderInfo());
                 ps.setString(9, EnableMobileNotifications());
-                ps.setString(10, myDatePicker.Text);
+                ps.setString(10, newApplicant.BirthDate);
                 ps.executeUpdate();
                 connection.close();
                 DialogBox.Show("Sucess", "Account created sucessfully", "OK");
 
-                DialogBox.Show("Sucess", "Your account number is " + this.accc, "OK");
+                DialogBox.Show("Sucess", "Your account number is " + _accc, "OK");
             }
             catch (SQLException exception)
             {
@@ -160,16 +165,15 @@ namespace WPFBankApplication
             var internetStatus = IsInternetAvailable();
             if (internetStatus)
             {
-                if (!DoDataValidation())
-                    return;
+                if (!DoDataValidation()) return;
                 SaveDataToDatabase();
                 new OtpVerification(textBox_phonenumber.Text).ShowDialog();
             }
             else
             {
-                Task.Factory.StartNew(() => { Thread.sleep(1000); })
-                    .ContinueWith(t => { MainSnackbar.MessageQueue.Enqueue("Please check internet connectivity."); },
-                        TaskScheduler.FromCurrentSynchronizationContext());
+                Task.Factory.StartNew(() => { Thread.sleep(1000); }).ContinueWith(
+                    t => { MainSnackbar.MessageQueue.Enqueue("Please check internet connectivity."); },
+                    TaskScheduler.FromCurrentSynchronizationContext());
             }
         }
 
@@ -209,21 +213,19 @@ namespace WPFBankApplication
             e.Handled = regex.IsMatch(e.Text);
         }
 
-
         /// <summary>
         ///     following method will execute whenever the text in phone number textbox gets changed
         /// </summary>
         private void TextBoxPhonenumberTextChanged(object sender, TextChangedEventArgs e)
         {
-            Task.Factory.StartNew(() => { Thread.sleep(1000); })
-                .ContinueWith(
-                    t =>
+            Task.Factory.StartNew(() => { Thread.sleep(1000); }).ContinueWith(
+                t =>
                     {
                         MainSnackbar.MessageQueue.Enqueue(
                             "Make sure you give correct phone number to recive OTP to activate your acoount");
-                    }, TaskScheduler.FromCurrentSynchronizationContext());
+                    },
+                TaskScheduler.FromCurrentSynchronizationContext());
         }
-
 
         /// <summary>
         ///     back button code which is at top left corner
@@ -239,8 +241,11 @@ namespace WPFBankApplication
         /// </summary>
         private void Btn_clear_details_OnClick(object sender, RoutedEventArgs e)
         {
-            textBox_phonenumber.Text = textBox_address.Text = textBox_email.Text = textBox_firstname.Text =
-                textBox_lastname.Text = textBox_pass.Password = myDatePicker.Text = "";
+            textBox_phonenumber.Text = textBox_address.Text =
+                                                textBox_email.Text =
+                                                    textBox_firstname.Text =
+                                                        textBox_lastname.Text =
+                                                            textBox_pass.Password = myDatePicker.Text = "";
 
             new ImageSourceConverter();
             AccountHolderImage.Source = null;

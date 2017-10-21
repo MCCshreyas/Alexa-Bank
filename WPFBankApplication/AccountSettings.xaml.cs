@@ -1,4 +1,5 @@
-﻿namespace WPFBankApplication
+﻿
+namespace WPFBankApplication
 {
     using System.Windows;
 

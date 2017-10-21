@@ -5,7 +5,7 @@ namespace WPFBankApplication
     using System.Threading.Tasks;
     using System.Windows;
     using System.Windows.Input;
-
+    using System = System;
     using ExtraTools;
 
     using java.lang;
@@ -22,16 +22,22 @@ namespace WPFBankApplication
         public LoggedIn()
         {
             InitializeComponent();
+            ShowWelcomeSnakbar();
+        }
+
+        private void ShowWelcomeSnakbar()
+        {
             Task.Factory.StartNew(() =>
             {
-                    Thread.sleep(1000);
-                }).ContinueWith(
+                System.Threading.Thread.Sleep(1000);
+            }).ContinueWith(
                 t =>
-                    {
-                        MainSnackbar.MessageQueue.Enqueue("Welcome to Alexa Bank Of India");
-                    },
-                TaskScheduler.FromCurrentSynchronizationContext());
+                {
+                    MainSnackbar.MessageQueue.Enqueue("Welcome to Alexa Bank Of India");
+                },
+            TaskScheduler.FromCurrentSynchronizationContext());
         }
+
 
         private bool DoValidation()
         {
