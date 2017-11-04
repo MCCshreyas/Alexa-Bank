@@ -120,7 +120,7 @@
                 ClipToBounds="False">
             <materialDesign:PackIcon Kind="UndoVariant" Height="23" Width="28" />
         </Button>
-        <Button Height="39" HorizontalAlignment="Left" Margin="588,612,0,0" x:Name="BtnSave" VerticalAlignment="Top"
+        <Button Height="39" HorizontalAlignment="Left" Margin="588,612,0,0" x:Name="btn_save" VerticalAlignment="Top"
                 Width="203" ClipToBounds="False" Click="btn_save_Click">
             <Grid>
                 <TextBlock FontSize="20" Margin="0,-1,0,-5">

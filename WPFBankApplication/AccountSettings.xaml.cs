@@ -3,16 +3,16 @@
 namespace WPFBankApplication
 {
     /// <summary>
-    ///     Interaction logic for AccountSettings.xaml
+    /// Interaction logic for AccountSettings.xaml
     /// </summary>
     public partial class AccountSettings
     {
         private readonly string _accnum;
-
         public AccountSettings(string accountNumber)
         {
             InitializeComponent();
             _accnum = accountNumber;
+           
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -24,7 +24,7 @@ namespace WPFBankApplication
                     new EditPersonalDetails(_accnum).Show();
                     break;
                 case "Change account password":
-                    Content = new EditPassword(_accnum);
+                    Content  = new EditPassword(_accnum);
                     break;
             }
         }

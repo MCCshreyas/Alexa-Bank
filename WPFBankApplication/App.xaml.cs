@@ -1,4 +1,6 @@
-﻿namespace WPFBankApplication
+﻿using System.Windows;
+
+namespace WPFBankApplication
 {
     /// <summary>
     ///     Interaction logic for App.xaml

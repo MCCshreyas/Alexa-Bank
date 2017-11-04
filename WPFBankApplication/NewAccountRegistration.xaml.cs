@@ -26,7 +26,7 @@ namespace WPFBankApplication
         {
             InitializeComponent();
             RadioButtonMale.IsChecked = true;
-            MyDatePicker.Focusable = false;
+            myDatePicker.Focusable = false;
             MyComboBox.SelectedIndex = 2;
         }
 
@@ -69,17 +69,17 @@ namespace WPFBankApplication
         private bool DoDataValidation()
         {
             //saving phone number leangh into a length variable
-            var length = TextBoxPhonenumber.Text.Length;
+            var length = textBox_phonenumber.Text.Length;
 
             //checking email validation which returns bool value 
-            var isEmailValid = TextBoxEmail.Text.Contains("@");
-            var isEmailValid2 = TextBoxEmail.Text.Contains(".com");
+            var isEmailValid = textBox_email.Text.Contains("@");
+            var isEmailValid2 = textBox_email.Text.Contains(".com");
 
 
             // Is there any textbox is empty or not. If there then it will fire error message
-            if (TextBoxFirstname.Text == "" || TextBoxLastname.Text == "" || TextBoxEmail.Text == "" ||
-                TextBoxPass.Password == "" || TextBoxAddress.Text == "" || TextBoxPhonenumber.Text == "" ||
-                AccountHolderImage.Source == null || MyDatePicker.Text == "")
+            if (textBox_firstname.Text == "" || textBox_lastname.Text == "" || textBox_email.Text == "" ||
+                textBox_pass.Password == "" || textBox_address.Text == "" || textBox_phonenumber.Text == "" ||
+                AccountHolderImage.Source == null || myDatePicker.Text == "")
             {
                 DialogBox.Show("Error", "Please enter all field", "OK");
                 return false;
@@ -105,8 +105,7 @@ namespace WPFBankApplication
         /// </summary>
         public string EnableMobileNotifications()
         {
-            var isMobileNotifications = CheckBoxMobileNotification.IsChecked != null &&
-                                        (bool) CheckBoxMobileNotification.IsChecked;
+            var isMobileNotifications = CheckBoxMobileNotification.IsChecked != null && (bool) CheckBoxMobileNotification.IsChecked;
 
             return isMobileNotifications ? "Yes" : "No";
         }
@@ -117,7 +116,7 @@ namespace WPFBankApplication
         /// </summary>
         private void SaveDataToDatabase()
         {
-            var fullName = TextBoxFirstname.Text + " " + TextBoxLastname.Text;
+            var fullName = textBox_firstname.Text + " " + textBox_lastname.Text;
 
             // following code will generate random number which will be user account number 
             Accc = new Random().Next(1000000000);
@@ -131,15 +130,15 @@ namespace WPFBankApplication
                 var ps = c.prepareStatement(
                     "insert into info(Name,Address,phone_number,Email,Password,account_number,Balance,ImagePath,Gender,MobileVerification,BirthDate)values(?,?,?,?,?,?,'100',?,?,?,?)");
                 ps.setString(1, fullName);
-                ps.setString(2, TextBoxAddress.Text);
-                ps.setString(3, TextBoxPhonenumber.Text);
-                ps.setString(4, TextBoxEmail.Text);
-                ps.setString(5, TextBoxPass.Password);
+                ps.setString(2, textBox_address.Text);
+                ps.setString(3, textBox_phonenumber.Text);
+                ps.setString(4, textBox_email.Text);
+                ps.setString(5, textBox_pass.Password);
                 ps.setString(6, Accc.ToString());
                 ps.setString(7, ImageFilePath);
                 ps.setString(8, GetGenderInfo());
                 ps.setString(9, EnableMobileNotifications());
-                ps.setString(10, MyDatePicker.Text);
+                ps.setString(10, myDatePicker.Text);
                 ps.executeUpdate();
                 c.close();
                 DialogBox.Show("Sucess", "Account created sucessfully", "OK");
@@ -162,7 +161,7 @@ namespace WPFBankApplication
             {
                 if (!DoDataValidation()) return;
                 SaveDataToDatabase();
-                new OtpVerification(TextBoxPhonenumber.Text).ShowDialog();
+                new OTPVerification(textBox_phonenumber.Text).ShowDialog();
             }
             else
             {
@@ -238,8 +237,8 @@ namespace WPFBankApplication
         /// </summary>
         private void Btn_clear_details_OnClick(object sender, RoutedEventArgs e)
         {
-            TextBoxPhonenumber.Text = TextBoxAddress.Text = TextBoxEmail.Text = TextBoxFirstname.Text =
-                TextBoxLastname.Text = TextBoxPass.Password = MyDatePicker.Text = "";
+            textBox_phonenumber.Text = textBox_address.Text = textBox_email.Text = textBox_firstname.Text =
+                textBox_lastname.Text = textBox_pass.Password = myDatePicker.Text = "";
 
             var img = new ImageSourceConverter();
             AccountHolderImage.Source = null;

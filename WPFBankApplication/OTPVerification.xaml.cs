@@ -50,7 +50,7 @@ namespace WPFBankApplication
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (Convert.ToString(_otp) == TextBoxOtp.Text)
+            if (Convert.ToString(_otp) == TextBoxOTP.Text)
             {
                 DialogBox.Show("Sucess", "Thank you for confirming your account.", "OK");
                 Hide();
