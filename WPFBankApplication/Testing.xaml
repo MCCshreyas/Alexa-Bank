@@ -8,13 +8,13 @@
         mc:Ignorable="d"
         Title="Testing" Height="300" Width="300">
     <Grid>
-        <Button Content="Click Me" Margin="50" Click="ButtonBase_OnClick"></Button>
+        <Button Content="Click Me" Margin="50" Click="ButtonBase_OnClick" />
         <materialDesign:DialogHost Name="myDialog">
             <materialDesign:DialogHost.DialogContent>
                 <StackPanel Width="20" Height="50">
-                    <TextBlock Text="Hello"></TextBlock>
-                    <Button Content="Yes"></Button>
-                    <Button Content="No"></Button>
+                    <TextBlock Text="Hello" />
+                    <Button Content="Yes" />
+                    <Button Content="No" />
                 </StackPanel>
             </materialDesign:DialogHost.DialogContent>
         </materialDesign:DialogHost>

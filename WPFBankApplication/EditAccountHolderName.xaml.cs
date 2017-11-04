@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using System.Windows.Controls;
 using java.lang;
 using java.sql;
 using Connection = com.mysql.jdbc.Connection;
@@ -7,11 +6,11 @@ using Connection = com.mysql.jdbc.Connection;
 namespace WPFBankApplication
 {
     /// <summary>
-    /// Interaction logic for EditAccountHolderName.xaml
+    ///     Interaction logic for EditAccountHolderName.xaml
     /// </summary>
-    public partial class EditAccountHolderName : Page
+    public partial class EditAccountHolderName
     {
-        private string _accNum = string.Empty;
+        private readonly string _accNum;
 
         public EditAccountHolderName(string accountNumber)
         {
@@ -21,21 +20,17 @@ namespace WPFBankApplication
 
         private bool DoValidation()
         {
-            if (FirstNameTextBox.Text == string.Empty || LastNameTextBox.Text == string.Empty)
-            {
-                MessageBox.Show("Please fill all the fields and then proceed","Error",MessageBoxButton.OK,MessageBoxImage.Stop);
-                return false;
-            }
-            return true;
+            if (FirstNameTextBox.Text != string.Empty && LastNameTextBox.Text != string.Empty) return true;
+            MessageBox.Show("Please fill all the fields and then proceed", "Error", MessageBoxButton.OK,
+                MessageBoxImage.Stop);
+            return false;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string fullName = FirstNameTextBox.Text + " " + LastNameTextBox.Text;
+            var fullName = FirstNameTextBox.Text + " " + LastNameTextBox.Text;
             if (DoValidation())
-            {
                 SaveNewName(fullName);
-            }
         }
 
         private void SaveNewName(string name)
@@ -43,9 +38,10 @@ namespace WPFBankApplication
             try
             {
                 Class.forName("com.mysql.jdbc.Driver");
-                Connection c = (Connection)DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root", "9970209265");
+                var c = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root",
+                    "9970209265");
 
-                java.sql.PreparedStatement ps = c.prepareStatement("update info set Name = ? where account_number = ?");
+                var ps = c.prepareStatement("update info set Name = ? where account_number = ?");
                 ps.setString(1, name);
                 ps.setString(2, _accNum);
                 ps.executeUpdate();
@@ -55,14 +51,13 @@ namespace WPFBankApplication
             }
             catch (SQLException exception)
             {
-                MessageBox.Show(exception.ToString(),"Error",MessageBoxButton.OK,MessageBoxImage.Stop);
+                MessageBox.Show(exception.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Stop);
             }
-
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            Window parentWindow = Window.GetWindow(new AccountSettings(_accNum));
+            var parentWindow = Window.GetWindow(new AccountSettings(_accNum));
             parentWindow.Show();
         }
     }

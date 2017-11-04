@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WPFBankApplication"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="WithdrawMoney" Height="500" Width="500" WindowStartupLocation="CenterScreen">
@@ -14,15 +13,18 @@
                                   Mode="Accent" Height="46" Background="#FFD34B4B" BorderBrush="#FFD34B4B">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="60"/>
-                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="60" />
+                    <ColumnDefinition Width="2*" />
                 </Grid.ColumnDefinitions>
 
                 <!-- Withdraw money-->
-                <TextBlock Margin="50 5" Grid.Column="1" Text="Withdraw money" Style="{DynamicResource MaterialDesignTitleTextBlock}"></TextBlock>
+                <TextBlock Margin="50 5" Grid.Column="1" Text="Withdraw money"
+                           Style="{DynamicResource MaterialDesignTitleTextBlock}" />
 
                 <!-- Back button-->
-                <Button Padding="0" Grid.Column="0" Margin="10 0 0 0" materialDesign:ShadowAssist.ShadowDepth="Depth0"  Background="#FFD34B4B" BorderBrush="#FFD34B4B" Name="BackButton" Click="BackButton_OnClick"  ToolTip="Go back">
+                <Button Padding="0" Grid.Column="0" Margin="10 0 0 0" materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                        Background="#FFD34B4B" BorderBrush="#FFD34B4B" Name="BackButton" Click="BackButton_OnClick"
+                        ToolTip="Go back">
                     <materialDesign:PackIcon Kind="ArrowLeft" Height="32" Width="50" />
                 </Button>
             </Grid>
@@ -30,10 +32,13 @@
 
         <StackPanel>
             <!-- Enter money amount below -->
-            <TextBlock FontSize="25" Padding="5" Margin="50 50 0 0" x:Name="textBlock" Style="{DynamicResource MaterialDesignSubheadingTextBlock}" Text="Enter Money amount below"/>
+            <TextBlock FontSize="25" Padding="5" Margin="50 50 0 0" x:Name="TextBlock"
+                       Style="{DynamicResource MaterialDesignSubheadingTextBlock}" Text="Enter Money amount below" />
 
             <!--Text box -->
-            <TextBox Margin="50 20 50 0 " FontWeight="Bold" FontSize="13" PreviewTextInput="WithDrawMoneyTextBox_OnPreviewTextInput" x:Name="WithDrawMoneyTextBox" Height="23" TextChanged="WithDrawMoneyTextBox_TextChanged"/>
+            <TextBox Margin="50 20 50 0 " FontWeight="Bold" FontSize="13"
+                     PreviewTextInput="WithDrawMoneyTextBox_OnPreviewTextInput" x:Name="WithDrawMoneyTextBox"
+                     Height="23" TextChanged="WithDrawMoneyTextBox_TextChanged" />
 
             <Grid Margin="10 50 0 0 ">
                 <Grid.ColumnDefinitions>
@@ -42,10 +47,14 @@
                 </Grid.ColumnDefinitions>
 
                 <!-- Your current balance is-->
-                <TextBlock FontSize="25" Margin="10 0 0 0" Grid.Column="0" Style="{DynamicResource MaterialDesignSubheadingTextBlock}" Text="Your current balance is Rs" Name="BalanceText"/>
+                <TextBlock FontSize="25" Margin="10 0 0 0" Grid.Column="0"
+                           Style="{DynamicResource MaterialDesignSubheadingTextBlock}"
+                           Text="Your current balance is Rs" Name="BalanceText" />
 
                 <!-- 100-->
-                <TextBlock FontSize="25" Grid.Column="1" Foreground="Crimson" Style="{DynamicResource MaterialDesignBody2TextBlock}" TextWrapping="Wrap" Name="CurrentBalance" Text="100"/>
+                <TextBlock FontSize="25" Grid.Column="1" Foreground="Crimson"
+                           Style="{DynamicResource MaterialDesignBody2TextBlock}" TextWrapping="Wrap"
+                           Name="CurrentBalance" Text="100" />
             </Grid>
         </StackPanel>
 
@@ -58,22 +67,20 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="1" x:Name="WithDrawMoney" Click="WithDrawMoney_Click" >
+            <Button Grid.Column="1" x:Name="WithDrawMoney" Click="WithDrawMoney_Click">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="10"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="1"  Text="Withdraw money"/>
-                    <materialDesign:PackIcon Grid.Column="0" Kind="ChevronDoubleDown" Margin="-28,0,0,0" Width="31" Height="19" />
+                    <TextBlock Grid.Column="1" Text="Withdraw money" />
+                    <materialDesign:PackIcon Grid.Column="0" Kind="ChevronDoubleDown" Margin="-28,0,0,0" Width="31"
+                                             Height="19" />
                 </Grid>
             </Button>
         </Grid>
 
 
-
-        <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="MainSnackbar"
-        />
+        <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="MainSnackbar" />
     </StackPanel>
 </Window>
-        

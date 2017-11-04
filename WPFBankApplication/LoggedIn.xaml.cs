@@ -1,41 +1,33 @@
-﻿using ExtraTools;
-using java.lang;
-using java.sql;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using ExtraTools;
+using java.lang;
+using java.sql;
 using Exception = System.Exception;
 using Process = System.Diagnostics.Process;
 
 namespace WPFBankApplication
 {
     /// <summary>
-    /// Interaction logic for LoggedIn.xaml
+    ///     Interaction logic for LoggedIn.xaml
     /// </summary>
     public partial class LoggedIn
     {
         public LoggedIn()
         {
             InitializeComponent();
-            Task.Factory.StartNew(() =>
-            {
-                Thread.sleep(1000);
-            }).ContinueWith(t =>
-            {
-
-                MainSnackbar.MessageQueue.Enqueue("Welcome to Alexa Bank Of India");
-            }, TaskScheduler.FromCurrentSynchronizationContext());
+            Task.Factory.StartNew(() => { Thread.sleep(1000); })
+                .ContinueWith(t => { MainSnackbar.MessageQueue.Enqueue("Welcome to Alexa Bank Of India"); },
+                    TaskScheduler.FromCurrentSynchronizationContext());
         }
 
         public bool DoValidation()
         {
-            if (textBox_acc.Text == string.Empty || PasswordBox.Password == string.Empty)
-            {
-                DialogBox.Show("Error", "Please fill all the information and then proceed", "OK");
-                return false;
-            }
-            return true;
+            if (textBox_acc.Text != string.Empty && PasswordBox.Password != string.Empty) return true;
+            DialogBox.Show("Error", "Please fill all the information and then proceed", "OK");
+            return false;
         }
 
 
@@ -45,17 +37,14 @@ namespace WPFBankApplication
             try
             {
                 Class.forName("com.mysql.jdbc.Driver");
-                Connection c = DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root", "9970209265");
+                var c = DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root", "9970209265");
 
-                PreparedStatement ps = c.prepareStatement("select Password from info where account_number = ?");
+                var ps = c.prepareStatement("select Password from info where account_number = ?");
                 ps.setString(1, textBox_acc.Text);
-                ResultSet rs = ps.executeQuery();
+                var rs = ps.executeQuery();
 
                 while (rs.next())
-                {
                     pass = rs.getString("Password");
-                }
-
             }
             catch (SQLException exception)
             {
@@ -65,14 +54,14 @@ namespace WPFBankApplication
 
             //Getting password from user password box
 
-            string userPassword = PasswordBox.Password;
+            var userPassword = PasswordBox.Password;
 
             //checking the input password and the password saved in database
             if (userPassword == pass)
             {
                 DialogBox.Show("Sucess", "Logged in sucessfully", "OK");
                 new Welcome(textBox_acc.Text).Show();
-                this.Hide();
+                Hide();
             }
             else
             {
@@ -86,9 +75,7 @@ namespace WPFBankApplication
             try
             {
                 if (DoValidation())
-                {
                     DoLogIn();
-                }
             }
             catch (Exception error)
             {
@@ -99,7 +86,7 @@ namespace WPFBankApplication
         private void Hyperlink_OnClick(object sender, RoutedEventArgs e)
         {
             new NewAccountRegistration().Show();
-            this.Hide();
+            Hide();
         }
 
         private void TextBox_acc_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -111,13 +98,13 @@ namespace WPFBankApplication
         private void ForgetAccountNumberHyperLink_OnClick(object sender, RoutedEventArgs e)
         {
             new ForgetAccountNumber().Show();
-            this.Hide();
+            Hide();
         }
 
         private void ForgetpasswordHyperLink1_OnClick(object sender, RoutedEventArgs e)
         {
             new ForgetPassword().Show();
-            this.Hide();
+            Hide();
         }
 
         private void ButtonGitHub_OnClick(object sender, RoutedEventArgs e)
