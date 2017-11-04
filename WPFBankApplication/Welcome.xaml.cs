@@ -1,7 +1,6 @@
-﻿using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows;
 using System.Windows.Media;
+using System.Threading.Tasks;
 using ExtraTools;
 using java.lang;
 using java.sql;
@@ -10,7 +9,7 @@ using Connection = com.mysql.jdbc.Connection;
 namespace WPFBankApplication
 {
     /// <summary>
-    ///     Interaction logic for Welcome.xaml
+    /// Interaction logic for Welcome.xaml
     /// </summary>
     public partial class Welcome
     {
@@ -27,77 +26,78 @@ namespace WPFBankApplication
             ShowWelcomeSnakbar();
         }
 
-
+        
         public void ShowWelcomeSnakbar()
         {
-            Task.Factory.StartNew(() => { Thread.sleep(1000); })
-                .ContinueWith(
-                    t =>
-                    {
-                        MainSnackbar.MessageQueue.Enqueue("Welcome " + Operations.GetAccountHolderName(AccountNumber));
-                    }, TaskScheduler.FromCurrentSynchronizationContext());
+            Task.Factory.StartNew(() =>
+            {
+                Thread.sleep(1000);
+            }).ContinueWith(t =>
+            {
+                MainSnackbar.MessageQueue.Enqueue("Welcome " + Operations.GetAccountHolderName(AccountNumber));
+            }, TaskScheduler.FromCurrentSynchronizationContext());
         }
 
 
         private void GetAccountHolderImage()
         {
-            var imageFilePath = string.Empty;
+            string imageFilePath = string.Empty;
 
             try
             {
                 Class.forName("com.mysql.jdbc.Driver");
-                var c = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root",
-                    "9970209265");
+                Connection c = (Connection)DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root", "9970209265");
 
-                var ps = c.prepareStatement("select ImagePath from info where account_number = ?");
+                java.sql.PreparedStatement ps = c.prepareStatement("select ImagePath from info where account_number = ?");
                 ps.setString(1, AccountNumber);
-                var rs = ps.executeQuery();
+                java.sql.ResultSet rs = ps.executeQuery();
                 while (rs.next())
+                {
                     imageFilePath = rs.getString("ImagePath");
+                }
 
-                var img = new ImageSourceConverter();
-                ImageBox.SetValue(Image.SourceProperty, img.ConvertFromString(imageFilePath));
+               ImageSourceConverter img = new ImageSourceConverter();
+               ImageBox.SetValue(System.Windows.Controls.Image.SourceProperty, img.ConvertFromString(imageFilePath));
             }
             catch (SQLException exception)
             {
-                DialogBox.Show("Error", exception.ToString(), "OK");
+                DialogBox.Show("Error",exception.ToString(),"OK");
             }
         }
-
+        
         private void ButtonWithdrawMoney_Click(object sender, RoutedEventArgs e)
         {
-            Hide();
+            this.Hide();
             new WithdrawMoney(AccountNumber).Show();
         }
 
         private void ButtonSaveMoney_Click(object sender, RoutedEventArgs e)
         {
             new SaveMoney(AccountNumber).Show();
-            Hide();
+            this.Hide();
         }
-
         private void TransferMoneyButton_OnClick(object sender, RoutedEventArgs e)
         {
             new TransferMoney(AccountNumber).Show();
-            Hide();
+            this.Hide();
         }
 
         private void ButtonLogOut_OnClick(object sender, RoutedEventArgs e)
         {
-            var result = (int) DialogBox.Show("Log out ?", "Are you sure you want to log out?", "YES", "NO");
-
+            int result = (int)DialogBox.Show("Log out ?", "Are you sure you want to log out?", "YES", "NO");
+            
             switch (DialogBox.Result)
             {
                 case DialogBox.ResultEnum.LeftButtonClicked:
                     new LoggedIn().Show();
-                    Hide();
+                    this.Hide();
                     break;
             }
         }
 
         private void ButtonAccountSettings_OnClick(object sender, RoutedEventArgs e)
         {
-            Hide();
+            this.Hide();
             new AccountSettings(AccountNumber).Show();
         }
     }

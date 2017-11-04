@@ -1,7 +1,9 @@
-﻿namespace WPFBankApplication
+﻿using System.Windows;
+
+namespace WPFBankApplication
 {
     /// <summary>
-    ///     Interaction logic for AccountDetails.xaml
+    /// Interaction logic for AccountDetails.xaml
     /// </summary>
     public partial class AccountDetails
     {

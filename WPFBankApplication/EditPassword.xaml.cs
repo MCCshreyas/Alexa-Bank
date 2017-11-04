@@ -8,55 +8,65 @@ using Connection = com.mysql.jdbc.Connection;
 namespace WPFBankApplication
 {
     /// <summary>
-    ///     Interaction logic for EditPassword.xaml
+    /// Interaction logic for EditPassword.xaml
     /// </summary>
     public partial class EditPassword
     {
-        private readonly string _acc;
-
+        string _acc;
         public EditPassword(string accountNumber)
         {
             InitializeComponent();
             _acc = accountNumber;
         }
-
+        
         private bool DoValidation()
         {
-            if (ReEnterPasswordBox.Password != "" && NewPasswordTextBox.Password != "" &&
-                OldPasswordTextBox.Password != "") return true;
-            DialogBox.Show("Error", "Please fill all the fields", "OK");
-            return false;
+            if (ReEnterPasswordBox.Password == "" || NewPasswordTextBox.Password == "" || OldPasswordTextBox.Password == "")
+            {
+                DialogBox.Show("Error","Please fill all the fields","OK");
+                return false;
+            }
+            return true;
         }
-
+        
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (!DoValidation()) return;
-            var oldPassword = Operations.GetPassword(_acc);
-            if (oldPassword == OldPasswordTextBox.Password)
-                if (NewPasswordTextBox.Password.Equals(ReEnterPasswordBox.Password))
-                    SaveNewPassword(NewPasswordTextBox.Password);
+        { 
+            if (DoValidation())
+            {
+                string oldPassword = Operations.GetPassword(_acc);
+                if (oldPassword == OldPasswordTextBox.Password)
+                {
+                    if (NewPasswordTextBox.Password.Equals(ReEnterPasswordBox.Password))
+                    {
+                        SaveNewPassword(NewPasswordTextBox.Password);
+                    }
+                    else
+                    {
+                        DialogBox.Show("Error", "Your new password is incorret","OK");
+                    }
+                }
                 else
-                    DialogBox.Show("Error", "Your new password is incorret", "OK");
-            else
-                DialogBox.Show("Error", "Your old password is incorrect", "OK");
+                {
+                    DialogBox.Show("Error", "Your old password is incorrect","OK");
+                }
+            }
         }
-
+        
         private void SaveNewPassword(string newPass)
         {
+
             try
             {
                 Class.forName("com.mysql.jdbc.Driver");
-                var connection =
-                    (Connection) DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root",
-                        "9970209265");
+                Connection connection = (Connection)DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root", "9970209265");
 
-                var ps = connection.prepareStatement("update info set Password = ? where account_number = ?");
+                java.sql.PreparedStatement ps = connection.prepareStatement("update info set Password = ? where account_number = ?");
                 ps.setString(1, newPass);
                 ps.setString(2, _acc);
                 ps.executeUpdate();
                 connection.close();
-                MessageBox.Show("Password changed sucessfully", "Sucess", OK, MessageBoxImage.Information);
+                MessageBox.Show("Password changed sucessfully","Sucess",MessageBoxButton.OK,MessageBoxImage.Information);
                 new LoggedIn().Show();
             }
             catch (SQLException exception)
@@ -67,7 +77,7 @@ namespace WPFBankApplication
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            var parentWindow = Window.GetWindow(new AccountSettings(_acc));
+            Window parentWindow = Window.GetWindow(new AccountSettings(_acc));
             parentWindow.Show();
         }
     }

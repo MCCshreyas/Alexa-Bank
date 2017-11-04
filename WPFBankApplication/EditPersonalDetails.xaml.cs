@@ -13,25 +13,25 @@ using Exception = System.Exception;
 namespace WPFBankApplication
 {
     /// <summary>
-    ///     Interaction logic for EditPersonalDetails.xaml
+    /// Interaction logic for EditPersonalDetails.xaml
     /// </summary>
     public partial class EditPersonalDetails
     {
         private OpenFileDialog _fileDialog;
-        public string Accc;
-        public string ImageFilePath = "";
+        public string accc;
+        public string imageFilePath = "";
 
         public EditPersonalDetails(string accountNumber)
         {
             InitializeComponent();
-            Accc = accountNumber;
+            accc = accountNumber;
             GetDetails();
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            Hide();
-            new AccountSettings(Accc).Show();
+            this.Hide();
+            new AccountSettings(accc).Show();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -44,8 +44,8 @@ namespace WPFBankApplication
                 };
 
                 _fileDialog.ShowDialog();
-                ImageFilePath = _fileDialog.FileName;
-                var img = new ImageSourceConverter();
+                imageFilePath = _fileDialog.FileName;
+                ImageSourceConverter img = new ImageSourceConverter();
                 AccountHolderImage.SetValue(Image.SourceProperty, img.ConvertFromString(_fileDialog.FileName));
             }
             catch (Exception exception)
@@ -63,28 +63,29 @@ namespace WPFBankApplication
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             if (DoDataValidation())
+            {
                 SaveDataToDatabase();
+            }
+            
         }
 
         private void SaveDataToDatabase()
         {
-            var fullName = TextBoxName.Text;
-
+            string fullName = TextBoxName.Text;
+            
             try
             {
                 Class.forName("com.mysql.jdbc.Driver");
-                var c = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root",
-                    "9970209265");
+                Connection c = (Connection)DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root", "9970209265");
 
-                var ps = c.prepareStatement(
-                    "update info set Name = ? ,  Address = ? , phone_number = ? , Email = ? , ImagePath = ? , BirthDate = ? where account_number = ? ");
+                java.sql.PreparedStatement ps = c.prepareStatement("update info set Name = ? ,  Address = ? , phone_number = ? , Email = ? , ImagePath = ? , BirthDate = ? where account_number = ? ");
                 ps.setString(1, fullName);
                 ps.setString(2, textBox_address.Text);
                 ps.setString(3, textBox_phonenumber.Text);
                 ps.setString(4, textBox_email.Text);
-                ps.setString(5, ImageFilePath);
+                ps.setString(5, imageFilePath);
                 ps.setString(6, myDatePicker.Text);
-                ps.setString(7, Accc);
+                ps.setString(7, accc);
                 ps.executeUpdate();
                 c.close();
                 DialogBox.Show("Sucess", "Changes done sucessfully", "OK");
@@ -100,13 +101,12 @@ namespace WPFBankApplication
             try
             {
                 Class.forName("com.mysql.jdbc.Driver");
-                var c = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root",
-                    "9970209265");
+                Connection c = (Connection)DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root", "9970209265");
 
-                var ps = c.prepareStatement("select * from info where account_number = ?");
-                ps.setString(1, Accc);
-                var rs = ps.executeQuery();
-                var img = new ImageSourceConverter();
+                java.sql.PreparedStatement ps = c.prepareStatement("select * from info where account_number = ?");
+                ps.setString(1,accc);
+                ResultSet rs = ps.executeQuery();
+                ImageSourceConverter img = new ImageSourceConverter();
 
                 while (rs.next())
                 {
@@ -124,19 +124,18 @@ namespace WPFBankApplication
             }
         }
 
-
+        
         private bool DoDataValidation()
         {
             //saving phone number leangh into a length variable
-            var length = textBox_phonenumber.Text.Length;
+            int length = textBox_phonenumber.Text.Length;
 
             //checking email validation which returns bool value 
-            var isEmailValid = textBox_email.Text.Contains("@");
-            var isEmailValid2 = textBox_email.Text.Contains(".com");
-
+            bool isEmailValid = textBox_email.Text.Contains("@");
+            bool isEmailValid2 = textBox_email.Text.Contains(".com");
+            
             // Is there any textbox is empty or not. If there then it will fire error message
-            if (TextBoxName.Text == "" || textBox_email.Text == "" || textBox_address.Text == "" ||
-                textBox_phonenumber.Text == "" || AccountHolderImage.Source == null || myDatePicker.Text == "")
+            if (TextBoxName.Text == "" || textBox_email.Text == "" || textBox_address.Text == "" || textBox_phonenumber.Text == "" || AccountHolderImage.Source == null || myDatePicker.Text == "")
             {
                 DialogBox.Show("Error", "Please enter all field", "OK");
                 return false;
@@ -150,9 +149,13 @@ namespace WPFBankApplication
             }
 
             // we are checking email validation here
-            if (isEmailValid && isEmailValid2) return true;
-            DialogBox.Show("Error", "Please check your email ID", "OK");
-            return false;
+            if (!isEmailValid || !isEmailValid2)
+            {
+                DialogBox.Show("Error", "Please check your email ID", "OK");
+                return false;
+            }
+
+            return true;
         }
     }
 }

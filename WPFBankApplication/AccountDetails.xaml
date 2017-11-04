@@ -3,31 +3,21 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFBankApplication"
         mc:Ignorable="d"
         Title="AccountDetails" ResizeMode="NoResize" Height="260.959" Width="263.699">
     <Grid>
-        <TextBlock x:Name="TextBlockHeaderText" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap"
-                   Text="Following is your bank account information" VerticalAlignment="Top" />
-        <TextBlock x:Name="TextBlock" HorizontalAlignment="Left" Margin="17,57,0,0" TextWrapping="Wrap" Text="Name - "
-                   VerticalAlignment="Top" />
-        <TextBlock x:Name="TextBlock1" HorizontalAlignment="Left" Margin="17,78,0,0" TextWrapping="Wrap"
-                   Text="Account number - " VerticalAlignment="Top" />
-        <TextBlock x:Name="TextBlock2" HorizontalAlignment="Left" Margin="17,99,0,0" TextWrapping="Wrap"
-                   Text="Email - " VerticalAlignment="Top" />
-        <TextBlock x:Name="TextBlock3" HorizontalAlignment="Left" Margin="17,120,0,0" TextWrapping="Wrap"
-                   Text="Phone number - " VerticalAlignment="Top" />
-        <TextBlock x:Name="TextBlock4" HorizontalAlignment="Left" Margin="17,141,0,0" TextWrapping="Wrap"
-                   Text="Balance - " VerticalAlignment="Top" />
-        <TextBlock x:Name="TextBlockAccountHolderName" HorizontalAlignment="Left" Margin="150,57,0,0"
-                   TextWrapping="Wrap" Text="" VerticalAlignment="Top" />
-        <TextBlock x:Name="TextBlockAccountNumber" HorizontalAlignment="Left" Margin="150,82,0,0" TextWrapping="Wrap"
-                   Text="" VerticalAlignment="Top" />
-        <TextBlock x:Name="TextBlockPhoneNumber" HorizontalAlignment="Left" Margin="150,99,0,0" TextWrapping="Wrap"
-                   Text="" VerticalAlignment="Top" />
-        <TextBlock x:Name="TextBlockEmail" HorizontalAlignment="Left" Margin="150,120,0,0" TextWrapping="Wrap" Text=""
-                   VerticalAlignment="Top" />
-        <TextBlock x:Name="TextBlockCurrentBalance" HorizontalAlignment="Left" Margin="150,141,0,0" TextWrapping="Wrap"
-                   Text="" VerticalAlignment="Top" />
+        <TextBlock x:Name="TextBlockHeaderText" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Following is your bank account information" VerticalAlignment="Top"/>
+        <TextBlock x:Name="TextBlock" HorizontalAlignment="Left" Margin="17,57,0,0" TextWrapping="Wrap" Text="Name - " VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="17,78,0,0" TextWrapping="Wrap" Text="Account number - " VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" Margin="17,99,0,0" TextWrapping="Wrap" Text="Email - " VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock3" HorizontalAlignment="Left" Margin="17,120,0,0" TextWrapping="Wrap" Text="Phone number - " VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock4" HorizontalAlignment="Left" Margin="17,141,0,0" TextWrapping="Wrap" Text="Balance - " VerticalAlignment="Top"/>
+        <TextBlock x:Name="TextBlockAccountHolderName" HorizontalAlignment="Left" Margin="150,57,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBlock x:Name="TextBlockAccountNumber" HorizontalAlignment="Left" Margin="150,82,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBlock x:Name="TextBlockPhoneNumber" HorizontalAlignment="Left" Margin="150,99,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBlock x:Name="TextBlockEmail" HorizontalAlignment="Left" Margin="150,120,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBlock x:Name="TextBlockCurrentBalance" HorizontalAlignment="Left" Margin="150,141,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
