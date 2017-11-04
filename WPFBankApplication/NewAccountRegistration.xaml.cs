@@ -6,6 +6,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using MaterialDesignThemes.Wpf;
 using ExtraTools;
 using java.lang;
 using java.sql;
