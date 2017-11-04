@@ -10,37 +10,27 @@
     <Grid>
         <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2"
                                   Mode="Accent" Height="46" Background="#FF209B20" BorderBrush="#FF209B20">
-            <Grid Margin="-10,-11,-11,-10">
-                <TextBlock Text="Deposite Money" Style="{DynamicResource MaterialDesignTitleTextBlock}"
-                           Margin="73,5,4,-2" />
-                <Button Margin="0,3,305,0" materialDesign:ShadowAssist.ShadowDepth="Depth0" Background="#FF209B20"
-                        BorderBrush="#FF209B20" Name="BackButton" Click="BackButton_OnClick" ToolTip="Go back">
-                    <materialDesign:PackIcon Kind="ArrowLeft" Height="22" Width="26" />
+            <Grid Margin="-10,-11,-11,-10" >
+                <TextBlock Text="Deposite Money" Style="{DynamicResource MaterialDesignTitleTextBlock}" Margin="73,5,4,-2"></TextBlock>
+                <Button Margin="0,3,305,0"  materialDesign:ShadowAssist.ShadowDepth="Depth0"  Background="#FF209B20" BorderBrush="#FF209B20" Name="BackButton" Click="BackButton_OnClick"  ToolTip="Go back">
+                    <materialDesign:PackIcon Kind="ArrowLeft" Height="22" Width="26"></materialDesign:PackIcon>
                 </Button>
             </Grid>
         </materialDesign:ColorZone>
 
-        <Button x:Name="SaveMoneyButton" Background="#FF209B20" BorderBrush="#FF209B20" HorizontalAlignment="Left"
-                Margin="101,242,0,0" VerticalAlignment="Top" Width="193" Height="31" Click="SaveMoneyButton_Click">
+        <Button x:Name="SaveMoneyButton" Background="#FF209B20" BorderBrush="#FF209B20" HorizontalAlignment="Left" Margin="101,242,0,0" VerticalAlignment="Top" Width="193" Height="31" Click="SaveMoneyButton_Click" >
             <Grid>
-                <TextBlock Text="Deposite money" />
+                <TextBlock Text="Deposite money"/>
                 <materialDesign:PackIcon Kind="ChevronDoubleDown" Margin="-43,0,0,0" Width="31" Height="19" />
             </Grid>
         </Button>
-        <TextBox FontWeight="Bold" FontSize="13" x:Name="SaveMoneyTextBox" HorizontalAlignment="Left" Height="23"
-                 Margin="85,127,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194"
-                 PreviewTextInput="SaveMoneyTextBox_OnPreviewTextInput" />
-        <TextBlock FontSize="20" x:Name="textBlock" Margin="39,69,53,0"
-                   Style="{DynamicResource MaterialDesignSubheadingTextBlock}" Text="Enter Money amount below"
-                   VerticalAlignment="Top" Height="27" />
-        <TextBlock FontSize="18" Style="{DynamicResource MaterialDesignSubheadingTextBlock}" HorizontalAlignment="Left"
-                   Margin="47,186,0,0" TextWrapping="Wrap" Text="Your current balance is Rs" VerticalAlignment="Top"
-                   Name="BalanceText" />
-        <TextBlock FontSize="18" Foreground="Crimson" Style="{DynamicResource MaterialDesignBody2TextBlock}"
-                   Margin="260,186,25,0" TextWrapping="Wrap" VerticalAlignment="Top" Name="CurrentBalance" />
-        <TextBlock FontSize="18" Style="{DynamicResource MaterialDesignSubheadingTextBlock}" Margin="46,129,206,0"
-                   TextWrapping="Wrap" VerticalAlignment="Top" Name="RsTextBlock" Height="23" Text="Rs" />
-        <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="MainSnackbar" />
+        <TextBox FontWeight="Bold" FontSize="13" x:Name="SaveMoneyTextBox" HorizontalAlignment="Left" Height="23" Margin="85,127,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194" PreviewTextInput="SaveMoneyTextBox_OnPreviewTextInput"/>
+        <TextBlock FontSize="20" x:Name="textBlock" Margin="39,69,53,0" Style="{DynamicResource MaterialDesignSubheadingTextBlock}" Text="Enter Money amount below" VerticalAlignment="Top" Height="27"/>
+        <TextBlock FontSize="18" Style="{DynamicResource MaterialDesignSubheadingTextBlock}" HorizontalAlignment="Left" Margin="47,186,0,0" TextWrapping="Wrap" Text="Your current balance is Rs" VerticalAlignment="Top" Name="BalanceText"/>
+        <TextBlock FontSize="18" Foreground="Crimson" Style="{DynamicResource MaterialDesignBody2TextBlock}" Margin="260,186,25,0" TextWrapping="Wrap" VerticalAlignment="Top" Name="CurrentBalance"/>
+        <TextBlock FontSize="18" Style="{DynamicResource MaterialDesignSubheadingTextBlock}" Margin="46,129,206,0" TextWrapping="Wrap" VerticalAlignment="Top" Name="RsTextBlock" Height="23" Text="Rs"/>
+        <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="MainSnackbar"
+        />
 
     </Grid>
 </Window>
