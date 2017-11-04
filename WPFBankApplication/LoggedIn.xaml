@@ -10,6 +10,51 @@
     TextOptions.TextRenderingMode="Auto">
     <Grid Background="#FF78BF81">
 
+        <!--Upper color zone -->
+        <materialDesign:ColorZone materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="85" Background="#FF39396A">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Alexa Bank of India -->
+                <TextBlock Grid.Column="1" Text="Alexa Bank of India" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40" FontWeight="Bold"/>
+            </Grid>
+        </materialDesign:ColorZone >
+        
+        <!--Log In card -->
+        <materialDesign:ColorZone BorderThickness="3" Padding="5" Mode="Light" Height="356" Margin="796,213,24,0" CornerRadius="15" materialDesign:ShadowAssist.ShadowDepth="Depth5">
+
+            <Grid Name="LogInGrid">
+                <TextBlock Height="35" FontSize="30" HorizontalAlignment="Left" Margin="127,10,0,0" Name="txt_loginheader" Text="Log in" VerticalAlignment="Top" Width="160" FontWeight="Bold" />
+                <TextBox Text="" PreviewTextInput="TextBox_acc_OnPreviewTextInput" materialDesign:HintAssist.Hint="Account number" Style="{DynamicResource MaterialDesignFloatingHintTextBox}" Height="60" HorizontalAlignment="Left" Margin="10,92,0,0" Name="textBox_acc" VerticalAlignment="Top" Width="306" Background="Transparent" CaretBrush="#FF2D35E4" />
+                <PasswordBox Password="" materialDesign:HintAssist.Hint="Password" Style="{DynamicResource MaterialDesignFloatingHintPasswordBox}" HorizontalAlignment="Left" Margin="10,168,0,123" Width="306" Name="PasswordBox"/>
+                <Button Style="{StaticResource MaterialDesignFlatButton}" Height="36" Margin="74,0,0,44" HorizontalAlignment="Left" x:Name="button1" VerticalAlignment="Bottom" Width="200" Click="button1_Click">
+                    <Grid HorizontalAlignment="left" Width="151" Height="26">
+                        <TextBlock Margin="58,0,23,0" FontSize="20" Foreground="Brown" Height="26" VerticalAlignment="Top"  ><Run FontWeight="Bold" Text="Log in "/></TextBlock>
+                        <materialDesign:PackIcon FontSize="10" Kind="Login" Foreground="Brown" Margin="24,2,0,0" Height="19" Width="32" />
+                    </Grid>
+                </Button>
+                <TextBlock HorizontalAlignment="Left" Margin="83,312,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="126" Height="16"><Run Text="Don't have account?"/><LineBreak/><Run/></TextBlock>
+                <Label HorizontalAlignment="Left" Margin="208,307,0,0" VerticalAlignment="Top" Width="76">
+                    <Hyperlink Click="Hyperlink_OnClick">Create One</Hyperlink>
+                </Label>
+                <Label  HorizontalAlignment="Left" Margin="164,157,0,0" VerticalAlignment="Top" Width="146">
+                    <Hyperlink Name="ForgetAccountNumberHyperLink" Click="ForgetAccountNumberHyperLink_OnClick" >
+                        <Run Text="Forget account number"/>
+                    </Hyperlink>
+                </Label>
+                <Label  HorizontalAlignment="Left" Margin="201,224,0,0" VerticalAlignment="Top" Width="115">
+                    <Hyperlink x:Name="ForgetpasswordHyperLink1" Click="ForgetpasswordHyperLink1_OnClick" >
+                        <Run Text="Forget password"/>
+                    </Hyperlink>
+                </Label>
+            </Grid>
+        </materialDesign:ColorZone>
+
+
         <TextBlock
             Margin="35,192,530,365"
             Style="{StaticResource MaterialDesignDisplay1TextBlock}"
@@ -35,7 +80,6 @@
                         Margin="0 0 16 -20" 
                         Background="#FF8F64EA" 
                         BorderBrush="#FF8F64EA">
-
                     <materialDesign:PackIcon Kind="Bank" />
                 </Button>
 
@@ -58,16 +102,7 @@
             </Grid>
         </materialDesign:Card>
 
-        <materialDesign:ColorZone materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="85" Background="#FF39396A">
-            <Grid>
-                <Grid HorizontalAlignment="Center">
-                    <TextBlock Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40" FontWeight="Bold">Alexa Bank of India</TextBlock>
-                </Grid>
-                <Grid/>
-            </Grid>
-
-
-        </materialDesign:ColorZone >
+        
 
         <materialDesign:PopupBox Style="{DynamicResource MaterialDesignMultiFloatingActionAccentPopupBox}"
                                  PlacementMode="BottomAndAlignCentres"                                                                      
@@ -101,34 +136,6 @@
         </materialDesign:PopupBox>
 
 
-        <materialDesign:ColorZone BorderThickness="3" Padding="5" Mode="Light" Height="356" Margin="796,213,24,0" CornerRadius="15" materialDesign:ShadowAssist.ShadowDepth="Depth5">
-
-            <Grid Name="LogInGrid">
-                <TextBlock Height="35" FontSize="30" HorizontalAlignment="Left" Margin="127,10,0,0" Name="txt_loginheader" Text="Log in" VerticalAlignment="Top" Width="160" FontWeight="Bold" />
-                <TextBox Text="" PreviewTextInput="TextBox_acc_OnPreviewTextInput" materialDesign:HintAssist.Hint="Account number" Style="{DynamicResource MaterialDesignFloatingHintTextBox}" Height="60" HorizontalAlignment="Left" Margin="10,92,0,0" Name="textBox_acc" VerticalAlignment="Top" Width="306" Background="Transparent" CaretBrush="#FF2D35E4" />
-                <PasswordBox Password="" materialDesign:HintAssist.Hint="Password" Style="{DynamicResource MaterialDesignFloatingHintPasswordBox}" HorizontalAlignment="Left" Margin="10,168,0,123" Width="306" Name="PasswordBox"/>
-                <Button Style="{StaticResource MaterialDesignFlatButton}" Height="36" Margin="74,0,0,44" HorizontalAlignment="Left" x:Name="button1" VerticalAlignment="Bottom" Width="200" Click="button1_Click">
-                    <Grid HorizontalAlignment="left" Width="151" Height="26">
-                        <TextBlock Margin="58,0,23,0" FontSize="20" Foreground="Brown" Height="26" VerticalAlignment="Top"  ><Run FontWeight="Bold" Text="Log in "/></TextBlock>
-                        <materialDesign:PackIcon FontSize="10" Kind="Login" Foreground="Brown" Margin="24,2,0,0" Height="19" Width="32" />
-                    </Grid>
-                </Button>
-                <TextBlock HorizontalAlignment="Left" Margin="83,312,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="126" Height="16"><Run Text="Don't have account?"/><LineBreak/><Run/></TextBlock>
-                <Label HorizontalAlignment="Left" Margin="208,307,0,0" VerticalAlignment="Top" Width="76">
-                    <Hyperlink Click="Hyperlink_OnClick">Create One</Hyperlink>
-                </Label>
-                <Label  HorizontalAlignment="Left" Margin="164,157,0,0" VerticalAlignment="Top" Width="146">
-                    <Hyperlink Name="ForgetAccountNumberHyperLink" Click="ForgetAccountNumberHyperLink_OnClick" >
-                        <Run Text="Forget account number"/>
-                    </Hyperlink>
-                </Label>
-                <Label  HorizontalAlignment="Left" Margin="201,224,0,0" VerticalAlignment="Top" Width="115">
-                    <Hyperlink x:Name="ForgetpasswordHyperLink1" Click="ForgetpasswordHyperLink1_OnClick" >
-                        <Run Text="Forget password"/>
-                    </Hyperlink>
-                </Label>
-            </Grid>
-        </materialDesign:ColorZone>
         <materialDesign:Card Margin="206,132,254,0" Height="433">
             <Grid>
                 <Grid.RowDefinitions>

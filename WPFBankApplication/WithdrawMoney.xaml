@@ -6,31 +6,74 @@
         xmlns:local="clr-namespace:WPFBankApplication"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="WithdrawMoney" Height="333" Width="384" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="WithdrawMoney" Height="500" Width="500" WindowStartupLocation="CenterScreen">
 
-    <Grid>
-        <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2"
+    <StackPanel>
+        <!-- Titale color zone-->
+        <materialDesign:ColorZone Padding="2" materialDesign:ShadowAssist.ShadowDepth="Depth2"
                                   Mode="Accent" Height="46" Background="#FFD34B4B" BorderBrush="#FFD34B4B">
-            <Grid Margin="-10,-11,-11,-10" >
-                <TextBlock Text="Withdraw money" Style="{DynamicResource MaterialDesignTitleTextBlock}" Margin="67,5,10,-2"></TextBlock>
-                <Button Margin="0,3,305,0"  materialDesign:ShadowAssist.ShadowDepth="Depth0"  Background="#FFD34B4B" BorderBrush="#FFD34B4B" Name="BackButton" Click="BackButton_OnClick"  ToolTip="Go back">
-                    <materialDesign:PackIcon Kind="ArrowLeft" Height="22" Width="26"></materialDesign:PackIcon>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Withdraw money-->
+                <TextBlock Margin="50 5" Grid.Column="1" Text="Withdraw money" Style="{DynamicResource MaterialDesignTitleTextBlock}"></TextBlock>
+
+                <!-- Back button-->
+                <Button Padding="0" Grid.Column="0" Margin="10 0 0 0" materialDesign:ShadowAssist.ShadowDepth="Depth0"  Background="#FFD34B4B" BorderBrush="#FFD34B4B" Name="BackButton" Click="BackButton_OnClick"  ToolTip="Go back">
+                    <materialDesign:PackIcon Kind="ArrowLeft" Height="32" Width="50" />
                 </Button>
             </Grid>
         </materialDesign:ColorZone>
 
-        <Button x:Name="WithDrawMoney" HorizontalAlignment="Left" Margin="108,240,0,0" VerticalAlignment="Top" Width="179" Height="33" Click="WithDrawMoney_Click" >
-            <Grid>
-                <TextBlock Text="Withdraw money"/>
-                <materialDesign:PackIcon Kind="ChevronDoubleDown" Margin="-28,0,0,0" Width="31" Height="19" />
+        <StackPanel>
+            <!-- Enter money amount below -->
+            <TextBlock FontSize="25" Padding="5" Margin="50 50 0 0" x:Name="textBlock" Style="{DynamicResource MaterialDesignSubheadingTextBlock}" Text="Enter Money amount below"/>
+
+            <!--Text box -->
+            <TextBox Margin="50 20 50 0 " FontWeight="Bold" FontSize="13" PreviewTextInput="WithDrawMoneyTextBox_OnPreviewTextInput" x:Name="WithDrawMoneyTextBox" Height="23" TextChanged="WithDrawMoneyTextBox_TextChanged"/>
+
+            <Grid Margin="10 50 0 0 ">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Your current balance is-->
+                <TextBlock FontSize="25" Margin="10 0 0 0" Grid.Column="0" Style="{DynamicResource MaterialDesignSubheadingTextBlock}" Text="Your current balance is Rs" Name="BalanceText"/>
+
+                <!-- 100-->
+                <TextBlock FontSize="25" Grid.Column="1" Foreground="Crimson" Style="{DynamicResource MaterialDesignBody2TextBlock}" TextWrapping="Wrap" Name="CurrentBalance" Text="100"/>
             </Grid>
-        </Button>
-        <TextBox FontWeight="Bold" FontSize="13" PreviewTextInput="WithDrawMoneyTextBox_OnPreviewTextInput" x:Name="WithDrawMoneyTextBox" HorizontalAlignment="Left" Height="23" Margin="85,127,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194" TextChanged="WithDrawMoneyTextBox_TextChanged"/>
-        <TextBlock FontSize="20" x:Name="textBlock" Margin="39,69,53,0" Style="{DynamicResource MaterialDesignSubheadingTextBlock}" Text="Enter Money amount below" VerticalAlignment="Top" Height="27"/>
-        <TextBlock FontSize="18" Style="{DynamicResource MaterialDesignSubheadingTextBlock}" HorizontalAlignment="Left" Margin="47,186,0,0" TextWrapping="Wrap" Text="Your current balance is Rs" VerticalAlignment="Top" Name="BalanceText"/>
-        <TextBlock FontSize="18" Foreground="Crimson" Style="{DynamicResource MaterialDesignBody2TextBlock}" Margin="263,186,22,0" TextWrapping="Wrap" VerticalAlignment="Top" Name="CurrentBalance" Text="100"/>
-        <TextBlock FontSize="18" Style="{DynamicResource MaterialDesignSubheadingTextBlock}" Margin="46,129,206,0" TextWrapping="Wrap" VerticalAlignment="Top" Name="RsTextBlock" Height="23" Text="Rs"/>
+        </StackPanel>
+
+        <!--Withdraw money -->
+
+        <Grid Margin="0 70 0 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="1" x:Name="WithDrawMoney" Click="WithDrawMoney_Click" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="1"  Text="Withdraw money"/>
+                    <materialDesign:PackIcon Grid.Column="0" Kind="ChevronDoubleDown" Margin="-28,0,0,0" Width="31" Height="19" />
+                </Grid>
+            </Button>
+        </Grid>
+
+
+
         <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="MainSnackbar"
         />
-    </Grid>
+    </StackPanel>
 </Window>
+        
