@@ -1,16 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 using ExtraTools;
 using java.lang;
 using java.sql;
@@ -21,7 +9,7 @@ using Twilio.Types;
 namespace WPFBankApplication
 {
     /// <summary>
-    /// Interaction logic for ForgetPassword.xaml
+    ///     Interaction logic for ForgetPassword.xaml
     /// </summary>
     public partial class ForgetPassword : Window
     {
@@ -35,12 +23,12 @@ namespace WPFBankApplication
         {
             if (TextBoxEmail.Text == "")
             {
-                DialogBox.Show("Error", "Email field is empty","OK");
+                DialogBox.Show("Error", "Email field is empty", "OK");
                 return false;
             }
 
-            bool isEmailValid = TextBoxEmail.Text.Contains("@");
-            bool isEmailValid2 = TextBoxEmail.Text.Contains(".com");
+            var isEmailValid = TextBoxEmail.Text.Contains("@");
+            var isEmailValid2 = TextBoxEmail.Text.Contains(".com");
 
             if (!isEmailValid || !isEmailValid2)
             {
@@ -52,22 +40,21 @@ namespace WPFBankApplication
         }
 
 
-
         //here we are getting Password and registered phone number from database by using email 
 
         public string GetDetails()
         {
-            string phone = "";
-            string pass = "";
+            var phone = "";
+            var pass = "";
 
             try
             {
                 Class.forName("com.mysql.jdbc.Driver");
-                Connection c = DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root", "9970209265");
+                var c = DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root", "9970209265");
 
-                java.sql.PreparedStatement ps = c.prepareStatement("select Password, phone_number from info where Email = ?");
+                var ps = c.prepareStatement("select Password, phone_number from info where Email = ?");
                 ps.setString(1, TextBoxEmail.Text);
-                ResultSet result = ps.executeQuery();
+                var result = ps.executeQuery();
                 while (result.next())
                 {
                     pass = result.getString("Password");
@@ -76,19 +63,17 @@ namespace WPFBankApplication
 
                 //sending message to user 
 
-                SendMobileNotification(pass,phone);
-
+                SendMobileNotification(pass, phone);
             }
             catch (SQLException exception)
             {
                 MessageBox.Show(exception.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Stop);
-
             }
 
             return string.Empty;
         }
 
-        private void SendMobileNotification(string password , string senderPhoneNumber)
+        private void SendMobileNotification(string password, string senderPhoneNumber)
         {
             try
             {
@@ -109,20 +94,20 @@ namespace WPFBankApplication
                     MessageBoxImage.Error);
             }
         }
-        
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             if (DoValidation())
             {
                 GetDetails();
-                this.Hide();
+                Hide();
                 new LoggedIn().Show();
             }
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            Hide();
             new LoggedIn().Show();
         }
     }

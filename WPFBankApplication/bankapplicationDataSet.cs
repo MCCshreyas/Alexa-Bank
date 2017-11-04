@@ -4,26 +4,23 @@
 
 namespace WPFBankApplication
 {
-<<<<<<< HEAD
-=======
+    <<<<<<< HEAD
+    ====== =
+    >>>>>>> parent of 388efd3...Refactored code
 
-
->>>>>>> parent of 388efd3... Refactored code
-    public partial class bankapplicationDataSet
-    {
-    }
+public class bankapplicationDataSet
+{
 }
 
+}
 <<<<<<< HEAD
 namespace WPFBankApplication.bankapplicationDataSetTableAdapters
 {
-    public partial class infoTableAdapter
-    {
-=======
+public partial class infoTableAdapter
+{
+====== =
 namespace WPFBankApplication.bankapplicationDataSetTableAdapters {
-    
-    
-    public partial class infoTableAdapter {
->>>>>>> parent of 388efd3... Refactored code
-    }
+public partial class infoTableAdapter {
+>>>>>>> parent of 388efd3...Refactored code
+}
 }

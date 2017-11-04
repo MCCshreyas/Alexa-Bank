@@ -13,7 +13,7 @@ using Exception = System.Exception;
 namespace WPFBankApplication
 {
     /// <summary>
-    /// Interaction logic for EditPersonalDetails.xaml
+    ///     Interaction logic for EditPersonalDetails.xaml
     /// </summary>
     public partial class EditPersonalDetails
     {
@@ -30,7 +30,7 @@ namespace WPFBankApplication
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            Hide();
             new AccountSettings(accc).Show();
         }
 
@@ -45,7 +45,7 @@ namespace WPFBankApplication
 
                 _fileDialog.ShowDialog();
                 imageFilePath = _fileDialog.FileName;
-                ImageSourceConverter img = new ImageSourceConverter();
+                var img = new ImageSourceConverter();
                 AccountHolderImage.SetValue(Image.SourceProperty, img.ConvertFromString(_fileDialog.FileName));
             }
             catch (Exception exception)
@@ -63,22 +63,21 @@ namespace WPFBankApplication
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             if (DoDataValidation())
-            {
                 SaveDataToDatabase();
-            }
-            
         }
 
         private void SaveDataToDatabase()
         {
-            string fullName = TextBoxName.Text;
-            
+            var fullName = TextBoxName.Text;
+
             try
             {
                 Class.forName("com.mysql.jdbc.Driver");
-                Connection c = (Connection)DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root", "9970209265");
+                var c = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root",
+                    "9970209265");
 
-                java.sql.PreparedStatement ps = c.prepareStatement("update info set Name = ? ,  Address = ? , phone_number = ? , Email = ? , ImagePath = ? , BirthDate = ? where account_number = ? ");
+                var ps = c.prepareStatement(
+                    "update info set Name = ? ,  Address = ? , phone_number = ? , Email = ? , ImagePath = ? , BirthDate = ? where account_number = ? ");
                 ps.setString(1, fullName);
                 ps.setString(2, textBox_address.Text);
                 ps.setString(3, textBox_phonenumber.Text);
@@ -101,12 +100,13 @@ namespace WPFBankApplication
             try
             {
                 Class.forName("com.mysql.jdbc.Driver");
-                Connection c = (Connection)DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root", "9970209265");
+                var c = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root",
+                    "9970209265");
 
-                java.sql.PreparedStatement ps = c.prepareStatement("select * from info where account_number = ?");
-                ps.setString(1,accc);
-                ResultSet rs = ps.executeQuery();
-                ImageSourceConverter img = new ImageSourceConverter();
+                var ps = c.prepareStatement("select * from info where account_number = ?");
+                ps.setString(1, accc);
+                var rs = ps.executeQuery();
+                var img = new ImageSourceConverter();
 
                 while (rs.next())
                 {
@@ -124,18 +124,19 @@ namespace WPFBankApplication
             }
         }
 
-        
+
         private bool DoDataValidation()
         {
             //saving phone number leangh into a length variable
-            int length = textBox_phonenumber.Text.Length;
+            var length = textBox_phonenumber.Text.Length;
 
             //checking email validation which returns bool value 
-            bool isEmailValid = textBox_email.Text.Contains("@");
-            bool isEmailValid2 = textBox_email.Text.Contains(".com");
-            
+            var isEmailValid = textBox_email.Text.Contains("@");
+            var isEmailValid2 = textBox_email.Text.Contains(".com");
+
             // Is there any textbox is empty or not. If there then it will fire error message
-            if (TextBoxName.Text == "" || textBox_email.Text == "" || textBox_address.Text == "" || textBox_phonenumber.Text == "" || AccountHolderImage.Source == null || myDatePicker.Text == "")
+            if (TextBoxName.Text == "" || textBox_email.Text == "" || textBox_address.Text == "" ||
+                textBox_phonenumber.Text == "" || AccountHolderImage.Source == null || myDatePicker.Text == "")
             {
                 DialogBox.Show("Error", "Please enter all field", "OK");
                 return false;

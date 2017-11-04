@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using ExtraTools;
 using java.lang;
@@ -14,21 +15,22 @@ namespace WPFBankApplication
 {
     public partial class WithdrawMoney
     {
-        private string accountNum;
         private string _remainingBalance;
+        private readonly string accountNum;
 
         /// <summary>
-        /// Following is constructor. Line no 27 code will read the current balance from database user account. Refer Operations.cs and 
-        /// look for method GetCurrentBalance
+        ///     Following is constructor. Line no 27 code will read the current balance from database user account. Refer
+        ///     Operations.cs and
+        ///     look for method GetCurrentBalance
         /// </summary>
         public WithdrawMoney(string accountNumber)
         {
             InitializeComponent();
             accountNum = accountNumber;
-            string accountBalance = Operations.GetCurrentBalance(accountNum);
-            CurrentBalance.Text = accountBalance;                            
+            var accountBalance = Operations.GetCurrentBalance(accountNum);
+            CurrentBalance.Text = accountBalance;
         }
-        
+
         /// <summary>
         // Following method will send mobile notification to the account holder number as per the trasaction 
         // also refer Operations.cs file . We have used its method at line no 51
@@ -40,10 +42,12 @@ namespace WPFBankApplication
 
             TwilioClient.Init(accountSid, authToken);
 
-            string sentMessage =
-                string.Format("Your Alexa bank account (Acc no = {0}) has been debited with Rs.{1} . Your current balance is Rs.{2}", accountNum,WithDrawMoneyTextBox.Text ,_remainingBalance);
+            var sentMessage =
+                string.Format(
+                    "Your Alexa bank account (Acc no = {0}) has been debited with Rs.{1} . Your current balance is Rs.{2}",
+                    accountNum, WithDrawMoneyTextBox.Text, _remainingBalance);
 
-            
+
             var to = new PhoneNumber("+91" + Operations.GetAccountHolderMobileNumber(accountNum));
 
             var message = MessageResource.Create
@@ -53,10 +57,10 @@ namespace WPFBankApplication
                 body: sentMessage
             );
         }
-        
-        
+
+
         /// <summary>
-        /// Following method will check for input data from user and check for validation
+        ///     Following method will check for input data from user and check for validation
         /// </summary>
         public bool DoValidation()
         {
@@ -64,7 +68,7 @@ namespace WPFBankApplication
             {
                 if (WithDrawMoneyTextBox.Text == string.Empty)
                 {
-                    DialogBox.Show("Warning", "You havent entered any amount to withdraw","OK");
+                    DialogBox.Show("Warning", "You havent entered any amount to withdraw", "OK");
                     return false;
                 }
 
@@ -76,56 +80,51 @@ namespace WPFBankApplication
             }
             catch (Exception e)
             {
-                DialogBox.Show("Exception", "Something went wrong. " + e.Message,"OK");
+                DialogBox.Show("Exception", "Something went wrong. " + e.Message, "OK");
                 return false;
             }
             return true;
         }
 
         /// <summary>
-        /// following method will execute when withdraw money button gets clicked 
+        ///     following method will execute when withdraw money button gets clicked
         /// </summary>
         private void WithDrawMoney_Click(object sender, RoutedEventArgs e)
         {
             if (DoValidation())
-            {
-                //following condition will check is there sufficent balance in account holder itself before withdrawing money
-
-                if (Convert.ToInt32(WithDrawMoneyTextBox.Text) > Convert.ToInt32(Operations.GetCurrentBalance(accountNum)))
+                if (Convert.ToInt32(WithDrawMoneyTextBox.Text) >
+                    Convert.ToInt32(Operations.GetCurrentBalance(accountNum)))
                 {
                     MainSnackbar.MessageQueue.Enqueue("You don't have sufficient balance to withdraw");
                 }
                 else
                 {
                     _remainingBalance = Convert.ToString(Convert.ToInt32(Operations.GetCurrentBalance(accountNum)) -
-                                                        Convert.ToInt32(WithDrawMoneyTextBox.Text));
+                                                         Convert.ToInt32(WithDrawMoneyTextBox.Text));
 
                     CurrentBalance.Text = _remainingBalance;
 
                     SaveFinalBalance();
-                   
+
                     if (Operations.DoesSendMobileNotifications(accountNum))
-                    {
                         SendMobileNotification();
-                    }
 
                     DialogBox.Show("Sucess", "Trasaction done sucessfully", "OK");
                     WithDrawMoneyTextBox.Text = "";
                 }
-            }
         }
 
         /// <summary>
-        /// Following method will save the final balance to user account number
+        ///     Following method will save the final balance to user account number
         /// </summary>
         private void SaveFinalBalance()
         {
             try
             {
                 Class.forName("com.mysql.jdbc.Driver");
-                Connection c = DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root",
+                var c = DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root",
                     "9970209265");
-                java.sql.PreparedStatement ps =
+                var ps =
                     c.prepareStatement("update info set Balance = ? where account_number = ?");
                 ps.setString(1, _remainingBalance);
                 ps.setString(2, accountNum);
@@ -136,38 +135,35 @@ namespace WPFBankApplication
                 DialogBox.Show("Error", "Something went wrong. " + exception.Message, "OK");
             }
         }
-        
+
         /// <summary>
-        /// Following code will restrict textbox to only accepts numbers and not chars. 
-        /// As details will be numerics and not char
+        ///     Following code will restrict textbox to only accepts numbers and not chars.
+        ///     As details will be numerics and not char
         /// </summary>
         private void WithDrawMoneyTextBox_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             var regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
-        
+
         /// <summary>
-        /// Following event handler will execute as soon as user will enter amount
+        ///     Following event handler will execute as soon as user will enter amount
         /// </summary>
-        private void WithDrawMoneyTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        private void WithDrawMoneyTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (WithDrawMoneyTextBox.Text != "" && WithDrawMoneyTextBox.Text != "")
-            {
-                if (Convert.ToInt32(WithDrawMoneyTextBox.Text) > Convert.ToInt32(Operations.GetCurrentBalance(accountNum)))
-                {
+                if (Convert.ToInt32(WithDrawMoneyTextBox.Text) >
+                    Convert.ToInt32(Operations.GetCurrentBalance(accountNum)))
                     MainSnackbar.MessageQueue.Enqueue("You don't have sufficient balance to withdraw");
-                }
-            }
         }
 
         /// <summary>
-        /// Back button code
+        ///     Back button code
         /// </summary>
         private void BackButton_OnClick(object sender, RoutedEventArgs e)
         {
-           new Welcome(accountNum).Show();
-            this.Hide();
+            new Welcome(accountNum).Show();
+            Hide();
         }
     }
 }
