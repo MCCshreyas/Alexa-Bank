@@ -20,7 +20,7 @@ namespace WPFBankApplication
     /// </summary>
     public partial class AccountSettings
     {
-        private readonly string _accnum;
+        private string _accnum;
         public AccountSettings(string accountNumber)
         {
             InitializeComponent();

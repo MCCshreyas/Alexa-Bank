@@ -56,11 +56,7 @@ namespace WPFBankApplication
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-<<<<<<< HEAD
-            if (Convert.ToString(_otp) == TextBoxOTP.Text)
-=======
             if (Convert.ToString(OTP) == TextBoxOTP.Text)
->>>>>>> parent of 388efd3... Refactored code
             {
                 DialogBox.Show("Sucess", "Thank you for confirming your account.","OK");
                 this.Hide();

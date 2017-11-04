@@ -73,19 +73,6 @@ namespace WPFBankApplication
         private bool DoDataValidation()
         {
             //saving phone number leangh into a length variable
-<<<<<<< HEAD
-            var length = textBox_phonenumber.Text.Length;
-
-            //checking email validation which returns bool value 
-            var isEmailValid = textBox_email.Text.Contains("@");
-            var isEmailValid2 = textBox_email.Text.Contains(".com");
-
-
-            // Is there any textbox is empty or not. If there then it will fire error message
-            if (textBox_firstname.Text == "" || textBox_lastname.Text == "" || textBox_email.Text == "" ||
-                textBox_pass.Password == "" || textBox_address.Text == "" || textBox_phonenumber.Text == "" ||
-                AccountHolderImage.Source == null || myDatePicker.Text == "")
-=======
             int length = textBox_phonenumber.Text.Length;  
 
             //checking email validation which returns bool value 
@@ -95,7 +82,6 @@ namespace WPFBankApplication
 
             // Is there any textbox is empty or not. If there then it will fire error message
             if (textBox_firstname.Text == "" || textBox_lastname.Text == "" || textBox_email.Text == "" || textBox_pass.Password == "" || textBox_address.Text == "" || textBox_phonenumber.Text == "" || AccountHolderImage.Source == null || myDatePicker.Text == "")
->>>>>>> parent of 388efd3... Refactored code
             {
                 DialogBox.Show("Error", "Please enter all field", "OK");
                 return false;
@@ -125,11 +111,7 @@ namespace WPFBankApplication
         /// </summary>
         public string EnableMobileNotifications()
         {
-<<<<<<< HEAD
-            var isMobileNotifications = CheckBoxMobileNotification.IsChecked != null && (bool) CheckBoxMobileNotification.IsChecked;
-=======
             bool isMobileNotifications = (bool)CheckBoxMobileNotification.IsChecked;
->>>>>>> parent of 388efd3... Refactored code
 
             return isMobileNotifications ? "Yes" : "No";
         }
@@ -140,12 +122,8 @@ namespace WPFBankApplication
         /// </summary>
         private void SaveDataToDatabase()
         {
-<<<<<<< HEAD
-            var fullName = textBox_firstname.Text + " " + textBox_lastname.Text;
-=======
             string fullName = textBox_firstname.Text + " " + textBox_lastname.Text;
 
->>>>>>> parent of 388efd3... Refactored code
 
             // following code will generate random number which will be user account number 
             accc = new Random().Next(1000000000);
@@ -162,19 +140,11 @@ namespace WPFBankApplication
                 ps.setString(3, textBox_phonenumber.Text);
                 ps.setString(4, textBox_email.Text);
                 ps.setString(5, textBox_pass.Password);
-<<<<<<< HEAD
-                ps.setString(6, Accc.ToString());
-                ps.setString(7, ImageFilePath);
-                ps.setString(8, GetGenderInfo());
-                ps.setString(9, EnableMobileNotifications());
-                ps.setString(10, myDatePicker.Text);
-=======
                 ps.setString(6, accc.ToString());
                 ps.setString(7,imageFilePath);
                 ps.setString(8, GetGenderInfo());
                 ps.setString(9,EnableMobileNotifications());
                 ps.setString(10,myDatePicker.Text);
->>>>>>> parent of 388efd3... Refactored code
                 ps.executeUpdate();
                 c.close();
                 DialogBox.Show("Sucess","Account created sucessfully","OK");
@@ -195,17 +165,11 @@ namespace WPFBankApplication
             bool internetStatus = IsInternetAvailable();  
             if (internetStatus)
             {
-<<<<<<< HEAD
-                if (!DoDataValidation()) return;
-                SaveDataToDatabase();
-                new OTPVerification(textBox_phonenumber.Text).ShowDialog();
-=======
                 if (DoDataValidation())
                 {
                     SaveDataToDatabase();
                     new OTPVerification(textBox_phonenumber.Text).ShowDialog();
                 }
->>>>>>> parent of 388efd3... Refactored code
             }
             else
             {

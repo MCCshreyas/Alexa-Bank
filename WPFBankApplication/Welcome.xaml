@@ -23,30 +23,14 @@
 
             </Grid>
 
-<<<<<<< HEAD
-=======
 
 
->>>>>>> parent of 388efd3... Refactored code
         </materialDesign:ColorZone >
         <materialDesign:Card Margin="10,45,141,0" Height="353" Background="#FFCAD8FD">
             <Grid>
                 <materialDesign:Card Height="166" Margin="10,45,216,0">
                     <Image Name="ImageBox" />
                 </materialDesign:Card>
-<<<<<<< HEAD
-                <TextBlock Margin="30,30,10,245" x:Name="TextBlockWelcome" Text="" Style="{DynamicResource MaterialDesignHeadlineTextBlock}" />
-            </Grid>
-        </materialDesign:Card>
-
-        <TextBlock HorizontalAlignment="Left" Height="44" Margin="204,181,0,0" TextWrapping="Wrap" Text="Account Summary" Style="{DynamicResource MaterialDesignHeadlineTextBlock}" VerticalAlignment="Top" Width="321"/>
-
-        <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="MainSnackbar"
-        />
-
-        <TextBlock x:Name="TextBlockAccountNo" HorizontalAlignment="Left" Margin="600,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text=""></TextBlock>
-
-=======
 
                 <TextBlock Margin="30,30,10,245" x:Name="TextBlockWelcome" Text="" Style="{DynamicResource MaterialDesignHeadlineTextBlock}" />
 
@@ -59,37 +43,24 @@
         <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="MainSnackbar"
         />
         <TextBlock x:Name="TextBlockAccountNo" HorizontalAlignment="Left" Margin="600,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text=""></TextBlock>
->>>>>>> parent of 388efd3... Refactored code
         <Button x:Name="ButtonWithdrawMoney" HorizontalAlignment="Left" Margin="636,102,0,0" VerticalAlignment="Top" Width="192" Height="31" Click="ButtonWithdrawMoney_Click" Background="#FFD34B4B" BorderBrush="#FFD34B4B" >
             <Grid>
                 <TextBlock Text="Withdraw money"/>
                 <materialDesign:PackIcon Kind="ChevronDoubleDown" Margin="-36,0,0,0" Width="31" Height="19" />
             </Grid>
         </Button>
-<<<<<<< HEAD
-
-=======
->>>>>>> parent of 388efd3... Refactored code
         <Button x:Name="ButtonSaveMoney" HorizontalAlignment="Left" Margin="636,190,0,0" VerticalAlignment="Top" Width="192" Height="35" Click="ButtonSaveMoney_Click" Background="#FF209B20" BorderBrush="#FF209B20" >
             <Grid>
                 <TextBlock Text="Deposite money"/>
                 <materialDesign:PackIcon Kind="ChevronDoubleDown" Margin="-43,0,0,0" Width="31" Height="19" />
             </Grid>
         </Button>
-<<<<<<< HEAD
-
-=======
->>>>>>> parent of 388efd3... Refactored code
         <Button HorizontalAlignment="Left"  Margin="636,282,0,0" VerticalAlignment="Top" Width="192" Name="TransferMoneyButton" Click="TransferMoneyButton_OnClick" Background="#FF5E2FFF" >
             <Grid>
                 <TextBlock Text="Transfer Money"/>
                 <materialDesign:PackIcon Kind="Transfer" Margin="-35,3,0,0" Width="26" />
             </Grid>
         </Button>
-<<<<<<< HEAD
-
-=======
->>>>>>> parent of 388efd3... Refactored code
         <TextBlock HorizontalAlignment="Left" Height="35" Margin="204,222,0,0" TextWrapping="Wrap" Text="Account Number - " Style="{DynamicResource MaterialDesignSubheadingTextBlock}" VerticalAlignment="Top" Width="128"/>
         <TextBlock HorizontalAlignment="Left" Height="35" Margin="204,257,0,0" TextWrapping="Wrap" Text="Available balance - " Style="{DynamicResource MaterialDesignSubheadingTextBlock}" VerticalAlignment="Top" Width="128"/>
         <TextBlock HorizontalAlignment="Left" Name="TextBlockAccountNumber" Height="35" Margin="337,222,0,0" TextWrapping="Wrap" Text="" Style="{DynamicResource MaterialDesignSubheadingTextBlock}" VerticalAlignment="Top" Width="128"/>
