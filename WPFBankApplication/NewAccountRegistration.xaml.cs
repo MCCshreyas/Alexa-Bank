@@ -30,8 +30,6 @@ namespace WPFBankApplication
             MyComboBox.SelectedIndex = 2;
         }
 
-
-       
         /// <summary>
         /// Following method will check which radiobutton is checked Male or Female. And will return result accordingly.
         /// </summary>
@@ -128,8 +126,7 @@ namespace WPFBankApplication
 
 
             // following code will generate random number which will be user account number 
-            Random r = new Random();
-            accc = r.Next(1000000000);
+            accc = new Random().Next(1000000000);
 
             
             try
@@ -187,9 +184,6 @@ namespace WPFBankApplication
             
         }
 
-
-
-
         /// <summary>
         ///following method will check for internet connection if its there it will return true otherwise false
         /// </summary>
@@ -199,8 +193,7 @@ namespace WPFBankApplication
 
         public static bool IsInternetAvailable()
         {
-            int description;
-            return InternetGetConnectedState(out description, 0);
+            return InternetGetConnectedState(out int description, 0);
         }
 
         private void MyComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -253,8 +246,6 @@ namespace WPFBankApplication
             new LoggedIn().Show();
             this.Hide();
         }
-
-
        
         /// <summary>
         /// following method will clear the textbox values
@@ -266,7 +257,6 @@ namespace WPFBankApplication
 
             ImageSourceConverter img = new ImageSourceConverter();
             AccountHolderImage.Source = null;
-
         }
     }
 }

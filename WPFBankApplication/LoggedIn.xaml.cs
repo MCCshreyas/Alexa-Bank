@@ -47,7 +47,7 @@ namespace WPFBankApplication
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection c = DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root", "9970209265");
 
-               PreparedStatement ps = c.prepareStatement("select Password from info where account_number = ?");
+                PreparedStatement ps = c.prepareStatement("select Password from info where account_number = ?");
                 ps.setString(1, textBox_acc.Text);
                 ResultSet rs = ps.executeQuery();
 
@@ -78,7 +78,6 @@ namespace WPFBankApplication
             {
                 DialogBox.Show("Error", "Please enter valid account number and password", "OK");
             }
-
         }
 
 

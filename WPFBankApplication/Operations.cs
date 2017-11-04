@@ -31,11 +31,7 @@ namespace WPFBankApplication
                     status = rs.getString("MobileVerification");
                 }
 
-                if (status == "Yes")
-                {
-                    return true;
-                }
-                return false;
+                return status == "Yes";
             }
             catch (SQLException exception)
             {

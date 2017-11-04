@@ -13,13 +13,13 @@ namespace WPFBankApplication
     /// </summary>
     public partial class Welcome
     {
-        public static string accountNumber = "";
+        public static string AccountNumber = "";
 
         public Welcome(string accountNum)
         {
             InitializeComponent();
-            accountNumber = accountNum;
-            TextBlockWelcome.Text = "Hello " + Operations.GetAccountHolderName(accountNumber);
+            AccountNumber = accountNum;
+            TextBlockWelcome.Text = "Hello " + Operations.GetAccountHolderName(AccountNumber);
             TextBlockAccountNumber.Text = accountNum;
             TextBlockAvaiableBalance.Text = Operations.GetCurrentBalance(accountNum);
             GetAccountHolderImage();
@@ -34,7 +34,7 @@ namespace WPFBankApplication
                 Thread.sleep(1000);
             }).ContinueWith(t =>
             {
-                MainSnackbar.MessageQueue.Enqueue("Welcome " + Operations.GetAccountHolderName(accountNumber));
+                MainSnackbar.MessageQueue.Enqueue("Welcome " + Operations.GetAccountHolderName(AccountNumber));
             }, TaskScheduler.FromCurrentSynchronizationContext());
         }
 
@@ -49,43 +49,36 @@ namespace WPFBankApplication
                 Connection c = (Connection)DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root", "9970209265");
 
                 java.sql.PreparedStatement ps = c.prepareStatement("select ImagePath from info where account_number = ?");
-                ps.setString(1, accountNumber);
+                ps.setString(1, AccountNumber);
                 java.sql.ResultSet rs = ps.executeQuery();
                 while (rs.next())
                 {
                     imageFilePath = rs.getString("ImagePath");
                 }
 
-                ImageSourceConverter img = new ImageSourceConverter();
+               ImageSourceConverter img = new ImageSourceConverter();
                ImageBox.SetValue(System.Windows.Controls.Image.SourceProperty, img.ConvertFromString(imageFilePath));
             }
             catch (SQLException exception)
             {
-                DialogBox.Show("Eror",exception.ToString(),"OK");
+                DialogBox.Show("Error",exception.ToString(),"OK");
             }
         }
         
         private void ButtonWithdrawMoney_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            new WithdrawMoney(accountNumber).Show();
+            new WithdrawMoney(AccountNumber).Show();
         }
 
         private void ButtonSaveMoney_Click(object sender, RoutedEventArgs e)
         {
-            new SaveMoney(accountNumber).Show();
+            new SaveMoney(AccountNumber).Show();
             this.Hide();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            new AccountSettings(accountNumber).Show();
-            this.Hide();
-        }
-
         private void TransferMoneyButton_OnClick(object sender, RoutedEventArgs e)
         {
-            new TransferMoney(accountNumber).Show();
+            new TransferMoney(AccountNumber).Show();
             this.Hide();
         }
 
@@ -100,18 +93,12 @@ namespace WPFBankApplication
                     this.Hide();
                     break;
             }
-
         }
 
         private void ButtonAccountSettings_OnClick(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            new AccountSettings(accountNumber).Show();
-         
+            new AccountSettings(AccountNumber).Show();
         }
     }
-
-   
-
-
 }

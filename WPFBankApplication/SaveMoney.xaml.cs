@@ -18,7 +18,7 @@ namespace WPFBankApplication
     /// </summary>
     public partial class SaveMoney
     {
-        private string accountNum;
+        public string accountNum;
         private string remainingBalance;
         public SaveMoney(string accountNumber)
         {
@@ -82,7 +82,7 @@ namespace WPFBankApplication
 
             TwilioClient.Init(accountSid, authToken);
 
-            string SentMessage =
+            string sentMessage =
                 string.Format("Your Alexa bank account (Acc no = {0}) has been credited with Rs.{1} . Your current balance is Rs.{2}", accountNum, SaveMoneyTextBox.Text, remainingBalance);
 
 
@@ -90,7 +90,7 @@ namespace WPFBankApplication
             var message = MessageResource.Create(
                 to,
                 from: new PhoneNumber("+16674018291"),
-                body: SentMessage);
+                body: sentMessage);
         }
 
         private void SaveFinalBalance()
@@ -122,6 +122,5 @@ namespace WPFBankApplication
            this.Hide();
            new Welcome(accountNum).Show();
         }
-
     }
 }

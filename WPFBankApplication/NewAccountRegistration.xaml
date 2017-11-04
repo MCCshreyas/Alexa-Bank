@@ -46,7 +46,7 @@
                     </Grid>
                 </Button>
                 <Image Source="person.png" Name="AccountHolderImage" HorizontalAlignment="Left" Height="130" VerticalAlignment="Top" Width="152" Margin="10,10,0,0"/>
-                <TextBox materialDesign:HintAssist.Hint="First name" TabIndex="1" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"  Height="36" HorizontalAlignment="Left" Margin="14,167,0,0" Name="textBox_firstname" VerticalAlignment="Top" Width="308" >
+                <TextBox materialDesign:HintAssist.Hint="First name" TabIndex="1" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"  Height="36" HorizontalAlignment="Left" Margin="14,167,0,0" Name="textBox_firstname" VerticalAlignment="Top" Width="308">
                 </TextBox>
                 <TextBox TabIndex="3" materialDesign:HintAssist.Hint="Address" Style="{DynamicResource MaterialDesignFloatingHintTextBox}" Height="38" HorizontalAlignment="Left" Name="textBox_address" VerticalAlignment="Top" Width="310" Margin="12,250,0,0" />
                 <TextBox PreviewTextInput="TextBox_phonenumber_OnPreviewTextInput" TabIndex="4" materialDesign:HintAssist.Hint="Phone number" Height="39" HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignFloatingHintTextBox}" Name="textBox_phonenumber" VerticalAlignment="Top" Width="309" Margin="13,290,0,0" TextChanged="textBox_phonenumber_TextChanged" />

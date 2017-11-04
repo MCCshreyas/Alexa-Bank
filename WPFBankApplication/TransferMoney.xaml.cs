@@ -17,7 +17,7 @@ namespace WPFBankApplication
     /// </summary>
     public partial class TransferMoney
     {
-        string _accountNum;
+        readonly string _accountNum;
         public string RemainingReceiverBalance;
         public string RemainingSenderBalance;
 
@@ -64,8 +64,6 @@ namespace WPFBankApplication
         /// Line no 79 : Will check for passsword does it correct or not.
         /// Line no 84 : Will check for Receiver account number exists or not
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             if (DoValidation())
@@ -117,7 +115,7 @@ namespace WPFBankApplication
             const string accountSid = "ACa4e91ac77184d82e6b7e7db26612c8d0";
             const string authToken = "cf88bc0c7f9a1c67f9ea49d5917a9be6";
             TwilioClient.Init(accountSid, authToken);
-            string SentMessage =
+            string sentMessage =
                 string.Format("Rs.{0} has been transfered to your Alexa bank account (Acc no - {1}) from other account (Acc no -  {2}). Your current balance is {3} .", TextBoxMoneyAmount.Text, TextBoxAccountNumber.Text, TextBoxAccountNumber.Text, RemainingReceiverBalance);
 
             var to = new PhoneNumber("+91" + Operations.GetAccountHolderMobileNumber(TextBoxAccountNumber.Text));
@@ -125,7 +123,7 @@ namespace WPFBankApplication
             (
                 to,
                 from: new PhoneNumber("+16674018291"),
-                body: SentMessage
+                body: sentMessage
             );
         }
 
@@ -135,7 +133,7 @@ namespace WPFBankApplication
             const string accountSid = "ACa4e91ac77184d82e6b7e7db26612c8d0";
             const string authToken = "cf88bc0c7f9a1c67f9ea49d5917a9be6";
             TwilioClient.Init(accountSid, authToken);
-            string SentMessage =
+            string sentMessage =
                 string.Format("Rs.{0} has been transfered from your Alexa bank account (Acc no - {1}) to other account (Acc no -  {2})", TextBoxMoneyAmount.Text, _accountNum, TextBoxAccountNumber.Text);
 
 
@@ -144,7 +142,7 @@ namespace WPFBankApplication
             (
                 to,
                 from: new PhoneNumber("+16674018291"),
-                body: SentMessage
+                body: sentMessage
             );
         }
 
@@ -152,7 +150,6 @@ namespace WPFBankApplication
         {
             try
             {
-
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection c =
                     (Connection)DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root", "9970209265");
@@ -174,7 +171,6 @@ namespace WPFBankApplication
         {
             try
             {
-
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection c =
                     (Connection)DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root",
@@ -205,7 +201,6 @@ namespace WPFBankApplication
                 ps.setString(1, TextBoxAccountNumber.Text);
                 ResultSet result = ps.executeQuery();
 
-
                 if (result.next() == false)
                 {
                     DialogBox.Show("Error", "Account does not exist", "OK");
@@ -217,7 +212,6 @@ namespace WPFBankApplication
             {
                 DialogBox.Show("Error", "Something went wrong " + exception.Message, "OK");
             }
-
             return true;
         }
 
