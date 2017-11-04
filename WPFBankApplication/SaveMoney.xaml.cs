@@ -14,22 +14,23 @@ using Exception = System.Exception;
 namespace WPFBankApplication
 {
     /// <summary>
-    /// Interaction logic for SaveMoney.xaml
+    ///     Interaction logic for SaveMoney.xaml
     /// </summary>
     public partial class SaveMoney
     {
         public string accountNum;
         private string remainingBalance;
+
         public SaveMoney(string accountNumber)
         {
             InitializeComponent();
             accountNum = accountNumber;
 
             // please refer operations.cs file for GetCurrentBalance method
-            string accountBalance = Operations.GetCurrentBalance(accountNum);   
+            var accountBalance = Operations.GetCurrentBalance(accountNum);
             CurrentBalance.Text = accountBalance;
         }
-        
+
 
         public bool DoValidation()
         {
@@ -37,7 +38,7 @@ namespace WPFBankApplication
             {
                 if (SaveMoneyTextBox.Text == string.Empty)
                 {
-                    DialogBox.Show("Error","You havent entered any amount to save");
+                    DialogBox.Show("Error", "You havent entered any amount to save");
                     return false;
                 }
 
@@ -49,9 +50,8 @@ namespace WPFBankApplication
             }
             catch (Exception e)
             {
-                DialogBox.Show("Error","Something went wrong. " + e.Message,"OK");
+                DialogBox.Show("Error", "Something went wrong. " + e.Message, "OK");
                 return false;
-
             }
             return true;
         }
@@ -61,16 +61,14 @@ namespace WPFBankApplication
             if (DoValidation())
             {
                 remainingBalance = Convert.ToString(Convert.ToInt32(Operations.GetCurrentBalance(accountNum)) +
-                                                        Convert.ToInt32(SaveMoneyTextBox.Text));
+                                                    Convert.ToInt32(SaveMoneyTextBox.Text));
                 CurrentBalance.Text = remainingBalance;
                 SaveFinalBalance();
 
                 if (Operations.DoesSendMobileNotifications(accountNum))
-                {
                     SendMobileNotification();
-                }
 
-                DialogBox.Show("Sucess", "Trasaction done sucessfully","OK");
+                DialogBox.Show("Sucess", "Trasaction done sucessfully", "OK");
                 SaveMoneyTextBox.Text = "";
             }
         }
@@ -82,8 +80,10 @@ namespace WPFBankApplication
 
             TwilioClient.Init(accountSid, authToken);
 
-            string sentMessage =
-                string.Format("Your Alexa bank account (Acc no = {0}) has been credited with Rs.{1} . Your current balance is Rs.{2}", accountNum, SaveMoneyTextBox.Text, remainingBalance);
+            var sentMessage =
+                string.Format(
+                    "Your Alexa bank account (Acc no = {0}) has been credited with Rs.{1} . Your current balance is Rs.{2}",
+                    accountNum, SaveMoneyTextBox.Text, remainingBalance);
 
 
             var to = new PhoneNumber("+91" + Operations.GetAccountHolderMobileNumber(accountNum));
@@ -98,16 +98,18 @@ namespace WPFBankApplication
             try
             {
                 Class.forName("com.mysql.jdbc.Driver");
-                Connection c = (Connection)DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root", "9970209265");
+                var c = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root",
+                    "9970209265");
 
-                PreparedStatement ps = c.prepareStatement("update info set Balance = ? where account_number = ?");
+                var ps = c.prepareStatement("update info set Balance = ? where account_number = ?");
                 ps.setString(1, remainingBalance);
                 ps.setString(2, accountNum);
                 ps.executeUpdate();
             }
             catch (SQLException exception)
             {
-                MessageBox.Show("Something went wrong. " + exception.Message,"Error",MessageBoxButton.OK,MessageBoxImage.Error);
+                MessageBox.Show("Something went wrong. " + exception.Message, "Error", MessageBoxButton.OK,
+                    MessageBoxImage.Error);
             }
         }
 
@@ -119,8 +121,8 @@ namespace WPFBankApplication
 
         private void BackButton_OnClick(object sender, RoutedEventArgs e)
         {
-           this.Hide();
-           new Welcome(accountNum).Show();
+            Hide();
+            new Welcome(accountNum).Show();
         }
     }
 }

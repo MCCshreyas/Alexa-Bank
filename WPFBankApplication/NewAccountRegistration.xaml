@@ -3,101 +3,134 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.FontWeight="Regular"
-        
-        Title="NewAccountRegistration" mc:Ignorable="d" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Height="723.366" Width="862.5">
+
+        Title="NewAccountRegistration" mc:Ignorable="d" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Height="723.366" Width="862.5">
     <Grid>
 
         <materialDesign:DialogHost Name="FieldErrorDialog">
             <materialDesign:DialogHost.DialogContent>
                 <StackPanel Margin="16">
                     <TextBlock FontSize="20">Please enter all fields</TextBlock>
-                    <Button FontSize="15" Margin="0 8 0 0" IsDefault="True" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}">OK</Button>
+                    <Button FontSize="15" Margin="0 8 0 0" IsDefault="True"
+                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                            Style="{DynamicResource MaterialDesignFlatButton}">
+                        OK
+                    </Button>
                 </StackPanel>
             </materialDesign:DialogHost.DialogContent>
         </materialDesign:DialogHost>
 
 
-
-
-
-
         <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2"
                                   Mode="Accent" Height="50">
-            <Grid Margin="-10,-11,-11,-10" >
-                <TextBlock Text="New account registration" Style="{DynamicResource MaterialDesignHeadlineTextBlock}" Margin="269,1,10,2"></TextBlock>
-                <Button Margin="0,3,778,0" Style="{x:Null}" BorderBrush="#FF00B8D4" Background="#FF00B8D4" Name="BackButton" Click="BackButton_OnClick"  ToolTip="Go back">
-                    <materialDesign:PackIcon Kind="ArrowLeft" Height="22" Width="26"></materialDesign:PackIcon>
+            <Grid Margin="-10,-11,-11,-10">
+                <TextBlock Text="New account registration" Style="{DynamicResource MaterialDesignHeadlineTextBlock}"
+                           Margin="269,1,10,2" />
+                <Button Margin="0,3,778,0" Style="{x:Null}" BorderBrush="#FF00B8D4" Background="#FF00B8D4"
+                        Name="BackButton" Click="BackButton_OnClick" ToolTip="Go back">
+                    <materialDesign:PackIcon Kind="ArrowLeft" Height="22" Width="26" />
                 </Button>
             </Grid>
         </materialDesign:ColorZone>
 
-        <GroupBox Style="{DynamicResource MaterialDesignCardGroupBox}" materialDesign:ShadowAssist.ShadowDepth="Depth3" Header="Personal details&#xD;&#xA;" BorderBrush="#ED3D3D" HorizontalAlignment="Left" Height="483" VerticalAlignment="Top" Width="350" Margin="32,85,0,0" Background="White" >
+        <GroupBox Style="{DynamicResource MaterialDesignCardGroupBox}" materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                  Header="Personal details&#xD;&#xA;" BorderBrush="#ED3D3D" HorizontalAlignment="Left" Height="483"
+                  VerticalAlignment="Top" Width="350" Margin="32,85,0,0" Background="White">
             <Grid>
                 <Grid Margin="185,78,42,270">
-                    <RadioButton Name="RadioButtonMale" Content="Male" Margin="0,0,10,10"/>
+                    <RadioButton Name="RadioButtonMale" Content="Male" Margin="0,0,10,10" />
                     <RadioButton Name="RadioButtonFemale" Content="Female" Margin="0,33,0,0" />
                 </Grid>
 
 
-                <Button HorizontalAlignment="Left" VerticalAlignment="Top" Width="152" Height="31" Margin="175,10,0,0" Click="Button_Click" >
+                <Button HorizontalAlignment="Left" VerticalAlignment="Top" Width="152" Height="31" Margin="175,10,0,0"
+                        Click="Button_Click">
                     <Grid>
-                        <TextBlock Text="Upload photo"/>
+                        <TextBlock Text="Upload photo" />
                         <materialDesign:PackIcon Kind="Image" Margin="-23,2,0,0" />
                     </Grid>
                 </Button>
-                <Image Source="person.png" Name="AccountHolderImage" HorizontalAlignment="Left" Height="130" VerticalAlignment="Top" Width="152" Margin="10,10,0,0"/>
-                <TextBox materialDesign:HintAssist.Hint="First name" TabIndex="1" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"  Height="36" HorizontalAlignment="Left" Margin="14,167,0,0" Name="textBox_firstname" VerticalAlignment="Top" Width="308">
-                </TextBox>
-                <TextBox TabIndex="3" materialDesign:HintAssist.Hint="Address" Style="{DynamicResource MaterialDesignFloatingHintTextBox}" Height="38" HorizontalAlignment="Left" Name="textBox_address" VerticalAlignment="Top" Width="310" Margin="12,250,0,0" />
-                <TextBox PreviewTextInput="TextBox_phonenumber_OnPreviewTextInput" TabIndex="4" materialDesign:HintAssist.Hint="Phone number" Height="39" HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignFloatingHintTextBox}" Name="textBox_phonenumber" VerticalAlignment="Top" Width="309" Margin="13,290,0,0" TextChanged="textBox_phonenumber_TextChanged" />
-                <TextBox TabIndex="5" materialDesign:HintAssist.Hint="Email" Height="38" HorizontalAlignment="Left" Name="textBox_email" VerticalAlignment="Top" Width="310" Style="{DynamicResource MaterialDesignFloatingHintTextBox}" Margin="12,328,0,0" />
+                <Image Source="person.png" Name="AccountHolderImage" HorizontalAlignment="Left" Height="130"
+                       VerticalAlignment="Top" Width="152" Margin="10,10,0,0" />
+                <TextBox materialDesign:HintAssist.Hint="First name" TabIndex="1"
+                         Style="{DynamicResource MaterialDesignFloatingHintTextBox}" Height="36"
+                         HorizontalAlignment="Left" Margin="14,167,0,0" Name="TextBoxFirstname"
+                         VerticalAlignment="Top" Width="308" />
+                <TextBox TabIndex="3" materialDesign:HintAssist.Hint="Address"
+                         Style="{DynamicResource MaterialDesignFloatingHintTextBox}" Height="38"
+                         HorizontalAlignment="Left" Name="TextBoxAddress" VerticalAlignment="Top" Width="310"
+                         Margin="12,250,0,0" />
+                <TextBox PreviewTextInput="TextBox_phonenumber_OnPreviewTextInput" TabIndex="4"
+                         materialDesign:HintAssist.Hint="Phone number" Height="39" HorizontalAlignment="Left"
+                         Style="{DynamicResource MaterialDesignFloatingHintTextBox}" Name="TextBoxPhonenumber"
+                         VerticalAlignment="Top" Width="309" Margin="13,290,0,0"
+                         TextChanged="textBox_phonenumber_TextChanged" />
+                <TextBox TabIndex="5" materialDesign:HintAssist.Hint="Email" Height="38" HorizontalAlignment="Left"
+                         Name="TextBoxEmail" VerticalAlignment="Top" Width="310"
+                         Style="{DynamicResource MaterialDesignFloatingHintTextBox}" Margin="12,328,0,0" />
 
-                <TextBox TabIndex="2" Style="{DynamicResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Last name" Height="37" HorizontalAlignment="Left" x:Name="textBox_lastname" VerticalAlignment="Top" Width="310" Margin="12,211,0,0" />
-                <DatePicker Name="myDatePicker" Style="{DynamicResource MaterialDesignDatePicker}" materialDesign:HintAssist.Hint="Birth Date" HorizontalAlignment="Left" Margin="14,378,0,0" VerticalAlignment="Top" Width="308" Height="29"/>
+                <TextBox TabIndex="2" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+                         materialDesign:HintAssist.Hint="Last name" Height="37" HorizontalAlignment="Left"
+                         x:Name="TextBoxLastname" VerticalAlignment="Top" Width="310" Margin="12,211,0,0" />
+                <DatePicker Name="MyDatePicker" Style="{DynamicResource MaterialDesignDatePicker}"
+                            materialDesign:HintAssist.Hint="Birth Date" HorizontalAlignment="Left" Margin="14,378,0,0"
+                            VerticalAlignment="Top" Width="308" Height="29" />
             </Grid>
         </GroupBox>
 
 
         <Grid>
-            <GroupBox Style="{DynamicResource MaterialDesignCardGroupBox}" materialDesign:ShadowAssist.ShadowDepth="Depth3" Header="          Account Details" BorderBrush="#ED3D3D" HorizontalAlignment="Left" Height="235" VerticalAlignment="Top" Width="350"   Margin="443,339,0,0" >
+            <GroupBox Style="{DynamicResource MaterialDesignCardGroupBox}"
+                      materialDesign:ShadowAssist.ShadowDepth="Depth3" Header="          Account Details"
+                      BorderBrush="#ED3D3D" HorizontalAlignment="Left" Height="235" VerticalAlignment="Top" Width="350"
+                      Margin="443,339,0,0">
                 <Grid>
-                    <CheckBox Content="Need ATM Card" Margin="18,8,106,142"/>
-                    <CheckBox Content="Need check book" Margin="18,33,106,117"/>
-                    <PasswordBox TabIndex="6" materialDesign:HintAssist.Hint="Password" Style="{DynamicResource MaterialDesignFloatingHintPasswordBox}" Height="39" HorizontalAlignment="Left"  x:Name="textBox_pass" VerticalAlignment="Top" Width="279" Margin="20,114,0,0" />
-                    <CheckBox Name="CheckBoxMobileNotification" Content="Mobile notifications" Margin="18,62,106,88"/>
+                    <CheckBox Content="Need ATM Card" Margin="18,8,106,142" />
+                    <CheckBox Content="Need check book" Margin="18,33,106,117" />
+                    <PasswordBox TabIndex="6" materialDesign:HintAssist.Hint="Password"
+                                 Style="{DynamicResource MaterialDesignFloatingHintPasswordBox}" Height="39"
+                                 HorizontalAlignment="Left" x:Name="TextBoxPass" VerticalAlignment="Top" Width="279"
+                                 Margin="20,114,0,0" />
+                    <CheckBox Name="CheckBoxMobileNotification" Content="Mobile notifications" Margin="18,62,106,88" />
                 </Grid>
-
-
-
             </GroupBox>
-            <materialDesign:PackIcon Kind="Account" Margin="447,343,0,0" Height="26" Width="39"/>
+            <materialDesign:PackIcon Kind="Account" Margin="447,343,0,0" Height="26" Width="39" />
         </Grid>
 
 
-
-        <GroupBox Style="{DynamicResource MaterialDesignCardGroupBox}" materialDesign:ShadowAssist.ShadowDepth="Depth3" Header="Work details" BorderBrush="#ED3D3D" HorizontalAlignment="Left" Height="232" VerticalAlignment="Top" Width="350"  Margin="441,87,0,0" >
+        <GroupBox Style="{DynamicResource MaterialDesignCardGroupBox}" materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                  Header="Work details" BorderBrush="#ED3D3D" HorizontalAlignment="Left" Height="232"
+                  VerticalAlignment="Top" Width="350" Margin="441,87,0,0">
             <Grid Name="WorkDetailsGrid">
-                <ComboBox SelectionChanged="MyComboBox_OnSelectionChanged" Name="MyComboBox" materialDesign:HintAssist.Hint="Select from following option" Margin="20,44,31,104" Height="32" >
+                <ComboBox SelectionChanged="MyComboBox_OnSelectionChanged" Name="MyComboBox"
+                          materialDesign:HintAssist.Hint="Select from following option" Margin="20,44,31,104"
+                          Height="32">
                     <ComboBoxItem Content="Employee" HorizontalAlignment="Left" Width="280" />
-                    <ComboBoxItem Content="Self-Employee" HorizontalAlignment="Left" Width="280"/>
-                    <ComboBoxItem Content="Student" HorizontalAlignment="Left" Width="280"/>
-                    <ComboBoxItem Content="Others" HorizontalAlignment="left" Width="280"/>
+                    <ComboBoxItem Content="Self-Employee" HorizontalAlignment="Left" Width="280" />
+                    <ComboBoxItem Content="Student" HorizontalAlignment="Left" Width="280" />
+                    <ComboBoxItem Content="Others" HorizontalAlignment="left" Width="280" />
                 </ComboBox>
                 <TextBox Name="WorkDetailsTextBox" Margin="20,100,31,39" />
             </Grid>
         </GroupBox>
-        <Button Height="39" Background="DarkRed" BorderBrush="DarkRed" HorizontalAlignment="Left" Margin="492,612,0,0" x:Name="btn_clear_details" Click="Btn_clear_details_OnClick" VerticalAlignment="Top" Width="58" ClipToBounds="False" >
-            <materialDesign:PackIcon Kind="UndoVariant"  Height="23" Width="28" />
+        <Button Height="39" Background="DarkRed" BorderBrush="DarkRed" HorizontalAlignment="Left" Margin="492,612,0,0"
+                x:Name="BtnClearDetails" Click="Btn_clear_details_OnClick" VerticalAlignment="Top" Width="58"
+                ClipToBounds="False">
+            <materialDesign:PackIcon Kind="UndoVariant" Height="23" Width="28" />
         </Button>
-        <Button Height="39"  HorizontalAlignment="Left" Margin="588,612,0,0" x:Name="btn_save" VerticalAlignment="Top" Width="203" ClipToBounds="False" Click="btn_save_Click">
+        <Button Height="39" HorizontalAlignment="Left" Margin="588,612,0,0" x:Name="BtnSave" VerticalAlignment="Top"
+                Width="203" ClipToBounds="False" Click="btn_save_Click">
             <Grid>
-                <TextBlock FontSize="20" Margin="0,-1,0,-5"><Run Text="SUBMIT"/></TextBlock>
+                <TextBlock FontSize="20" Margin="0,-1,0,-5">
+                    <Run Text="SUBMIT" />
+                </TextBlock>
                 <materialDesign:PackIcon Kind="ContentSave" Margin="-44,2,0,-1" Height="20" Width="30" />
             </Grid>
         </Button>
 
-        <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="MainSnackbar"
-        />
+        <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="MainSnackbar" />
 
 
     </Grid>
