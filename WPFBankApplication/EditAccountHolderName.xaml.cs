@@ -1,22 +1,24 @@
-﻿using System.Windows;
-using System.Windows.Controls;
-using java.lang;
-using java.sql;
-using Connection = com.mysql.jdbc.Connection;
-
+﻿
 namespace WPFBankApplication
 {
+    using System.Windows;
+
+    using java.lang;
+    using java.sql;
+
+    using Connection = com.mysql.jdbc.Connection;
+
     /// <summary>
     /// Interaction logic for EditAccountHolderName.xaml
     /// </summary>
-    public partial class EditAccountHolderName : Page
+    public partial class EditAccountHolderName
     {
-        private string _accNum = string.Empty;
+        private readonly string accNum;
 
         public EditAccountHolderName(string accountNumber)
         {
             InitializeComponent();
-            _accNum = accountNumber;
+            accNum = accountNumber;
         }
 
         private bool DoValidation()
@@ -29,7 +31,7 @@ namespace WPFBankApplication
             return true;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ButtonClick(object sender, RoutedEventArgs e)
         {
             string fullName = FirstNameTextBox.Text + " " + LastNameTextBox.Text;
             if (DoValidation())
@@ -47,7 +49,7 @@ namespace WPFBankApplication
 
                 java.sql.PreparedStatement ps = c.prepareStatement("update info set Name = ? where account_number = ?");
                 ps.setString(1, name);
-                ps.setString(2, _accNum);
+                ps.setString(2, accNum);
                 ps.executeUpdate();
                 c.close();
                 MessageBox.Show("Changes saved sucessfully");
@@ -60,9 +62,9 @@ namespace WPFBankApplication
 
         }
 
-        private void BackButton_Click(object sender, RoutedEventArgs e)
+        private void BackButtonClick(object sender, RoutedEventArgs e)
         {
-            Window parentWindow = Window.GetWindow(new AccountSettings(_accNum));
+            Window parentWindow = Window.GetWindow(new AccountSettings(accNum));
             parentWindow.Show();
         }
     }

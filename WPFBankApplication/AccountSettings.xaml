@@ -15,7 +15,7 @@
                                   Mode="Accent" Height="46">
             <Grid Margin="-10,-11,-11,-10" >
                 <TextBlock Text="Account settings" Style="{DynamicResource MaterialDesignTitleTextBlock}" Margin="89,3,83,0"></TextBlock>
-                <Button Style="{x:Null}" BorderBrush="#FF00B8D4" Background="#FF00B8D4" Name="BackButton" ToolTip="Go back" Margin="0,0,367,0" Click="BackButton_Click">
+                <Button Style="{x:Null}" BorderBrush="#FF00B8D4" Background="#FF00B8D4" Name="BackButton" ToolTip="Go back" Margin="0,0,367,0" Click="BackButtonClick">
                     <md:PackIcon Kind="ArrowLeft" Height="31" Width="40"></md:PackIcon>
                 </Button>
             </Grid>
@@ -27,7 +27,7 @@
             <ComboBoxItem Content="Edit personal details" HorizontalAlignment="Left" Width="300" Margin="0,0,-2,0"/>
             <ComboBoxItem Content="Change account password" HorizontalAlignment="Left" Width="300" Margin="0,0,-2,0"/>
         </ComboBox>
-        <Button  HorizontalAlignment="Left" VerticalAlignment="Top" Width="168" Margin="160,273,0,0" Height="35" Click="Button_Click" >
+        <Button  HorizontalAlignment="Left" VerticalAlignment="Top" Width="168" Margin="160,273,0,0" Height="35" Click="ButtonClick" >
             <Grid>
                 <TextBlock Text="Proceed" Margin="-13,0,0,-3" ></TextBlock>
                 <md:PackIcon Kind="ArrowRight" Margin="52,1,-17,0" />

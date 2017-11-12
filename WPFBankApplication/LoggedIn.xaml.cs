@@ -1,15 +1,19 @@
-﻿using ExtraTools;
-using java.lang;
-using java.sql;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Input;
-using Exception = System.Exception;
-using Process = System.Diagnostics.Process;
-
+﻿
 namespace WPFBankApplication
 {
+    using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
+    using System.Windows;
+    using System.Windows.Input;
+
+    using ExtraTools;
+
+    using java.lang;
+    using java.sql;
+
+    using Exception = System.Exception;
+    using Process = System.Diagnostics.Process;
+
     /// <summary>
     /// Interaction logic for LoggedIn.xaml
     /// </summary>
@@ -20,20 +24,24 @@ namespace WPFBankApplication
             InitializeComponent();
             Task.Factory.StartNew(() =>
             {
-                Thread.sleep(1000);
-            }).ContinueWith(t =>
-            {
-
-                MainSnackbar.MessageQueue.Enqueue("Welcome to Alexa Bank Of India");
-            }, TaskScheduler.FromCurrentSynchronizationContext());
+                    Thread.sleep(1000);
+                }).ContinueWith(
+                t =>
+                    {
+                        MainSnackbar.MessageQueue.Enqueue("Welcome to Alexa Bank Of India");
+                    },
+                TaskScheduler.FromCurrentSynchronizationContext());
         }
 
         private bool DoValidation()
         {
             if (textBox_acc.Text.Equals(string.Empty) && PasswordBox.Password.Equals(string.Empty))
-                return true;
-            DialogBox.Show("Error", "Please fill all the information and then proceed", "OK");
-            return false;
+            {
+                DialogBox.Show("Error", "Please fill all the information and then proceed", "OK");
+                return false;
+            }
+                
+            return true;
         }
 
 
@@ -60,12 +68,10 @@ namespace WPFBankApplication
                 DialogBox.Show("Error", "Something went wrong - " + exception.Message, "OK");
             }
 
-
-            //Getting password from user password box
-
+            // Getting password from user password box
             var userPassword = PasswordBox.Password;
 
-            //checking the input password and the password saved in database
+            // checking the input password and the password saved in database
             if (userPassword == pass)
             {
                 DialogBox.Show("Sucess", "Logged in sucessfully", "OK");
@@ -79,7 +85,7 @@ namespace WPFBankApplication
         }
 
 
-        private void button1_Click(object sender, RoutedEventArgs e)
+        private void Button1Click(object sender, RoutedEventArgs e)
         {
             try
             {

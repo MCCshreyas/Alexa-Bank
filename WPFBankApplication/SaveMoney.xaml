@@ -18,7 +18,7 @@
             </Grid>
         </materialDesign:ColorZone>
 
-        <Button x:Name="SaveMoneyButton" Background="#FF209B20" BorderBrush="#FF209B20" HorizontalAlignment="Left" Margin="101,242,0,0" VerticalAlignment="Top" Width="193" Height="31" Click="SaveMoneyButton_Click" >
+        <Button x:Name="SaveMoneyButton" Background="#FF209B20" BorderBrush="#FF209B20" HorizontalAlignment="Left" Margin="101,242,0,0" VerticalAlignment="Top" Width="193" Height="31" Click="SaveMoneyButtonClick" >
             <Grid>
                 <TextBlock Text="Deposite money"/>
                 <materialDesign:PackIcon Kind="ChevronDoubleDown" Margin="-43,0,0,0" Width="31" Height="19" />

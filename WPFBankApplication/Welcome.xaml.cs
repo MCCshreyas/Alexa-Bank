@@ -1,26 +1,30 @@
-﻿using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using ExtraTools;
-using java.lang;
-using java.sql;
-using Connection = com.mysql.jdbc.Connection;
-
+﻿
 namespace WPFBankApplication
 {
+    using System.Threading.Tasks;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Media;
+
+    using ExtraTools;
+
+    using java.lang;
+    using java.sql;
+
+    using Connection = com.mysql.jdbc.Connection;
+
     /// <summary>
     ///     Interaction logic for Welcome.xaml
     /// </summary>
     public partial class Welcome
     {
-        private static string _accountNumber = "";
+        private static string accountNumber = string.Empty;
 
         public Welcome(string accountNum)
         {
             InitializeComponent();
-            _accountNumber = accountNum;
-            TextBlockWelcome.Text = "Hello " + Operations.GetAccountHolderName(_accountNumber);
+            accountNumber = accountNum;
+            TextBlockWelcome.Text = "Hello " + Operations.GetAccountHolderName(accountNumber);
             TextBlockAccountNumber.Text = accountNum;
             TextBlockAvaiableBalance.Text = Operations.GetCurrentBalance(accountNum);
             GetAccountHolderImage();
@@ -34,10 +38,11 @@ namespace WPFBankApplication
                 .ContinueWith(
                     t =>
                     {
-                        MainSnackbar.MessageQueue.Enqueue("Welcome " + Operations.GetAccountHolderName(_accountNumber));
-                    }, TaskScheduler.FromCurrentSynchronizationContext());
+                            MainSnackbar.MessageQueue.Enqueue(
+                                "Welcome " + Operations.GetAccountHolderName(accountNumber));
+                        },
+                    TaskScheduler.FromCurrentSynchronizationContext());
         }
-
 
         private void GetAccountHolderImage()
         {
@@ -46,11 +51,13 @@ namespace WPFBankApplication
             try
             {
                 Class.forName("com.mysql.jdbc.Driver");
-                var c = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root",
+                var c = (Connection)DriverManager.getConnection(
+                    "jdbc:mysql://localhost/bankapplication",
+                    "root",
                     "9970209265");
 
                 var ps = c.prepareStatement("select ImagePath from info where account_number = ?");
-                ps.setString(1, _accountNumber);
+                ps.setString(1, accountNumber);
                 var rs = ps.executeQuery();
                 while (rs.next())
                     imageFilePath = rs.getString("ImagePath");
@@ -64,27 +71,27 @@ namespace WPFBankApplication
             }
         }
 
-        private void ButtonWithdrawMoney_Click(object sender, RoutedEventArgs e)
+        private void ButtonWithdrawMoneyClick(object sender, RoutedEventArgs e)
         {
             Hide();
-            new WithdrawMoney(_accountNumber).Show();
+            new WithdrawMoney(accountNumber).Show();
         }
 
-        private void ButtonSaveMoney_Click(object sender, RoutedEventArgs e)
+        private void ButtonSaveMoneyClick(object sender, RoutedEventArgs e)
         {
-            new SaveMoney(_accountNumber).Show();
+            new SaveMoney(accountNumber).Show();
             Hide();
         }
 
         private void TransferMoneyButton_OnClick(object sender, RoutedEventArgs e)
         {
-            new TransferMoney(_accountNumber).Show();
+            new TransferMoney(accountNumber).Show();
             Hide();
         }
 
         private void ButtonLogOut_OnClick(object sender, RoutedEventArgs e)
         {
-            var result = (int) DialogBox.Show("Log out ?", "Are you sure you want to log out?", "YES", "NO");
+            var result = (int)DialogBox.Show("Log out ?", "Are you sure you want to log out?", "YES", "NO");
 
             if (DialogBox.Result != DialogBox.ResultEnum.LeftButtonClicked)
                 return;
@@ -95,7 +102,7 @@ namespace WPFBankApplication
         private void ButtonAccountSettings_OnClick(object sender, RoutedEventArgs e)
         {
             Hide();
-            new AccountSettings(_accountNumber).Show();
+            new AccountSettings(accountNumber).Show();
         }
     }
 }

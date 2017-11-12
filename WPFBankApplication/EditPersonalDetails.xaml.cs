@@ -17,36 +17,36 @@ namespace WPFBankApplication
     /// </summary>
     public partial class EditPersonalDetails
     {
-        private OpenFileDialog _fileDialog;
-        public string accc;
-        public string imageFilePath = "";
+        private OpenFileDialog fileDialog;
+        public string Accc;
+        public string ImageFilePath = "";
 
         public EditPersonalDetails(string accountNumber)
         {
             InitializeComponent();
-            accc = accountNumber;
+            this.Accc = accountNumber;
             GetDetails();
         }
 
-        private void BackButton_Click(object sender, RoutedEventArgs e)
+        private void BackButtonClick(object sender, RoutedEventArgs e)
         {
-            this.Hide();
-            new AccountSettings(accc).Show();
+            Hide();
+            new AccountSettings(this.Accc).Show();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ButtonClick(object sender, RoutedEventArgs e)
         {
             try
             {
-                _fileDialog = new OpenFileDialog
+                this.fileDialog = new OpenFileDialog
                 {
                     Filter = "Image files | *.jpg"
                 };
 
-                _fileDialog.ShowDialog();
-                imageFilePath = _fileDialog.FileName;
+                this.fileDialog.ShowDialog();
+                this.ImageFilePath = this.fileDialog.FileName;
                 ImageSourceConverter img = new ImageSourceConverter();
-                AccountHolderImage.SetValue(Image.SourceProperty, img.ConvertFromString(_fileDialog.FileName));
+                AccountHolderImage.SetValue(Image.SourceProperty, img.ConvertFromString(this.fileDialog.FileName));
             }
             catch (Exception exception)
             {
@@ -60,7 +60,7 @@ namespace WPFBankApplication
             e.Handled = regex.IsMatch(e.Text);
         }
 
-        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        private void SaveButtonClick(object sender, RoutedEventArgs e)
         {
             if (DoDataValidation())
             {
@@ -83,9 +83,9 @@ namespace WPFBankApplication
                 ps.setString(2, textBox_address.Text);
                 ps.setString(3, textBox_phonenumber.Text);
                 ps.setString(4, textBox_email.Text);
-                ps.setString(5, imageFilePath);
+                ps.setString(5, this.ImageFilePath);
                 ps.setString(6, myDatePicker.Text);
-                ps.setString(7, accc);
+                ps.setString(7, this.Accc);
                 ps.executeUpdate();
                 c.close();
                 DialogBox.Show("Sucess", "Changes done sucessfully", "OK");
@@ -104,7 +104,7 @@ namespace WPFBankApplication
                 Connection c = (Connection)DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root", "9970209265");
 
                 java.sql.PreparedStatement ps = c.prepareStatement("select * from info where account_number = ?");
-                ps.setString(1,accc);
+                ps.setString(1,this.Accc);
                 ResultSet rs = ps.executeQuery();
                 ImageSourceConverter img = new ImageSourceConverter();
 

@@ -1,82 +1,90 @@
-﻿using System.Windows;
-using ExtraTools;
-using java.lang;
-using java.sql;
-
-namespace WPFBankApplication
+﻿namespace WPFBankApplication
 {
+    using System.Windows;
+
+    using ExtraTools;
+
+    using java.lang;
+    using java.sql;
+
     /// <summary>
-    /// Interaction logic for ForgetAccountNumber.xaml
+    ///     Interaction logic for ForgetAccountNumber.xaml
     /// </summary>
-    public partial class ForgetAccountNumber : Window
+    public partial class ForgetAccountNumber
     {
         public ForgetAccountNumber()
         {
             InitializeComponent();
         }
 
-
-        public bool DoValidation()
+        
+        private bool DoValidation()
         {
-            bool IsEmailValid = TextBoxEmailAddresss.Text.Contains("@");
-            bool IsEmailValid2 = TextBoxEmailAddresss.Text.Contains(".com");
+            var isEmailValid = TextBoxEmailAddresss.Text.Contains("@");
+            var isEmailValid2 = TextBoxEmailAddresss.Text.Contains(".com");
 
-
-            if (TextBoxEmailAddresss.Text == "" || TextBoxPassword.Password == "")
+            if (TextBoxEmailAddresss.Text.Equals(string.Empty)
+                || TextBoxPassword.Password.Equals(string.Empty))
             {
-                DialogBox.Show("Error", "Please enter all fields","OK");
+                DialogBox.Show("Error", "Please enter all fields", "OK");
                 return false;
             }
-            if (!IsEmailValid || !IsEmailValid2)
+
+            if (isEmailValid && isEmailValid2)
             {
-                DialogBox.Show("Error", "Please enter valid email", "OK");
-                return false;
+                return true;
             }
-            return true;
+
+            DialogBox.Show("Error", "Please enter valid email", "OK");
+            return false;
         }
 
-
-        public string GetAccountNumber()
+        private string AccountNumber
         {
-            string accountNumber = "";
-            try
+            get
             {
-                Class.forName("com.mysql.jdbc.Driver");
-                Connection c = (Connection)DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root", "9970209265");
-
-                java.sql.PreparedStatement ps = c.prepareStatement("select account_number from info where Email = ? and Password = ?");
-                ps.setString(1, TextBoxEmailAddresss.Text);
-                ps.setString(2, TextBoxPassword.Password);
-                ResultSet result = ps.executeQuery();
-                while (result.next())
+                var accountNumber = string.Empty;
+                try
                 {
-                    accountNumber = result.getString("account_number");
+                    Class.forName("com.mysql.jdbc.Driver");
+                    var c = DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root", "9970209265");
+
+                    var ps = c.prepareStatement("select account_number from info where Email = ? and Password = ?");
+                    ps.setString(1, TextBoxEmailAddresss.Text);
+                    ps.setString(2, TextBoxPassword.Password);
+                    var result = ps.executeQuery();
+                    while (result.next())
+                    {
+                        accountNumber = result.getString("account_number");
+                    }
+
+                    return accountNumber;
+                }
+                catch (SQLException exception)
+                {
+                    MessageBox.Show(exception.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Stop);
                 }
 
-                return accountNumber;
+                return string.Empty;
             }
-            catch (SQLException exception)
-            {
-                MessageBox.Show(exception.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Stop);
-            }
-
-            return "";
         }
 
         private void ButtonSubmit_OnClick(object sender, RoutedEventArgs e)
         {
-            if (DoValidation())
+            if (!DoValidation())
             {
-                DialogBox.Show("Sucess", "Your account number is " + GetAccountNumber(),"OK");
-                Hide();
-                new LoggedIn().Show();
+                return;
             }
+            
+            DialogBox.Show("Sucess", "Your account number is " + AccountNumber, "OK");
+            Hide();
+            new LoggedIn().Show();
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
             new LoggedIn().Show();
-            this.Hide();
+            Hide();
         }
     }
 }

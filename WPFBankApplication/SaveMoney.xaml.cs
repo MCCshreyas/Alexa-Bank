@@ -18,16 +18,16 @@ namespace WPFBankApplication
     /// </summary>
     public partial class SaveMoney
     {
-        private readonly string _accountNum;
-        private string _remainingBalance;
+        private readonly string accountNum;
+        private string remainingBalance;
 
         public SaveMoney(string accountNumber)
         {
             InitializeComponent();
-            _accountNum = accountNumber;
+            this.accountNum = accountNumber;
 
             // please refer operations.cs file for GetCurrentBalance method
-            var accountBalance = Operations.GetCurrentBalance(_accountNum);
+            var accountBalance = Operations.GetCurrentBalance(this.accountNum);
             CurrentBalance.Text = accountBalance;
         }
 
@@ -56,16 +56,16 @@ namespace WPFBankApplication
             return true;
         }
 
-        private void SaveMoneyButton_Click(object sender, RoutedEventArgs e)
+        private void SaveMoneyButtonClick(object sender, RoutedEventArgs e)
         {
             if (!DoValidation())
                 return;
-            _remainingBalance = Convert.ToString(Convert.ToInt32(Operations.GetCurrentBalance(_accountNum)) +
+            this.remainingBalance = Convert.ToString(Convert.ToInt32(Operations.GetCurrentBalance(this.accountNum)) +
                                                  Convert.ToInt32(SaveMoneyTextBox.Text));
-            CurrentBalance.Text = _remainingBalance;
+            CurrentBalance.Text = this.remainingBalance;
             SaveFinalBalance();
 
-            if (Operations.DoesSendMobileNotifications(_accountNum))
+            if (Operations.DoesSendMobileNotifications(this.accountNum))
                 SendMobileNotification();
 
             DialogBox.Show("Sucess", "Trasaction done sucessfully", "OK");
@@ -77,10 +77,10 @@ namespace WPFBankApplication
             App.InitializeTwilioAccount();
 
             var sentMessage =
-                $"Your Alexa bank account (Acc no = {_accountNum}) has been credited with Rs.{SaveMoneyTextBox.Text} . Your current balance is Rs.{_remainingBalance}";
+                $"Your Alexa bank account (Acc no = {this.accountNum}) has been credited with Rs.{SaveMoneyTextBox.Text} . Your current balance is Rs.{this.remainingBalance}";
 
 
-            var to = new PhoneNumber("+91" + Operations.GetAccountHolderMobileNumber(_accountNum));
+            var to = new PhoneNumber("+91" + Operations.GetAccountHolderMobileNumber(this.accountNum));
             MessageResource.Create(
                 to,
                 @from: new PhoneNumber("+16674018291"),
@@ -96,8 +96,8 @@ namespace WPFBankApplication
                     "9970209265");
 
                 var ps = connection.prepareStatement("update info set Balance = ? where account_number = ?");
-                ps.setString(1, _remainingBalance);
-                ps.setString(2, _accountNum);
+                ps.setString(1, this.remainingBalance);
+                ps.setString(2, this.accountNum);
                 ps.executeUpdate();
             }
             catch (SQLException exception)
@@ -116,7 +116,7 @@ namespace WPFBankApplication
         private void BackButton_OnClick(object sender, RoutedEventArgs e)
         {
             Hide();
-            new Welcome(_accountNum).Show();
+            new Welcome(this.accountNum).Show();
         }
     }
 }

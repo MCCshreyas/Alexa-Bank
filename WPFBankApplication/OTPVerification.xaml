@@ -34,7 +34,7 @@
 
         <TextBlock FontSize="20"  Style="{DynamicResource MaterialDesignSubheadingTextBlock}" HorizontalAlignment="Left" Margin="23,87,0,0" TextWrapping="Wrap" Text="Enter the OTP below which you have received on your registered mobile number" VerticalAlignment="Top" Height="56" Width="446"/>
         <TextBox Name="TextBoxOTP" PreviewTextInput="TextBoxOTP_OnPreviewTextInput" HorizontalAlignment="Left" Height="30" Margin="37,202,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" materialDesign:HintAssist.Hint="OTP" Width="291"/>
-        <Button HorizontalAlignment="Left" Margin="357,200,0,0" VerticalAlignment="Top" Width="112" Click="Button_Click" >
+        <Button HorizontalAlignment="Left" Margin="357,200,0,0" VerticalAlignment="Top" Width="112" Click="ButtonClick" >
             <Grid>
                 <materialDesign:PackIcon Kind="CheckboxMarkedCircleOutline" Margin="-27,0,0,0" Height="19" Width="24" ></materialDesign:PackIcon>
                 <TextBlock Text="Verify" Margin="10,0,-9,0"></TextBlock>

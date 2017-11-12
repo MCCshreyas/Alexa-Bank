@@ -1,55 +1,62 @@
-﻿using System.Windows;
-using ExtraTools;
-using java.lang;
-using java.sql;
-using static System.Windows.MessageBoxButton;
-using Connection = com.mysql.jdbc.Connection;
-
+﻿
 namespace WPFBankApplication
 {
+    using System.Windows;
+
+    using ExtraTools;
+
+    using java.lang;
+    using java.sql;
+
+    using Connection = com.mysql.jdbc.Connection;
+
     /// <summary>
     /// Interaction logic for EditPassword.xaml
     /// </summary>
     public partial class EditPassword
     {
-        string _acc;
+        private readonly string acc;
+
         public EditPassword(string accountNumber)
         {
             InitializeComponent();
-            _acc = accountNumber;
+            acc = accountNumber;
         }
         
         private bool DoValidation()
         {
-            if (ReEnterPasswordBox.Password == "" || NewPasswordTextBox.Password == "" || OldPasswordTextBox.Password == "")
+            if (ReEnterPasswordBox.Password != string.Empty && NewPasswordTextBox.Password != string.Empty
+                && OldPasswordTextBox.Password != string.Empty)
             {
-                DialogBox.Show("Error","Please fill all the fields","OK");
-                return false;
+                return true;
             }
-            return true;
+
+            DialogBox.Show("Error", "Please fill all the fields", "OK");
+            return false;
         }
         
 
-        private void SaveButton_Click(object sender, RoutedEventArgs e)
-        { 
-            if (DoValidation())
+        private void SaveButtonClick(object sender, RoutedEventArgs e)
+        {
+            if (!DoValidation())
+                return;
+
+            var oldPassword = Operations.GetPassword(acc);
+
+            if (oldPassword == OldPasswordTextBox.Password)
             {
-                string oldPassword = Operations.GetPassword(_acc);
-                if (oldPassword == OldPasswordTextBox.Password)
+                if (NewPasswordTextBox.Password.Equals(ReEnterPasswordBox.Password))
                 {
-                    if (NewPasswordTextBox.Password.Equals(ReEnterPasswordBox.Password))
-                    {
-                        SaveNewPassword(NewPasswordTextBox.Password);
-                    }
-                    else
-                    {
-                        DialogBox.Show("Error", "Your new password is incorret","OK");
-                    }
+                    SaveNewPassword(NewPasswordTextBox.Password);
                 }
                 else
                 {
-                    DialogBox.Show("Error", "Your old password is incorrect","OK");
+                    DialogBox.Show("Error", "Your new password is incorret","OK");
                 }
+            }
+            else
+            {
+                DialogBox.Show("Error", "Your old password is incorrect","OK");
             }
         }
         
@@ -59,26 +66,30 @@ namespace WPFBankApplication
             try
             {
                 Class.forName("com.mysql.jdbc.Driver");
-                Connection connection = (Connection)DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root", "9970209265");
+                var connection = (Connection)DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root", "9970209265");
 
-                java.sql.PreparedStatement ps = connection.prepareStatement("update info set Password = ? where account_number = ?");
+                var ps = connection.prepareStatement("update info set Password = ? where account_number = ?");
                 ps.setString(1, newPass);
-                ps.setString(2, _acc);
+                ps.setString(2, acc);
                 ps.executeUpdate();
                 connection.close();
-                MessageBox.Show("Password changed sucessfully","Sucess",MessageBoxButton.OK,MessageBoxImage.Information);
+                MessageBox.Show(
+                    "Password changed sucessfully",
+                    "Sucess",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
                 new LoggedIn().Show();
             }
             catch (SQLException exception)
             {
-                MessageBox.Show(exception.ToString(), "Error", OK, MessageBoxImage.Stop);
+                MessageBox.Show(exception.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Stop);
             }
         }
 
-        private void BackButton_Click(object sender, RoutedEventArgs e)
+        private void BackButtonClick(object sender, RoutedEventArgs e)
         {
-            Window parentWindow = Window.GetWindow(new AccountSettings(_acc));
-            parentWindow.Show();
+            var parentWindow = Window.GetWindow(new AccountSettings(acc));
+            parentWindow?.Show();
         }
     }
 }

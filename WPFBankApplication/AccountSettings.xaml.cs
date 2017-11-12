@@ -1,51 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using MaterialDesignThemes.Wpf;
-
-namespace WPFBankApplication
+﻿namespace WPFBankApplication
 {
+    using System.Windows;
+
     /// <summary>
     /// Interaction logic for AccountSettings.xaml
     /// </summary>
     public partial class AccountSettings
     {
-        private string _accnum;
+        private readonly string accnum;
+
         public AccountSettings(string accountNumber)
         {
             InitializeComponent();
-            _accnum = accountNumber;
-           
+            accnum = accountNumber;
         }
-
        
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ButtonClick(object sender, RoutedEventArgs e)
         {
-            if (ComboBox.Text == "Edit personal details")
+            switch (ComboBox.Text)
             {
-                this.Hide();
-                new EditPersonalDetails(_accnum).Show();
-            }
-            else if (ComboBox.Text == "Change account password")
-            {
-                this.Content  = new EditPassword(_accnum);
+                case "Edit personal details":
+                    Hide();
+                    new EditPersonalDetails(accnum).Show();
+                    break;
+                case "Change account password":
+                    Content = new EditPassword(accnum);
+                    break;
             }
         }
 
-        private void BackButton_Click(object sender, RoutedEventArgs e)
+        private void BackButtonClick(object sender, RoutedEventArgs e)
         {
-            new Welcome(_accnum).Show();
-            this.Hide();
+            new Welcome(accnum).Show();
+            Hide();
         }
     }
 }

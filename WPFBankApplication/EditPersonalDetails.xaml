@@ -12,7 +12,7 @@
                                   Mode="Accent" Height="55">
             <Grid Margin="-10,-11,-11,-10" HorizontalAlignment="Left" Width="411" >
                 <TextBlock Text="Edit Personal details" Style="{DynamicResource MaterialDesignTitleTextBlock}" Margin="438,7,-266,-4"></TextBlock>
-                <Button Style="{x:Null}" BorderBrush="#FF00B8D4" Background="#FF00B8D4" Name="BackButton" ToolTip="Go back" Margin="6,-2,350,2" Click="BackButton_Click">
+                <Button Style="{x:Null}" BorderBrush="#FF00B8D4" Background="#FF00B8D4" Name="BackButton" ToolTip="Go back" Margin="6,-2,350,2" Click="BackButtonClick">
                     <materialDesign:PackIcon Kind="ArrowLeft" Height="31" Width="40"></materialDesign:PackIcon>
                 </Button>
             </Grid>
@@ -26,7 +26,7 @@
                 </Grid>
 
 
-                <Button HorizontalAlignment="Left" VerticalAlignment="Top" Width="152" Height="31" Margin="24,169,0,0" Click="Button_Click" >
+                <Button HorizontalAlignment="Left" VerticalAlignment="Top" Width="152" Height="31" Margin="24,169,0,0" Click="ButtonClick" >
                     <Grid>
                         <TextBlock Text="Upload photo"/>
                         <materialDesign:PackIcon Kind="Image" Margin="-23,2,0,0" />
@@ -40,7 +40,7 @@
                 <TextBox TabIndex="3" materialDesign:HintAssist.Hint="Name" Style="{DynamicResource MaterialDesignFloatingHintTextBox}" Height="38" HorizontalAlignment="Left" x:Name="TextBoxName" VerticalAlignment="Top" Width="310" Margin="231,35,0,0" />
             </Grid>
         </GroupBox>
-        <Button  HorizontalAlignment="Left" VerticalAlignment="Top" Width="168" Margin="945,440,0,0" Height="34" Click="SaveButton_Click" >
+        <Button  HorizontalAlignment="Left" VerticalAlignment="Top" Width="168" Margin="945,440,0,0" Height="34" Click="SaveButtonClick" >
             <Grid>
                 <TextBlock Text="SUBMIT" Margin="-13,0,0,-3" ></TextBlock>
                 <materialDesign:PackIcon Kind="ContentSave" Margin="52,1,-17,0" />

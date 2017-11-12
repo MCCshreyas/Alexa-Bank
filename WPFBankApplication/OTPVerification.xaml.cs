@@ -16,13 +16,13 @@ namespace WPFBankApplication
     /// </summary>
     public partial class OtpVerification
     {
-        private readonly string _userPhoneNumber;
-        private int _otp;
+        private readonly string userPhoneNumber;
+        private int otp;
 
         public OtpVerification(string phoneNumber)
         {
             InitializeComponent();
-            _userPhoneNumber = phoneNumber;
+            this.userPhoneNumber = phoneNumber;
             Task.Factory.StartNew(() => { Thread.Sleep(1000); }).ContinueWith(t => { OtpOperations(); },
                 TaskScheduler.FromCurrentSynchronizationContext());
         }
@@ -33,23 +33,23 @@ namespace WPFBankApplication
             //following code will generate OTP and will save it in OTP variable 
 
             var r = new Random();
-            _otp = r.Next(10000);
+            this.otp = r.Next(10000);
 
             App.InitializeTwilioAccount();
 
-            var to = new PhoneNumber("+91" + _userPhoneNumber);
+            var to = new PhoneNumber("+91" + this.userPhoneNumber);
             MessageResource.Create
             (
                 to,
                 @from: new PhoneNumber("+16674018291"),
                 body: "Thank you for creating account in Alexa Bank of India. Following is OTP for your account - " +
-                      _otp
+                      this.otp
             );
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ButtonClick(object sender, RoutedEventArgs e)
         {
-            if (Convert.ToString(_otp).Equals(TextBoxOTP.Text))
+            if (Convert.ToString(this.otp).Equals(TextBoxOTP.Text))
             {
                 DialogBox.Show("Sucess", "Thank you for confirming your account.", "OK");
                 Hide();

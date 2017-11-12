@@ -12,7 +12,7 @@
                                   Mode="Accent" Height="46">
             <Grid Margin="-10,-11,-11,-10" >
                 <TextBlock Text="Edit Password" Style="{DynamicResource MaterialDesignTitleTextBlock}" Margin="93,7,79,-4"></TextBlock>
-                <Button Style="{x:Null}" BorderBrush="#FF00B8D4" Background="#FF00B8D4" Name="BackButton" ToolTip="Go back" Margin="6,2,278,-2" Click="BackButton_Click">
+                <Button Style="{x:Null}" BorderBrush="#FF00B8D4" Background="#FF00B8D4" Name="BackButton" ToolTip="Go back" Margin="6,2,278,-2" Click="BackButtonClick">
                     <materialDesign:PackIcon Kind="ArrowLeft" Height="31" Width="40"></materialDesign:PackIcon>
                 </Button>
             </Grid>
@@ -22,7 +22,7 @@
         <TextBox Name="LastNameTextBox" HorizontalAlignment="Left" Height="23" Margin="104,160,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="226"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,108,0,0" TextWrapping="Wrap" Text="First name" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,164,0,0" TextWrapping="Wrap" Text="Second name" VerticalAlignment="Top"/>
-        <Button Content="SUBMIT" HorizontalAlignment="Left" Margin="87,269,0,0" VerticalAlignment="Top" Width="135" Click="Button_Click"/>
+        <Button Content="SUBMIT" HorizontalAlignment="Left" Margin="87,269,0,0" VerticalAlignment="Top" Width="135" Click="ButtonClick"/>
 
     </Grid>
 </Page>

@@ -31,7 +31,7 @@
                 <TextBlock Height="35" FontSize="30" HorizontalAlignment="Left" Margin="127,10,0,0" Name="txt_loginheader" Text="Log in" VerticalAlignment="Top" Width="160" FontWeight="Bold" />
                 <TextBox Text="" PreviewTextInput="TextBox_acc_OnPreviewTextInput" materialDesign:HintAssist.Hint="Account number" Style="{DynamicResource MaterialDesignFloatingHintTextBox}" Height="60" HorizontalAlignment="Left" Margin="10,92,0,0" Name="textBox_acc" VerticalAlignment="Top" Width="306" Background="Transparent" CaretBrush="#FF2D35E4" />
                 <PasswordBox Password="" materialDesign:HintAssist.Hint="Password" Style="{DynamicResource MaterialDesignFloatingHintPasswordBox}" HorizontalAlignment="Left" Margin="10,168,0,123" Width="306" Name="PasswordBox"/>
-                <Button Style="{StaticResource MaterialDesignFlatButton}" Height="36" Margin="74,0,0,44" HorizontalAlignment="Left" x:Name="button1" VerticalAlignment="Bottom" Width="200" Click="button1_Click">
+                <Button Style="{StaticResource MaterialDesignFlatButton}" Height="36" Margin="74,0,0,44" HorizontalAlignment="Left" x:Name="button1" VerticalAlignment="Bottom" Width="200" Click="Button1Click">
                     <Grid HorizontalAlignment="left" Width="151" Height="26">
                         <TextBlock Margin="58,0,23,0" FontSize="20" Foreground="Brown" Height="26" VerticalAlignment="Top"  ><Run FontWeight="Bold" Text="Log in "/></TextBlock>
                         <materialDesign:PackIcon FontSize="10" Kind="Login" Foreground="Brown" Margin="24,2,0,0" Height="19" Width="32" />

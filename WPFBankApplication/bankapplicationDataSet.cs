@@ -6,7 +6,7 @@ namespace WPFBankApplication
 {
 
 
-    public partial class bankapplicationDataSet
+    public partial class BankapplicationDataSet
     {
     }
 }
@@ -14,6 +14,6 @@ namespace WPFBankApplication
 namespace WPFBankApplication.bankapplicationDataSetTableAdapters {
     
     
-    public partial class infoTableAdapter {
+    public partial class InfoTableAdapter {
     }
 }

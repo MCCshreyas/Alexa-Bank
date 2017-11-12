@@ -7,12 +7,12 @@ namespace WPFBankApplication
     /// </summary>
     public partial class AccountDetails
     {
-        public static string accountNo = string.Empty;
+        public static string AccountNo = string.Empty;
 
         public AccountDetails(string accountNumber)
         {
             InitializeComponent();
-            accountNo = accountNumber;
+            AccountNo = accountNumber;
             
         }
     }

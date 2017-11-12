@@ -33,7 +33,7 @@
             <TextBlock FontSize="25" Padding="5" Margin="50 50 0 0" x:Name="textBlock" Style="{DynamicResource MaterialDesignSubheadingTextBlock}" Text="Enter Money amount below"/>
 
             <!--Text box -->
-            <TextBox Margin="50 20 50 0 " FontWeight="Bold" FontSize="13" PreviewTextInput="WithDrawMoneyTextBox_OnPreviewTextInput" x:Name="WithDrawMoneyTextBox" Height="23" TextChanged="WithDrawMoneyTextBox_TextChanged"/>
+            <TextBox Margin="50 20 50 0 " FontWeight="Bold" FontSize="13" PreviewTextInput="WithDrawMoneyTextBox_OnPreviewTextInput" x:Name="WithDrawMoneyTextBox" Height="23" TextChanged="WithDrawMoneyTextBoxTextChanged"/>
 
             <Grid Margin="10 50 0 0 ">
                 <Grid.ColumnDefinitions>
@@ -58,7 +58,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="1" x:Name="WithDrawMoney" Click="WithDrawMoney_Click" >
+            <Button Grid.Column="1" x:Name="WithDrawMoney" Click="WithDrawMoneyClick" >
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="10"/>

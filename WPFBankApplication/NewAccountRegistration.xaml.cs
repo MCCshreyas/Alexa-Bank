@@ -18,9 +18,9 @@ namespace WPFBankApplication
 {
     public partial class NewAccountRegistration
     {
-        private OpenFileDialog _fileDialog;
-        private int _accc;
-        private string _imageFilePath = "";
+        private OpenFileDialog fileDialog;
+        private int accc;
+        private string imageFilePath = "";
 
         public NewAccountRegistration()
         {
@@ -46,19 +46,19 @@ namespace WPFBankApplication
         /// <summary>
         ///     Following code will execute when upload image button gets clicked
         /// </summary>
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ButtonClick(object sender, RoutedEventArgs e)
         {
             try
             {
-                _fileDialog = new OpenFileDialog
+                this.fileDialog = new OpenFileDialog
                 {
                     Filter = "Image files | *.jpg"
                 };
 
-                _fileDialog.ShowDialog();
-                _imageFilePath = _fileDialog.FileName;
+                this.fileDialog.ShowDialog();
+                this.imageFilePath = this.fileDialog.FileName;
                 var img = new ImageSourceConverter();
-                AccountHolderImage.SetValue(Image.SourceProperty, img.ConvertFromString(_fileDialog.FileName));
+                AccountHolderImage.SetValue(Image.SourceProperty, img.ConvertFromString(this.fileDialog.FileName));
             }
             catch (Exception exception)
             {
@@ -120,7 +120,7 @@ namespace WPFBankApplication
             var fullName = textBox_firstname.Text + " " + textBox_lastname.Text;
 
             // following code will generate random number which will be user account number 
-            _accc = new Random().Next(1000000000);
+            this.accc = new Random().Next(1000000000);
 
             try
             {
@@ -135,8 +135,8 @@ namespace WPFBankApplication
                 ps.setString(3, textBox_phonenumber.Text);
                 ps.setString(4, textBox_email.Text);
                 ps.setString(5, textBox_pass.Password);
-                ps.setString(6, _accc.ToString());
-                ps.setString(7, _imageFilePath);
+                ps.setString(6, this.accc.ToString());
+                ps.setString(7, this.imageFilePath);
                 ps.setString(8, GetGenderInfo());
                 ps.setString(9, EnableMobileNotifications());
                 ps.setString(10, myDatePicker.Text);
@@ -144,7 +144,7 @@ namespace WPFBankApplication
                 connection.close();
                 DialogBox.Show("Sucess", "Account created sucessfully", "OK");
 
-                DialogBox.Show("Sucess", "Your account number is " + _accc, "OK");
+                DialogBox.Show("Sucess", "Your account number is " + this.accc, "OK");
             }
             catch (SQLException exception)
             {
@@ -155,7 +155,7 @@ namespace WPFBankApplication
         /// <summary>
         ///     Following code will execute when save button gets clicked
         /// </summary>
-        private void btn_save_Click(object sender, RoutedEventArgs e)
+        private void BtnSaveClick(object sender, RoutedEventArgs e)
         {
             var internetStatus = IsInternetAvailable();
             if (internetStatus)
@@ -213,7 +213,7 @@ namespace WPFBankApplication
         /// <summary>
         ///     following method will execute whenever the text in phone number textbox gets changed
         /// </summary>
-        private void textBox_phonenumber_TextChanged(object sender, TextChangedEventArgs e)
+        private void TextBoxPhonenumberTextChanged(object sender, TextChangedEventArgs e)
         {
             Task.Factory.StartNew(() => { Thread.sleep(1000); })
                 .ContinueWith(

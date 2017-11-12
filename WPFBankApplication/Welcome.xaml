@@ -43,13 +43,13 @@
         <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="MainSnackbar"
         />
         <TextBlock x:Name="TextBlockAccountNo" HorizontalAlignment="Left" Margin="600,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text=""></TextBlock>
-        <Button x:Name="ButtonWithdrawMoney" HorizontalAlignment="Left" Margin="636,102,0,0" VerticalAlignment="Top" Width="192" Height="31" Click="ButtonWithdrawMoney_Click" Background="#FFD34B4B" BorderBrush="#FFD34B4B" >
+        <Button x:Name="ButtonWithdrawMoney" HorizontalAlignment="Left" Margin="636,102,0,0" VerticalAlignment="Top" Width="192" Height="31" Click="ButtonWithdrawMoneyClick" Background="#FFD34B4B" BorderBrush="#FFD34B4B" >
             <Grid>
                 <TextBlock Text="Withdraw money"/>
                 <materialDesign:PackIcon Kind="ChevronDoubleDown" Margin="-36,0,0,0" Width="31" Height="19" />
             </Grid>
         </Button>
-        <Button x:Name="ButtonSaveMoney" HorizontalAlignment="Left" Margin="636,190,0,0" VerticalAlignment="Top" Width="192" Height="35" Click="ButtonSaveMoney_Click" Background="#FF209B20" BorderBrush="#FF209B20" >
+        <Button x:Name="ButtonSaveMoney" HorizontalAlignment="Left" Margin="636,190,0,0" VerticalAlignment="Top" Width="192" Height="35" Click="ButtonSaveMoneyClick" Background="#FF209B20" BorderBrush="#FF209B20" >
             <Grid>
                 <TextBlock Text="Deposite money"/>
                 <materialDesign:PackIcon Kind="ChevronDoubleDown" Margin="-43,0,0,0" Width="31" Height="19" />
