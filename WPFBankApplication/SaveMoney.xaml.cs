@@ -14,30 +14,31 @@ using Exception = System.Exception;
 namespace WPFBankApplication
 {
     /// <summary>
-    /// Interaction logic for SaveMoney.xaml
+    ///     Interaction logic for SaveMoney.xaml
     /// </summary>
     public partial class SaveMoney
     {
-        public string accountNum;
-        private string remainingBalance;
+        private readonly string _accountNum;
+        private string _remainingBalance;
+
         public SaveMoney(string accountNumber)
         {
             InitializeComponent();
-            accountNum = accountNumber;
+            _accountNum = accountNumber;
 
             // please refer operations.cs file for GetCurrentBalance method
-            string accountBalance = Operations.GetCurrentBalance(accountNum);   
+            var accountBalance = Operations.GetCurrentBalance(_accountNum);
             CurrentBalance.Text = accountBalance;
         }
-        
 
-        public bool DoValidation()
+
+        private bool DoValidation()
         {
             try
             {
-                if (SaveMoneyTextBox.Text == string.Empty)
+                if (SaveMoneyTextBox.Text.Equals(string.Empty))
                 {
-                    DialogBox.Show("Error","You havent entered any amount to save");
+                    DialogBox.Show("Error", "You havent entered any amount to save");
                     return false;
                 }
 
@@ -49,47 +50,40 @@ namespace WPFBankApplication
             }
             catch (Exception e)
             {
-                DialogBox.Show("Error","Something went wrong. " + e.Message,"OK");
+                DialogBox.Show("Error", "Something went wrong. " + e.Message, "OK");
                 return false;
-
             }
             return true;
         }
 
         private void SaveMoneyButton_Click(object sender, RoutedEventArgs e)
         {
-            if (DoValidation())
-            {
-                remainingBalance = Convert.ToString(Convert.ToInt32(Operations.GetCurrentBalance(accountNum)) +
-                                                        Convert.ToInt32(SaveMoneyTextBox.Text));
-                CurrentBalance.Text = remainingBalance;
-                SaveFinalBalance();
+            if (!DoValidation())
+                return;
+            _remainingBalance = Convert.ToString(Convert.ToInt32(Operations.GetCurrentBalance(_accountNum)) +
+                                                 Convert.ToInt32(SaveMoneyTextBox.Text));
+            CurrentBalance.Text = _remainingBalance;
+            SaveFinalBalance();
 
-                if (Operations.DoesSendMobileNotifications(accountNum))
-                {
-                    SendMobileNotification();
-                }
+            if (Operations.DoesSendMobileNotifications(_accountNum))
+                SendMobileNotification();
 
-                DialogBox.Show("Sucess", "Trasaction done sucessfully","OK");
-                SaveMoneyTextBox.Text = "";
-            }
+            DialogBox.Show("Sucess", "Trasaction done sucessfully", "OK");
+            SaveMoneyTextBox.Text = "";
         }
 
-        public void SendMobileNotification()
+        private void SendMobileNotification()
         {
-            const string accountSid = "ACa4e91ac77184d82e6b7e7db26612c8d0";
-            const string authToken = "cf88bc0c7f9a1c67f9ea49d5917a9be6";
+            App.InitializeTwilioAccount();
 
-            TwilioClient.Init(accountSid, authToken);
-
-            string sentMessage =
-                string.Format("Your Alexa bank account (Acc no = {0}) has been credited with Rs.{1} . Your current balance is Rs.{2}", accountNum, SaveMoneyTextBox.Text, remainingBalance);
+            var sentMessage =
+                $"Your Alexa bank account (Acc no = {_accountNum}) has been credited with Rs.{SaveMoneyTextBox.Text} . Your current balance is Rs.{_remainingBalance}";
 
 
-            var to = new PhoneNumber("+91" + Operations.GetAccountHolderMobileNumber(accountNum));
-            var message = MessageResource.Create(
+            var to = new PhoneNumber("+91" + Operations.GetAccountHolderMobileNumber(_accountNum));
+            MessageResource.Create(
                 to,
-                from: new PhoneNumber("+16674018291"),
+                @from: new PhoneNumber("+16674018291"),
                 body: sentMessage);
         }
 
@@ -98,16 +92,18 @@ namespace WPFBankApplication
             try
             {
                 Class.forName("com.mysql.jdbc.Driver");
-                Connection c = (Connection)DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root", "9970209265");
+                var connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root",
+                    "9970209265");
 
-                PreparedStatement ps = c.prepareStatement("update info set Balance = ? where account_number = ?");
-                ps.setString(1, remainingBalance);
-                ps.setString(2, accountNum);
+                var ps = connection.prepareStatement("update info set Balance = ? where account_number = ?");
+                ps.setString(1, _remainingBalance);
+                ps.setString(2, _accountNum);
                 ps.executeUpdate();
             }
             catch (SQLException exception)
             {
-                MessageBox.Show("Something went wrong. " + exception.Message,"Error",MessageBoxButton.OK,MessageBoxImage.Error);
+                MessageBox.Show("Something went wrong. " + exception.Message, "Error", MessageBoxButton.OK,
+                    MessageBoxImage.Error);
             }
         }
 
@@ -119,8 +115,8 @@ namespace WPFBankApplication
 
         private void BackButton_OnClick(object sender, RoutedEventArgs e)
         {
-           this.Hide();
-           new Welcome(accountNum).Show();
+            Hide();
+            new Welcome(_accountNum).Show();
         }
     }
 }

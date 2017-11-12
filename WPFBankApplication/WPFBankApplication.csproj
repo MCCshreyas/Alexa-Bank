@@ -161,9 +161,6 @@
     <Compile Include="SaveMoney.xaml.cs">
       <DependentUpon>SaveMoney.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Testing.xaml.cs">
-      <DependentUpon>Testing.xaml</DependentUpon>
-    </Compile>
     <Compile Include="TransferMoney.xaml.cs">
       <DependentUpon>TransferMoney.xaml</DependentUpon>
     </Compile>
@@ -218,10 +215,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SaveMoney.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Testing.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

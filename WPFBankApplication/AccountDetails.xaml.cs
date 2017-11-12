@@ -13,6 +13,7 @@ namespace WPFBankApplication
         {
             InitializeComponent();
             accountNo = accountNumber;
+            
         }
     }
 }

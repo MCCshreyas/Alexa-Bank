@@ -6,30 +6,31 @@ using Connection = com.mysql.jdbc.Connection;
 
 namespace WPFBankApplication
 {
-    public class Operations
+    public static class Operations
     {
+        private static Connection _connection;
+
+
         //please check method name of each. Method name is itself explanetory about what it does. 
         // It's JAVA code
         // all method are static so you dont need to create an object of this class to call them just Operations.<method_name> to call it.
-        
 
         public static bool DoesSendMobileNotifications(string accountNumber)
         {
-            string status = "";
+            var status = "";
 
             try
             {
                 Class.forName("com.mysql.jdbc.Driver");
 
-                Connection c = (Connection)DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root", "9970209265");
+                _connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root",
+                    "9970209265");
 
-                java.sql.PreparedStatement ps = c.prepareStatement("select MobileVerification from info where account_number = ?");
+                var ps = _connection.prepareStatement("select MobileVerification from info where account_number = ?");
                 ps.setString(1, accountNumber);
-                java.sql.ResultSet rs = ps.executeQuery();
+                var rs = ps.executeQuery();
                 while (rs.next())
-                {
                     status = rs.getString("MobileVerification");
-                }
 
                 return status == "Yes";
             }
@@ -42,20 +43,19 @@ namespace WPFBankApplication
 
         public static string GetAccountHolderMobileNumber(string accountNumber)
         {
-            string phoneNum = "";
+            var phoneNum = "";
 
             try
             {
                 Class.forName("com.mysql.jdbc.Driver");
-                Connection c = (Connection)DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root", "9970209265");
+                _connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root",
+                    "9970209265");
 
-                java.sql.PreparedStatement ps = c.prepareStatement("select phone_number from info where account_number = ?");
+                var ps = _connection.prepareStatement("select phone_number from info where account_number = ?");
                 ps.setString(1, accountNumber);
-                java.sql.ResultSet rs = ps.executeQuery();
+                var rs = ps.executeQuery();
                 while (rs.next())
-                {
                     phoneNum = rs.getString("phone_number");
-                }
 
                 return phoneNum;
             }
@@ -69,19 +69,18 @@ namespace WPFBankApplication
 
         public static string GetCurrentBalance(string accountNumber)
         {
-            string balance = "";
+            var balance = "";
             try
             {
                 Class.forName("com.mysql.jdbc.Driver");
-                Connection c = (Connection)DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root", "9970209265");
+                var c = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root",
+                    "9970209265");
 
-                java.sql.PreparedStatement ps = c.prepareStatement("select Balance from info where account_number = ?");
+                var ps = c.prepareStatement("select Balance from info where account_number = ?");
                 ps.setString(1, accountNumber);
-                ResultSet result = ps.executeQuery();
+                var result = ps.executeQuery();
                 while (result.next())
-                {
                     balance = result.getString("Balance");
-                }
 
                 return balance;
             }
@@ -95,19 +94,18 @@ namespace WPFBankApplication
 
         public static string GetPassword(string accountNumber)
         {
-            string pass = string.Empty;
+            var pass = string.Empty;
             try
             {
                 Class.forName("com.mysql.jdbc.Driver");
-                Connection c = (Connection)DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root", "9970209265");
+                _connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root",
+                    "9970209265");
 
-                java.sql.PreparedStatement ps = c.prepareStatement("select Password from info where account_number = ?");
+                var ps = _connection.prepareStatement("select Password from info where account_number = ?");
                 ps.setString(1, accountNumber);
-                ResultSet result = ps.executeQuery();
+                var result = ps.executeQuery();
                 while (result.next())
-                {
                     pass = result.getString("Password");
-                }
 
                 return pass;
             }
@@ -120,19 +118,19 @@ namespace WPFBankApplication
 
         public static string GetAccountHolderName(string accountNumber)
         {
-            string name = "";
+            var name = string.Empty;
             try
             {
                 Class.forName("com.mysql.jdbc.Driver");
-                Connection c = (Connection)DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root", "9970209265");
+                _connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root",
+                    "9970209265");
 
-                java.sql.PreparedStatement ps = c.prepareStatement("select Name from info where account_number = ?");
+                var ps = _connection.prepareStatement("select Name from info where account_number = ?");
                 ps.setString(1, accountNumber);
-                ResultSet result = ps.executeQuery();
+                var result = ps.executeQuery();
+
                 while (result.next())
-                {
                     name = result.getString("Name");
-                }
 
                 return name;
             }

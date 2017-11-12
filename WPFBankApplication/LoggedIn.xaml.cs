@@ -28,28 +28,26 @@ namespace WPFBankApplication
             }, TaskScheduler.FromCurrentSynchronizationContext());
         }
 
-        public bool DoValidation()
+        private bool DoValidation()
         {
-            if (textBox_acc.Text == string.Empty || PasswordBox.Password == string.Empty)
-            {
-                DialogBox.Show("Error", "Please fill all the information and then proceed", "OK");
-                return false;
-            }
-            return true;
+            if (textBox_acc.Text.Equals(string.Empty) && PasswordBox.Password.Equals(string.Empty))
+                return true;
+            DialogBox.Show("Error", "Please fill all the information and then proceed", "OK");
+            return false;
         }
 
 
-        public void DoLogIn()
+        private void DoLogIn()
         {
-            string pass = null;
+            var pass = string.Empty;
             try
             {
                 Class.forName("com.mysql.jdbc.Driver");
-                Connection c = DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root", "9970209265");
+                var connection = DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root", "9970209265");
 
-                PreparedStatement ps = c.prepareStatement("select Password from info where account_number = ?");
+                var ps = connection.prepareStatement("select Password from info where account_number = ?");
                 ps.setString(1, textBox_acc.Text);
-                ResultSet rs = ps.executeQuery();
+                var rs = ps.executeQuery();
 
                 while (rs.next())
                 {
@@ -65,14 +63,14 @@ namespace WPFBankApplication
 
             //Getting password from user password box
 
-            string userPassword = PasswordBox.Password;
+            var userPassword = PasswordBox.Password;
 
             //checking the input password and the password saved in database
             if (userPassword == pass)
             {
                 DialogBox.Show("Sucess", "Logged in sucessfully", "OK");
                 new Welcome(textBox_acc.Text).Show();
-                this.Hide();
+                Hide();
             }
             else
             {
@@ -99,7 +97,7 @@ namespace WPFBankApplication
         private void Hyperlink_OnClick(object sender, RoutedEventArgs e)
         {
             new NewAccountRegistration().Show();
-            this.Hide();
+            Hide();
         }
 
         private void TextBox_acc_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -111,13 +109,13 @@ namespace WPFBankApplication
         private void ForgetAccountNumberHyperLink_OnClick(object sender, RoutedEventArgs e)
         {
             new ForgetAccountNumber().Show();
-            this.Hide();
+            Hide();
         }
 
         private void ForgetpasswordHyperLink1_OnClick(object sender, RoutedEventArgs e)
         {
             new ForgetPassword().Show();
-            this.Hide();
+            Hide();
         }
 
         private void ButtonGitHub_OnClick(object sender, RoutedEventArgs e)
