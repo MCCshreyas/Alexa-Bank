@@ -10,7 +10,7 @@ namespace WPFBankApplication
 
     using java.lang;
     using java.sql;
-
+    using Thread = System.Threading;
     using Exception = System.Exception;
     using Process = System.Diagnostics.Process;
 
@@ -25,18 +25,7 @@ namespace WPFBankApplication
             ShowWelcomeSnakbar();
         }
 
-        private void ShowWelcomeSnakbar()
-        {
-            Task.Factory.StartNew(() =>
-            {
-                System.Threading.Thread.Sleep(1000);
-            }).ContinueWith(
-                t =>
-                {
-                    MainSnackbar.MessageQueue.Enqueue("Welcome to Alexa Bank Of India");
-                },
-            TaskScheduler.FromCurrentSynchronizationContext());
-        }
+        private void ShowWelcomeSnakbar() => MainSnackbar.MessageQueue.Enqueue("Welcome to Alexa Bank Of India");
 
 
         private bool DoValidation()
@@ -51,13 +40,13 @@ namespace WPFBankApplication
         }
 
 
-        private void DoLogIn()
+        private Task DoLogIn()
         {
             var pass = string.Empty;
             try
             {
                 Class.forName("com.mysql.jdbc.Driver");
-                var connection = DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root", "9970209265");
+                var connection = DriverManager.getConnection(Resource.DATABASE_URL, Resource.USERNAME, Resource.PASSWORD);
 
                 var ps = connection.prepareStatement("select Password from info where account_number = ?");
                 ps.setString(1, textBox_acc.Text);
@@ -88,16 +77,17 @@ namespace WPFBankApplication
             {
                 DialogBox.Show("Error", "Please enter valid account number and password", "OK");
             }
+            return Task.Delay(1);
         }
 
 
-        private void Button1Click(object sender, RoutedEventArgs e)
+        private async void Button1Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 if (DoValidation())
                 {
-                    DoLogIn();
+                   await DoLogIn().ConfigureAwait(false);
                 }
             }
             catch (Exception error)

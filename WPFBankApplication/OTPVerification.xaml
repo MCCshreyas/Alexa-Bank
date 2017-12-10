@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:WPFBankApplication"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
+        Loaded="OtpVerification_OnLoaded"
         Title="OTPVerification" Height="330" Width="540" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
 

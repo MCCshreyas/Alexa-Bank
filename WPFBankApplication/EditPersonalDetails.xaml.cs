@@ -18,8 +18,8 @@ namespace WPFBankApplication
     public partial class EditPersonalDetails
     {
         private OpenFileDialog fileDialog;
-        public string Accc;
-        public string ImageFilePath = "";
+        private readonly string Accc;
+        private string _imageFilePath = "";
 
         public EditPersonalDetails(string accountNumber)
         {
@@ -44,8 +44,8 @@ namespace WPFBankApplication
                 };
 
                 fileDialog.ShowDialog();
-                ImageFilePath = fileDialog.FileName;
-                ImageSourceConverter img = new ImageSourceConverter();
+                _imageFilePath = fileDialog.FileName;
+                var img = new ImageSourceConverter();
                 AccountHolderImage.SetValue(Image.SourceProperty, img.ConvertFromString(fileDialog.FileName));
             }
             catch (Exception exception)
@@ -76,14 +76,14 @@ namespace WPFBankApplication
             try
             {
                 Class.forName("com.mysql.jdbc.Driver");
-                Connection c = (Connection)DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root", "9970209265");
+                Connection c = (Connection)DriverManager.getConnection(Resource.DATABASE_URL, Resource.USERNAME, Resource.PASSWORD);
 
-                java.sql.PreparedStatement ps = c.prepareStatement("update info set Name = ? ,  Address = ? , phone_number = ? , Email = ? , ImagePath = ? , BirthDate = ? where account_number = ? ");
+                PreparedStatement ps = c.prepareStatement("update info set Name = ? ,  Address = ? , phone_number = ? , Email = ? , ImagePath = ? , BirthDate = ? where account_number = ? ");
                 ps.setString(1, fullName);
                 ps.setString(2, textBox_address.Text);
                 ps.setString(3, textBox_phonenumber.Text);
                 ps.setString(4, textBox_email.Text);
-                ps.setString(5, ImageFilePath);
+                ps.setString(5, _imageFilePath);
                 ps.setString(6, myDatePicker.Text);
                 ps.setString(7, Accc);
                 ps.executeUpdate();
@@ -96,14 +96,14 @@ namespace WPFBankApplication
             }
         }
 
-        public void GetDetails()
+        private void GetDetails()
         {
             try
             {
                 Class.forName("com.mysql.jdbc.Driver");
-                Connection c = (Connection)DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root", "9970209265");
+                Connection c = (Connection)DriverManager.getConnection(Resource.DATABASE_URL, Resource.USERNAME, Resource.PASSWORD);
 
-                java.sql.PreparedStatement ps = c.prepareStatement("select * from info where account_number = ?");
+                PreparedStatement ps = c.prepareStatement("select * from info where account_number = ?");
                 ps.setString(1, Accc);
                 ResultSet rs = ps.executeQuery();
                 ImageSourceConverter img = new ImageSourceConverter();
@@ -127,6 +127,8 @@ namespace WPFBankApplication
         
         private bool DoDataValidation()
         {
+            const int PHONE_NUMBER_LENGTH = 10;
+
             //saving phone number leangh into a length variable
             int length = textBox_phonenumber.Text.Length;
 
@@ -142,20 +144,16 @@ namespace WPFBankApplication
             }
 
             // we are checking phone number here
-            if (length < 10 || length == 0 || length > 10)
+            if (length < PHONE_NUMBER_LENGTH || length == 0 || length > PHONE_NUMBER_LENGTH)
             {
                 DialogBox.Show("Error", "Please check your phone number", "OK");
                 return false;
             }
 
             // we are checking email validation here
-            if (!isEmailValid || !isEmailValid2)
-            {
-                DialogBox.Show("Error", "Please check your email ID", "OK");
-                return false;
-            }
-
-            return true;
+            if (isEmailValid && isEmailValid2) return true;
+            DialogBox.Show("Error", "Please check your email ID", "OK");
+            return false;
         }
     }
 }

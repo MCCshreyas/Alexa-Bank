@@ -47,7 +47,7 @@
                 try
                 {
                     Class.forName("com.mysql.jdbc.Driver");
-                    var c = DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root", "9970209265");
+                    var c = DriverManager.getConnection(Resource.DATABASE_URL, Resource.USERNAME, Resource.PASSWORD);
 
                     var ps = c.prepareStatement("select account_number from info where Email = ? and Password = ?");
                     ps.setString(1, TextBoxEmailAddresss.Text);

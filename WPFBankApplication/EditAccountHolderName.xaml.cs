@@ -45,7 +45,7 @@ namespace WPFBankApplication
             try
             {
                 Class.forName("com.mysql.jdbc.Driver");
-                Connection c = (Connection)DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root", "9970209265");
+                Connection c = (Connection)DriverManager.getConnection(Resource.DATABASE_URL, Resource.USERNAME, Resource.PASSWORD);
 
                 java.sql.PreparedStatement ps = c.prepareStatement("update info set Name = ? where account_number = ?");
                 ps.setString(1, name);

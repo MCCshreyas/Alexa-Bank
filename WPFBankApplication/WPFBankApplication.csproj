@@ -125,7 +125,6 @@
     <Compile Include="AccountSettings.xaml.cs">
       <DependentUpon>AccountSettings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Applicant.cs" />
     <Compile Include="bankapplicationDataSet.cs">
       <DependentUpon>bankapplicationDataSet.xsd</DependentUpon>
     </Compile>
@@ -134,7 +133,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>bankapplicationDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="CustomException.cs" />
     <Compile Include="EditPersonalDetails.xaml.cs">
       <DependentUpon>EditPersonalDetails.xaml</DependentUpon>
     </Compile>
@@ -160,6 +158,12 @@
     <Compile Include="OTPVerification.xaml.cs">
       <DependentUpon>OTPVerification.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resource.cs" />
     <Compile Include="SaveMoney.xaml.cs">
       <DependentUpon>SaveMoney.xaml</DependentUpon>
     </Compile>
@@ -237,11 +241,6 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -249,6 +248,7 @@
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />

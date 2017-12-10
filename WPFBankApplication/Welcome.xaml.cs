@@ -28,23 +28,14 @@ namespace WPFBankApplication
             TextBlockAccountNumber.Text = accountNum;
             TextBlockAvaiableBalance.Text = Operations.GetCurrentBalance(accountNum);
             GetAccountHolderImage();
-
-            
-
             ShowWelcomeSnakbar();
         }
 
 
         private void ShowWelcomeSnakbar()
         {
-            Task.Factory.StartNew(() => { Thread.sleep(1000); })
-                .ContinueWith(
-                    t =>
-                    {
-                            MainSnackbar.MessageQueue.Enqueue(
+            MainSnackbar.MessageQueue.Enqueue(
                                 "Welcome " + Operations.GetAccountHolderName(_accountNumber));
-                        },
-                    TaskScheduler.FromCurrentSynchronizationContext());
         }
 
         private void GetAccountHolderImage()
@@ -55,9 +46,9 @@ namespace WPFBankApplication
             {
                 Class.forName("com.mysql.jdbc.Driver");
                 var c = (Connection)DriverManager.getConnection(
-                    "jdbc:mysql://localhost/bankapplication",
-                    "root",
-                    "9970209265");
+                    Resource.DATABASE_URL,
+                    Resource.USERNAME,
+                    Resource.PASSWORD);
 
                 var ps = c.prepareStatement("select ImagePath from info where account_number = ?");
                 ps.setString(1, _accountNumber);

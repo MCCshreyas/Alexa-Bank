@@ -26,9 +26,9 @@ namespace WPFBankApplication
                 Class.forName("com.mysql.jdbc.Driver");
 
                 connection = (Connection)DriverManager.getConnection(
-                    "jdbc:mysql://localhost/bankapplication",
-                    "root",
-                    "9970209265");
+                    Resource.DATABASE_URL,
+                    Resource.USERNAME,
+                    Resource.PASSWORD);
 
                 var ps = connection.prepareStatement("select MobileVerification from info where account_number = ?");
                 ps.setString(1, accountNumber);
@@ -53,9 +53,9 @@ namespace WPFBankApplication
             {
                 Class.forName("com.mysql.jdbc.Driver");
                 connection = (Connection)DriverManager.getConnection(
-                    "jdbc:mysql://localhost/bankapplication",
-                    "root",
-                    "9970209265");
+                    Resource.DATABASE_URL,
+                    Resource.USERNAME,
+                    Resource.PASSWORD);
 
                 var ps = connection.prepareStatement("select phone_number from info where account_number = ?");
                 ps.setString(1, accountNumber);
@@ -80,9 +80,9 @@ namespace WPFBankApplication
             {
                 Class.forName("com.mysql.jdbc.Driver");
                 var c = (Connection)DriverManager.getConnection(
-                    "jdbc:mysql://localhost/bankapplication",
-                    "root",
-                    "9970209265");
+                    Resource.DATABASE_URL,
+                    Resource.USERNAME,
+                    Resource.PASSWORD);
 
                 var ps = c.prepareStatement("select Balance from info where account_number = ?");
                 ps.setString(1, accountNumber);
@@ -107,9 +107,9 @@ namespace WPFBankApplication
             {
                 Class.forName("com.mysql.jdbc.Driver");
                 connection = (Connection)DriverManager.getConnection(
-                    "jdbc:mysql://localhost/bankapplication",
-                    "root",
-                    "9970209265");
+                    Resource.DATABASE_URL,
+                    Resource.USERNAME,
+                    Resource.PASSWORD);
 
                 var ps = connection.prepareStatement("select Password from info where account_number = ?");
                 ps.setString(1, accountNumber);
@@ -133,9 +133,9 @@ namespace WPFBankApplication
             {
                 Class.forName("com.mysql.jdbc.Driver");
                 connection = (Connection)DriverManager.getConnection(
-                    "jdbc:mysql://localhost/bankapplication",
-                    "root",
-                    "9970209265");
+                    Resource.DATABASE_URL,
+                    Resource.USERNAME,
+                    Resource.PASSWORD);
 
                 var ps = connection.prepareStatement("select Name from info where account_number = ?");
                 ps.setString(1, accountNumber);

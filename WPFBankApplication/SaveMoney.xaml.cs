@@ -5,7 +5,6 @@ using System.Windows.Input;
 using ExtraTools;
 using java.lang;
 using java.sql;
-using Twilio;
 using Twilio.Rest.Api.V2010.Account;
 using Twilio.Types;
 using Connection = com.mysql.jdbc.Connection;
@@ -18,16 +17,16 @@ namespace WPFBankApplication
     /// </summary>
     public partial class SaveMoney
     {
-        private readonly string accountNum;
-        private string remainingBalance;
+        private readonly string _accountNum;
+        private string _remainingBalance;
 
         public SaveMoney(string accountNumber)
         {
             InitializeComponent();
-            accountNum = accountNumber;
+            _accountNum = accountNumber;
 
             // please refer operations.cs file for GetCurrentBalance method
-            var accountBalance = Operations.GetCurrentBalance(accountNum);
+            var accountBalance = Operations.GetCurrentBalance(_accountNum);
             CurrentBalance.Text = accountBalance;
         }
 
@@ -60,12 +59,12 @@ namespace WPFBankApplication
         {
             if (!DoValidation())
                 return;
-            remainingBalance = Convert.ToString(Convert.ToInt32(Operations.GetCurrentBalance(accountNum)) +
+            _remainingBalance = Convert.ToString(Convert.ToInt32(Operations.GetCurrentBalance(_accountNum)) +
                                                  Convert.ToInt32(SaveMoneyTextBox.Text));
-            CurrentBalance.Text = remainingBalance;
+            CurrentBalance.Text = _remainingBalance;
             SaveFinalBalance();
 
-            if (Operations.DoesSendMobileNotifications(accountNum))
+            if (Operations.DoesSendMobileNotifications(_accountNum))
                 SendMobileNotification();
 
             DialogBox.Show("Sucess", "Trasaction done sucessfully", "OK");
@@ -77,13 +76,13 @@ namespace WPFBankApplication
             App.InitializeTwilioAccount();
 
             var sentMessage =
-                $"Your Alexa bank account (Acc no = {accountNum}) has been credited with Rs.{SaveMoneyTextBox.Text} . Your current balance is Rs.{remainingBalance}";
+                $"Your Alexa bank account (Acc no = {_accountNum}) has been credited with Rs.{SaveMoneyTextBox.Text} . Your current balance is Rs.{_remainingBalance}";
 
 
-            var to = new PhoneNumber("+91" + Operations.GetAccountHolderMobileNumber(accountNum));
+            var to = new PhoneNumber("+91" + Operations.GetAccountHolderMobileNumber(_accountNum));
             MessageResource.Create(
                 to,
-                @from: new PhoneNumber("+16674018291"),
+                from: new PhoneNumber(Resource.TWILIO_PHONENUMBER),
                 body: sentMessage);
         }
 
@@ -92,12 +91,12 @@ namespace WPFBankApplication
             try
             {
                 Class.forName("com.mysql.jdbc.Driver");
-                var connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root",
-                    "9970209265");
+                var connection = (Connection) DriverManager.getConnection(Resource.DATABASE_URL, Resource.USERNAME,
+                    Resource.PASSWORD);
 
                 var ps = connection.prepareStatement("update info set Balance = ? where account_number = ?");
-                ps.setString(1, remainingBalance);
-                ps.setString(2, accountNum);
+                ps.setString(1, _remainingBalance);
+                ps.setString(2, _accountNum);
                 ps.executeUpdate();
             }
             catch (SQLException exception)
@@ -116,7 +115,7 @@ namespace WPFBankApplication
         private void BackButton_OnClick(object sender, RoutedEventArgs e)
         {
             Hide();
-            new Welcome(accountNum).Show();
+            new Welcome(_accountNum).Show();
         }
     }
 }

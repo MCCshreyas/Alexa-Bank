@@ -1,11 +1,7 @@
-﻿
-
-namespace WPFBankApplication
+﻿namespace WPFBankApplication
 {
     using System;
-    using System.Runtime.InteropServices;
     using System.Text.RegularExpressions;
-    using System.Threading.Tasks;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
@@ -25,9 +21,7 @@ namespace WPFBankApplication
 
     public partial class NewAccountRegistration
     {
-        private OpenFileDialog fileDialog;
-
-        private Applicant newApplicant = null;
+        private OpenFileDialog _fileDialog;
         private int _accc;
 
         private string _imageFilePath = "";
@@ -57,12 +51,12 @@ namespace WPFBankApplication
         {
             try
             {
-                fileDialog = new OpenFileDialog { Filter = "Image files | *.jpg" };
+                _fileDialog = new OpenFileDialog { Filter = "Image files | *.jpg" };
 
-                fileDialog.ShowDialog();
-                _imageFilePath = fileDialog.FileName;
+                _fileDialog.ShowDialog();
+                _imageFilePath = _fileDialog.FileName;
                 var img = new ImageSourceConverter();
-                AccountHolderImage.SetValue(Image.SourceProperty, img.ConvertFromString(fileDialog.FileName));
+                AccountHolderImage.SetValue(Image.SourceProperty, img.ConvertFromString(_fileDialog.FileName));
             }
             catch (Exception exception)
             {
@@ -72,6 +66,8 @@ namespace WPFBankApplication
 
         private bool DoDataValidation()
         {
+            const int PHONE_NUMBER_LENGTH = 10;
+
             //saving phone number leangh into a length variable
             var length = textBox_phonenumber.Text.Length;
 
@@ -90,7 +86,7 @@ namespace WPFBankApplication
             }
 
             // we are checking phone number here
-            if (length < 10 || length == 0 || length > 10)
+            if (length < PHONE_NUMBER_LENGTH || length == 0 || length > PHONE_NUMBER_LENGTH)
             {
                 DialogBox.Show("Error", "Please check your phone number", "OK");
                 return false;
@@ -120,31 +116,33 @@ namespace WPFBankApplication
         /// </summary>
         private void SaveDataToDatabase()
         {
+            const int MAX_ACCOUNT_NO = 1000000000;
+
             var fullName = textBox_firstname.Text + " " + textBox_lastname.Text;
 
             // following code will generate random number which will be user account number 
-            _accc = new Random().Next(1000000000);
+            _accc = new Random().Next(MAX_ACCOUNT_NO);
 
             try
             {
                 Class.forName("com.mysql.jdbc.Driver");
                 var connection = (Connection)DriverManager.getConnection(
-                    "jdbc:mysql://localhost/bankapplication",
-                    "root",
-                    "9970209265");
+                    Resource.DATABASE_URL,
+                    Resource.USERNAME,
+                    Resource.PASSWORD);
 
                 var ps = connection.prepareStatement(
                     "insert into info(Name,Address,phone_number,Email,Password,account_number,Balance,ImagePath,Gender,MobileVerification,BirthDate)values(?,?,?,?,?,?,'100',?,?,?,?)");
-                ps.setString(1, newApplicant.Name);
-                ps.setString(2, newApplicant.Address);
+                ps.setString(1, fullName);
+                ps.setString(2, textBox_address.Text);
                 ps.setString(3, textBox_phonenumber.Text);
-                ps.setString(4, newApplicant.Email);
-                ps.setString(5, newApplicant.Password);
+                ps.setString(4, textBox_email.Text);
+                ps.setString(5, textBox_pass.Password);
                 ps.setString(6, _accc.ToString());
                 ps.setString(7, _imageFilePath);
                 ps.setString(8, GetGenderInfo());
                 ps.setString(9, EnableMobileNotifications());
-                ps.setString(10, newApplicant.BirthDate);
+                ps.setString(10, myDatePicker.Text);
                 ps.executeUpdate();
                 connection.close();
                 DialogBox.Show("Sucess", "Account created sucessfully", "OK");
@@ -162,8 +160,7 @@ namespace WPFBankApplication
         /// </summary>
         private void BtnSaveClick(object sender, RoutedEventArgs e)
         {
-            var internetStatus = IsInternetAvailable();
-            if (internetStatus)
+            if (Resource.IsInternetAvailable())
             {
                 if (!DoDataValidation()) return;
                 SaveDataToDatabase();
@@ -171,23 +168,14 @@ namespace WPFBankApplication
             }
             else
             {
-                Task.Factory.StartNew(() => { Thread.sleep(1000); }).ContinueWith(
-                    t => { MainSnackbar.MessageQueue.Enqueue("Please check internet connectivity."); },
-                    TaskScheduler.FromCurrentSynchronizationContext());
+               MainSnackbar.MessageQueue.Enqueue("Please check internet connectivity.");
             }
         }
 
         /// <summary>
         ///     following method will check for internet connection if its there it will return true otherwise false
         /// </summary>
-        [DllImport("wininet.dll")]
-        private static extern bool InternetGetConnectedState(out int description, int reservedValue);
-
-        private static bool IsInternetAvailable()
-        {
-            return InternetGetConnectedState(out int description, 0);
-        }
-
+       
         private void MyComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (MyComboBox.SelectedIndex == 0)
@@ -218,13 +206,9 @@ namespace WPFBankApplication
         /// </summary>
         private void TextBoxPhonenumberTextChanged(object sender, TextChangedEventArgs e)
         {
-            Task.Factory.StartNew(() => { Thread.sleep(1000); }).ContinueWith(
-                t =>
-                    {
-                        MainSnackbar.MessageQueue.Enqueue(
-                            "Make sure you give correct phone number to recive OTP to activate your acoount");
-                    },
-                TaskScheduler.FromCurrentSynchronizationContext());
+            MainSnackbar.MessageQueue.Enqueue(
+                "Make sure you give correct phone number to recive OTP to activate your acoount");
+
         }
 
         /// <summary>
@@ -241,12 +225,8 @@ namespace WPFBankApplication
         /// </summary>
         private void Btn_clear_details_OnClick(object sender, RoutedEventArgs e)
         {
-            textBox_phonenumber.Text = textBox_address.Text =
-                                                textBox_email.Text =
-                                                    textBox_firstname.Text =
-                                                        textBox_lastname.Text =
-                                                            textBox_pass.Password = myDatePicker.Text = "";
-
+            textBox_phonenumber.Text = textBox_address.Text = textBox_email.Text = textBox_firstname.Text = textBox_lastname.Text = textBox_pass.Password = myDatePicker.Text = "";
+            
             new ImageSourceConverter();
             AccountHolderImage.Source = null;
         }

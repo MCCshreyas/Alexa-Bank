@@ -52,16 +52,14 @@ namespace WPFBankApplication
 
             MessageResource.Create(
                 to,
-                from: new PhoneNumber("+16674018291"),
+                from: new PhoneNumber(Resource.TWILIO_PHONENUMBER),
                 body: sentMessage);
         }
 
         /// <summary>
         /// Following method will check for input data from user and check for validation
         /// </summary>
-        /// <returns>
-        /// The <see cref="bool"/>.
-        /// </returns>
+        
         private bool DoValidation()
         {
             try
@@ -124,9 +122,9 @@ namespace WPFBankApplication
             {
                 Class.forName("com.mysql.jdbc.Driver");
                 var connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost/bankapplication",
-                    "root",
-                    "9970209265");
+                    Resource.DATABASE_URL,
+                    Resource.USERNAME,
+                    Resource.PASSWORD);
                 var ps =
                     connection.prepareStatement("update info set Balance = ? where account_number = ?");
                 ps.setString(1, remainingBalance);

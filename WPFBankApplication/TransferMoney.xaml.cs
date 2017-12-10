@@ -112,7 +112,7 @@ namespace WPFBankApplication
             var message = MessageResource.Create
             (
                 to,
-                from: new PhoneNumber("+16674018291"),
+                from: new PhoneNumber(Resource.TWILIO_PHONENUMBER),
                 body: sentMessage
             );
         }
@@ -129,7 +129,7 @@ namespace WPFBankApplication
             var message = MessageResource.Create
             (
                 to,
-                from: new PhoneNumber("+16674018291"),
+                from: new PhoneNumber(Resource.TWILIO_PHONENUMBER),
                 body: sentMessage
             );
         }
@@ -140,8 +140,8 @@ namespace WPFBankApplication
             {
                 Class.forName("com.mysql.jdbc.Driver");
                 var connection =
-                    (Connection) DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root",
-                        "9970209265");
+                    (Connection) DriverManager.getConnection(Resource.DATABASE_URL, Resource.USERNAME,
+                        Resource.PASSWORD);
 
                 var ps =
                     connection.prepareStatement("update info set Balance = ? where account_number = ?");
@@ -162,8 +162,8 @@ namespace WPFBankApplication
             {
                 Class.forName("com.mysql.jdbc.Driver");
                 var connection =
-                    (Connection) DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root",
-                        "9970209265");
+                    (Connection) DriverManager.getConnection(Resource.DATABASE_URL, Resource.USERNAME,
+                        Resource.PASSWORD);
 
                 var ps =
                     connection.prepareStatement("update info set Balance = ? where account_number = ?");
@@ -183,8 +183,8 @@ namespace WPFBankApplication
             {
                 Class.forName("com.mysql.jdbc.Driver");
                 var connection =
-                    (Connection) DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root",
-                        "9970209265");
+                    (Connection) DriverManager.getConnection(Resource.DATABASE_URL, Resource.USERNAME,
+                        Resource.PASSWORD);
 
                 var ps = connection.prepareStatement("select * from info where account_number = ?");
                 ps.setString(1, TextBoxAccountNumber.Text);

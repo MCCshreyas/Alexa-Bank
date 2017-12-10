@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Threading.Tasks;
+using System.Windows;
 using ExtraTools;
 using java.lang;
 using java.sql;
@@ -11,7 +12,7 @@ namespace WPFBankApplication
     /// <summary>
     ///     Interaction logic for ForgetPassword.xaml
     /// </summary>
-    public partial class ForgetPassword : Window
+    public partial class ForgetPassword 
     {
         public ForgetPassword()
         {
@@ -38,7 +39,7 @@ namespace WPFBankApplication
 
         //here we are getting Password and registered phone number from database by using email 
 
-        private void GetDetails()
+        private async Task GetDetailsAsync()
         {
             var phone = "";
             var pass = "";
@@ -46,7 +47,7 @@ namespace WPFBankApplication
             try
             {
                 Class.forName("com.mysql.jdbc.Driver");
-                var c = DriverManager.getConnection("jdbc:mysql://localhost/bankapplication", "root", "9970209265");
+                var c = DriverManager.getConnection(Resource.DATABASE_URL, Resource.USERNAME, Resource.PASSWORD);
 
                 var ps = c.prepareStatement("select Password, phone_number from info where Email = ?");
                 ps.setString(1, TextBoxEmail.Text);
@@ -56,7 +57,6 @@ namespace WPFBankApplication
                     pass = result.getString("Password");
                     phone = result.getString("phone_number");
                 }
-
 
                 SendMobileNotification(pass, phone);
             }
@@ -70,14 +70,12 @@ namespace WPFBankApplication
         {
             try
             {
-                const string AccountSid = "ACa4e91ac77184d82e6b7e7db26612c8d0";
-                const string AuthToken = "cf88bc0c7f9a1c67f9ea49d5917a9be6";
-                TwilioClient.Init(AccountSid, AuthToken);
+                App.InitializeTwilioAccount();
                 var to = new PhoneNumber("+91" + senderPhoneNumber);
                 MessageResource.Create
                 (
                     to,
-                    from: new PhoneNumber("+16674018291"),
+                    from: new PhoneNumber(Resource.TWILIO_PHONENUMBER),
                     body: "Your passoword is " + password
                 );
             }
@@ -92,7 +90,7 @@ namespace WPFBankApplication
         {
             if (!DoValidation())
                 return;
-            GetDetails();
+            GetDetailsAsync().Wait();
             Hide();
             new LoggedIn().Show();
         }
