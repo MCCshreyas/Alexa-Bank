@@ -1,0 +1,12 @@
+﻿<Window x:Class="WPFBankApplication.LoadingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFBankApplication"
+        mc:Ignorable="d"
+        Title="LoadingWindow" WindowStartupLocation="CenterScreen" Height="230.075" Width="603.383" ShowInTaskbar="False" ResizeMode="NoResize" AllowsTransparency="True" WindowStyle="None">
+    <Grid Opacity="0.5" >
+    <TextBlock Text="Loading. Please wait..."  HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource MaterialDesignDisplay1TextBlock}" ></TextBlock>
+    </Grid>
+</Window>

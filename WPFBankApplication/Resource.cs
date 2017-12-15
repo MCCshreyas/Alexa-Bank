@@ -22,7 +22,5 @@ namespace WPFBankApplication
         {
             return InternetGetConnectedState(out int description, 0);
         }
-
-
     }
 }

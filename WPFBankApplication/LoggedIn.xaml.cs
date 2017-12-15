@@ -1,16 +1,12 @@
-﻿
-namespace WPFBankApplication
+﻿namespace WPFBankApplication
 {
     using System.Text.RegularExpressions;
-    using System.Threading.Tasks;
     using System.Windows;
     using System.Windows.Input;
-    using System = System;
     using ExtraTools;
 
     using java.lang;
     using java.sql;
-    using Thread = System.Threading;
     using Exception = System.Exception;
     using Process = System.Diagnostics.Process;
 
@@ -25,12 +21,14 @@ namespace WPFBankApplication
             ShowWelcomeSnakbar();
         }
 
+        private LoadingWindow lw = new LoadingWindow();
+
         private void ShowWelcomeSnakbar() => MainSnackbar.MessageQueue.Enqueue("Welcome to Alexa Bank Of India");
 
 
         private bool DoValidation()
         {
-            if (textBox_acc.Text.Equals(string.Empty) && PasswordBox.Password.Equals(string.Empty))
+            if (TextBoxAcc.Text.Equals(string.Empty) && PasswordBox.Password.Equals(string.Empty))
             {
                 DialogBox.Show("Error", "Please fill all the information and then proceed", "OK");
                 return false;
@@ -40,7 +38,7 @@ namespace WPFBankApplication
         }
 
 
-        private Task DoLogIn()
+        private void DoLogIn()
         {
             var pass = string.Empty;
             try
@@ -49,9 +47,9 @@ namespace WPFBankApplication
                 var connection = DriverManager.getConnection(Resource.DATABASE_URL, Resource.USERNAME, Resource.PASSWORD);
 
                 var ps = connection.prepareStatement("select Password from info where account_number = ?");
-                ps.setString(1, textBox_acc.Text);
+                ps.setString(1, TextBoxAcc.Text);
                 var rs = ps.executeQuery();
-
+                
                 while (rs.next())
                 {
                     pass = rs.getString("Password");
@@ -69,25 +67,25 @@ namespace WPFBankApplication
             // checking the input password and the password saved in database
             if (userPassword == pass)
             {
+                lw.Hide();
                 DialogBox.Show("Sucess", "Logged in sucessfully", "OK");
-                new Welcome(textBox_acc.Text).Show();
+                new Welcome(TextBoxAcc.Text).Show();
                 Hide();
             }
             else
             {
                 DialogBox.Show("Error", "Please enter valid account number and password", "OK");
             }
-            return Task.Delay(1);
         }
 
 
-        private async void Button1Click(object sender, RoutedEventArgs e)
+        private void Button1Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 if (DoValidation())
                 {
-                   await DoLogIn().ConfigureAwait(false);
+                    DoLogIn();
                 }
             }
             catch (Exception error)
@@ -133,6 +131,15 @@ namespace WPFBankApplication
         private void ButtonTwitter_OnClick(object sender, RoutedEventArgs e)
         {
             Process.Start("https://twitter.com/MCCshreyas");
+        }
+
+        private void LoggedIn_OnLoaded(object sender, RoutedEventArgs e)
+        {
+          /*  while(!Resource.IsInternetAvailable())
+            {
+                DialogBox.Show("Warning", "Please check internet connectivity", "OK");
+            }
+            */
         }
     }
 }
