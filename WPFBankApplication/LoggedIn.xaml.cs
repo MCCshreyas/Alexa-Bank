@@ -1,4 +1,6 @@
-﻿namespace WPFBankApplication
+﻿using MaterialDesignThemes.Wpf;
+
+namespace WPFBankApplication
 {
     using System.Text.RegularExpressions;
     using System.Windows;
@@ -30,10 +32,12 @@
         {
             if (TextBoxAcc.Text.Equals(string.Empty) && PasswordBox.Password.Equals(string.Empty))
             {
-                DialogBox.Show("Error", "Please fill all the information and then proceed", "OK");
+                DialogHostMessage.Text = "Please fill all the fields";
+                DialogHostCaption.Text = "Error";
+                DialogHostRightButton.Content = "OK";
+                MyDialogHost.IsOpen = true;
                 return false;
             }
-                
             return true;
         }
 
@@ -67,8 +71,11 @@
             // checking the input password and the password saved in database
             if (userPassword == pass)
             {
-                lw.Hide();
-                DialogBox.Show("Sucess", "Logged in sucessfully", "OK");
+                
+                DialogHostMessage.Text = "Sign in sucessfully";
+                DialogHostCaption.Text = "Sucess";
+                DialogHostRightButton.Content = "OK";
+                MyDialogHost.IsOpen = true;
                 new Welcome(TextBoxAcc.Text).Show();
                 Hide();
             }
@@ -140,6 +147,11 @@
                 DialogBox.Show("Warning", "Please check internet connectivity", "OK");
             }
             */
+        }
+
+        private void DialogHostRightButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            MyDialogHost.IsOpen = false;
         }
     }
 }

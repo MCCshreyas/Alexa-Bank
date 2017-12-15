@@ -7,27 +7,34 @@
         Title="NewAccountRegistration" mc:Ignorable="d" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Height="723.366" Width="862.5">
     <Grid>
 
-        <materialDesign:DialogHost Name="FieldErrorDialog">
-            <materialDesign:DialogHost.DialogContent>
-                <StackPanel Margin="16">
-                    <TextBlock FontSize="20">Please enter all fields</TextBlock>
-                    <Button FontSize="15" Margin="0 8 0 0" IsDefault="True" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}">OK</Button>
-                </StackPanel>
-            </materialDesign:DialogHost.DialogContent>
-        </materialDesign:DialogHost>
 
-
-
-
-
-
-        <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2"
-                                  Mode="Accent" Height="50">
-            <Grid Margin="-10,-11,-11,-10" >
-                <TextBlock Text="New account registration" Style="{DynamicResource MaterialDesignHeadlineTextBlock}" Margin="269,1,10,2"></TextBlock>
-                <Button Margin="0,3,778,0" Style="{x:Null}" BorderBrush="#FF00B8D4" Background="#FF00B8D4" Name="BackButton" Click="BackButton_OnClick"  ToolTip="Go back">
-                    <materialDesign:PackIcon Kind="ArrowLeft" Height="22" Width="26"></materialDesign:PackIcon>
+        <materialDesign:ColorZone Padding="16" 
+                                  materialDesign:ShadowAssist.ShadowDepth="Depth2"
+                                  Mode="Accent" 
+                                  >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button BorderBrush="#FF00B8D4" 
+                        Background="#FF00B8D4" 
+                        Click="BackButton_OnClick"  
+                        Style="{x:Null}"
+                        ToolTip="Go back">
+                    <materialDesign:PackIcon Kind="ArrowLeft"
+                                             Height="30"
+                                             Width="65"/>
                 </Button>
+                
+                
+                <TextBlock Text="New account registration"
+                           Grid.Column="1"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Style="{DynamicResource MaterialDesignHeadlineTextBlock}" 
+                           />
+                
             </Grid>
         </materialDesign:ColorZone>
 
