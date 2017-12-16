@@ -30,7 +30,7 @@
         {
             InitializeComponent();
             RadioButtonMale.IsChecked = true;
-            myDatePicker.Focusable = false;
+            MyDatePicker.Focusable = false;
             MyComboBox.SelectedIndex = 2;
         }
 
@@ -69,17 +69,17 @@
             const int PHONE_NUMBER_LENGTH = 10;
 
             //saving phone number leangh into a length variable
-            var length = textBox_phonenumber.Text.Length;
+            var length = TextBoxPhonenumber.Text.Length;
 
             //checking email validation which returns bool value 
-            var isEmailValid = textBox_email.Text.Contains("@");
-            var isEmailValid2 = textBox_email.Text.Contains(".com");
+            var isEmailValid = TextBoxEmail.Text.Contains("@");
+            var isEmailValid2 = TextBoxEmail.Text.Contains(".com");
 
             // Is there any textbox is empty or not. If there then it will fire error message
-            if (textBox_firstname.Text == "" || textBox_lastname.Text == "" || textBox_email.Text == ""
-                || textBox_pass.Password == "" || textBox_address.Text == ""
-                || textBox_phonenumber.Text == "" || AccountHolderImage.Source == null
-                || myDatePicker.Text == "")
+            if (TextBoxFirstname.Text == "" || TextBoxLastname.Text == "" || TextBoxEmail.Text == ""
+                || textBox_pass.Password == "" || TextBoxAddress.Text == ""
+                || TextBoxPhonenumber.Text == "" || AccountHolderImage.Source == null
+                || MyDatePicker.Text == "")
             {
                 DialogBox.Show("Error", "Please enter all field", "OK");
                 return false;
@@ -118,7 +118,7 @@
         {
             const int MAX_ACCOUNT_NO = 1000000000;
 
-            var fullName = textBox_firstname.Text + " " + textBox_lastname.Text;
+            var fullName = TextBoxFirstname.Text + " " + TextBoxLastname.Text;
 
             // following code will generate random number which will be user account number 
             _accc = new Random().Next(MAX_ACCOUNT_NO);
@@ -134,15 +134,15 @@
                 var ps = connection.prepareStatement(
                     "insert into info(Name,Address,phone_number,Email,Password,account_number,Balance,ImagePath,Gender,MobileVerification,BirthDate)values(?,?,?,?,?,?,'100',?,?,?,?)");
                 ps.setString(1, fullName);
-                ps.setString(2, textBox_address.Text);
-                ps.setString(3, textBox_phonenumber.Text);
-                ps.setString(4, textBox_email.Text);
+                ps.setString(2, TextBoxAddress.Text);
+                ps.setString(3, TextBoxPhonenumber.Text);
+                ps.setString(4, TextBoxEmail.Text);
                 ps.setString(5, textBox_pass.Password);
                 ps.setString(6, _accc.ToString());
                 ps.setString(7, _imageFilePath);
                 ps.setString(8, GetGenderInfo());
                 ps.setString(9, EnableMobileNotifications());
-                ps.setString(10, myDatePicker.Text);
+                ps.setString(10, MyDatePicker.Text);
                 ps.executeUpdate();
                 connection.close();
                 DialogBox.Show("Sucess", "Account created sucessfully", "OK");
@@ -164,7 +164,7 @@
             {
                 if (!DoDataValidation()) return;
                 SaveDataToDatabase();
-                new OtpVerification(textBox_phonenumber.Text).ShowDialog();
+                new OtpVerification(TextBoxPhonenumber.Text).ShowDialog();
             }
             else
             {
@@ -225,7 +225,7 @@
         /// </summary>
         private void Btn_clear_details_OnClick(object sender, RoutedEventArgs e)
         {
-            textBox_phonenumber.Text = textBox_address.Text = textBox_email.Text = textBox_firstname.Text = textBox_lastname.Text = textBox_pass.Password = myDatePicker.Text = "";
+            TextBoxPhonenumber.Text = TextBoxAddress.Text = TextBoxEmail.Text = TextBoxFirstname.Text = TextBoxLastname.Text = textBox_pass.Password = MyDatePicker.Text = "";
             
             new ImageSourceConverter();
             AccountHolderImage.Source = null;

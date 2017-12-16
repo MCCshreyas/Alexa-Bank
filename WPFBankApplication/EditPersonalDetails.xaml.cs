@@ -50,7 +50,7 @@ namespace WPFBankApplication
             }
             catch (Exception exception)
             {
-                MaterialDesignDialogBox.Show("Error", "Something went wrong. " + exception.Message);
+                //MaterialDesignDialogBox.Show("Error", "Something went wrong. " + exception.Message);
             }
         }
 
@@ -88,11 +88,11 @@ namespace WPFBankApplication
                 ps.setString(7, Accc);
                 ps.executeUpdate();
                 c.close();
-                MaterialDesignDialogBox.Show("Sucess", "Changes done sucessfully", "OK");
+                //MaterialDesignDialogBox.Show("Sucess", "Changes done sucessfully", "OK");
             }
             catch (SQLException exception)
             {
-                MaterialDesignDialogBox.Show("Error", "Something went wrong." + exception.Message, "OK");
+                //MaterialDesignDialogBox.Show("Error", "Something went wrong." + exception.Message, "OK");
             }
         }
 
@@ -120,7 +120,7 @@ namespace WPFBankApplication
             }
             catch (SQLException exception)
             {
-                MaterialDesignDialogBox.Show("Error", "Something went wrong." + exception.Message, "OK");
+                //MaterialDesignDialogBox.Show("Error", "Something went wrong." + exception.Message, "OK");
             }
         }
 
@@ -139,20 +139,20 @@ namespace WPFBankApplication
             // Is there any textbox is empty or not. If there then it will fire error message
             if (TextBoxName.Text == "" || textBox_email.Text == "" || textBox_address.Text == "" || textBox_phonenumber.Text == "" || AccountHolderImage.Source == null || myDatePicker.Text == "")
             {
-                MaterialDesignDialogBox.Show("Error", "Please enter all field", "OK");
+                //MaterialDesignDialogBox.Show("Error", "Please enter all field", "OK");
                 return false;
             }
 
             // we are checking phone number here
             if (length < PHONE_NUMBER_LENGTH || length == 0 || length > PHONE_NUMBER_LENGTH)
             {
-                MaterialDesignDialogBox.Show("Error", "Please check your phone number", "OK");
+                //MaterialDesignDialogBox.Show("Error", "Please check your phone number", "OK");
                 return false;
             }
 
             // we are checking email validation here
             if (isEmailValid && isEmailValid2) return true;
-            MaterialDesignDialogBox.Show("Error", "Please check your email ID", "OK");
+            //MaterialDesignDialogBox.Show("Error", "Please check your email ID", "OK");
             return false;
         }
     }
