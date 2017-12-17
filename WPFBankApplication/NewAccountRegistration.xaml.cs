@@ -77,7 +77,7 @@
 
             // Is there any textbox is empty or not. If there then it will fire error message
             if (TextBoxFirstname.Text == "" || TextBoxLastname.Text == "" || TextBoxEmail.Text == ""
-                || textBox_pass.Password == "" || TextBoxAddress.Text == ""
+                || TextBoxPass.Password == "" || TextBoxAddress.Text == ""
                 || TextBoxPhonenumber.Text == "" || AccountHolderImage.Source == null
                 || MyDatePicker.Text == "")
             {
@@ -137,7 +137,7 @@
                 ps.setString(2, TextBoxAddress.Text);
                 ps.setString(3, TextBoxPhonenumber.Text);
                 ps.setString(4, TextBoxEmail.Text);
-                ps.setString(5, textBox_pass.Password);
+                ps.setString(5, TextBoxPass.Password);
                 ps.setString(6, _accc.ToString());
                 ps.setString(7, _imageFilePath);
                 ps.setString(8, GetGenderInfo());
@@ -225,7 +225,7 @@
         /// </summary>
         private void Btn_clear_details_OnClick(object sender, RoutedEventArgs e)
         {
-            TextBoxPhonenumber.Text = TextBoxAddress.Text = TextBoxEmail.Text = TextBoxFirstname.Text = TextBoxLastname.Text = textBox_pass.Password = MyDatePicker.Text = "";
+            TextBoxPhonenumber.Text = TextBoxAddress.Text = TextBoxEmail.Text = TextBoxFirstname.Text = TextBoxLastname.Text = TextBoxPass.Password = MyDatePicker.Text = "";
             
             new ImageSourceConverter();
             AccountHolderImage.Source = null;

@@ -3,8 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.FontWeight="Regular"
-        Height="652.354" Width="1178.608"
-        Title="NewAccountRegistration" mc:Ignorable="d" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
+        Height="607.354" Width="1178.608"
+        Title="NewAccountRegistration" mc:Ignorable="d" WindowStartupLocation="CenterScreen" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
     <Grid>
         <Border Padding="0.5">
             <StackPanel>
@@ -47,6 +47,7 @@
                     </Grid>
                 </materialDesign:ColorZone>
 
+
                 <Grid>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -54,15 +55,16 @@
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
 
+                        <!--Personal Details  -->
                         <GroupBox Grid.Column="0" 
                           Style="{DynamicResource MaterialDesignCardGroupBox}" 
                           Header="Personal details" 
                           BorderBrush="#ED3D3D" 
-                          HorizontalAlignment="Left" 
-                          VerticalAlignment="Center"
+                          HorizontalAlignment="Stretch" 
+                          VerticalAlignment="Stretch"
                           Margin="20 20 0 0"
                           Background="White">
-                            <StackPanel>
+                            <StackPanel Margin="10">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition />
@@ -71,9 +73,11 @@
 
                                     <!--Profile picture-->
                                     <StackPanel Grid.Column="0">
-                                        <Border Padding="0">
+                                        <Border Padding="6">
                                             <Image Source="person.png"
-                                                   Margin="10"
+                                                   Width="125"
+                                                   Height="100"
+                                                   
                                                    Name="AccountHolderImage" 
                                                    HorizontalAlignment="Center" 
                                                    VerticalAlignment="Center"
@@ -95,16 +99,16 @@
                                             </Grid>
                                         </Button>
                                     </StackPanel>
-                                    
-                                    
-                                    
+
+
+
 
                                     <!--Upload image -->
-                                    <Grid Grid.Column="1">
+                                    <Grid Grid.Column="1" Margin="10 0 0 0">
                                         <StackPanel>
 
                                             <!--Upload button -->
-                                            
+
 
                                             <!--Gender -->
                                             <TextBlock Text="Gender" Margin="10 20 0 10" 
@@ -119,8 +123,7 @@
                                             <RadioButton Name="RadioButtonFemale" 
                                                         Content="Female" 
                                                         Margin="5"
-                                                        Padding="2"
-                                                        />
+                                                        Padding="2"/>
                                         </StackPanel>
                                     </Grid>
 
@@ -128,7 +131,7 @@
 
                                 <!--All text box -->
                                 <StackPanel>
-                                    
+
                                     <!-- First name-->
                                     <TextBox materialDesign:HintAssist.Hint="First name" 
                                              TabIndex="1" 
@@ -180,57 +183,123 @@
                             </StackPanel>
 
                         </GroupBox>
+
+                        <StackPanel Grid.Column="1" Margin="2">
+
+                            <!--Account details-->
+                            <GroupBox Style="{DynamicResource MaterialDesignCardGroupBox}" 
+                                          Header="Account Details"
+                                          Margin="20">
+
+                                <StackPanel>
+                                    <StackPanel Margin="10">
+                                        <CheckBox Content="Need ATM Card"/>
+                                        <CheckBox Content="Need check book"/>
+                                        <CheckBox Name="CheckBoxMobileNotification" 
+                                                      Content="Mobile notifications"/>
+                                    </StackPanel>
+
+                                    <PasswordBox  TabIndex="6"
+                                                      materialDesign:HintAssist.Hint="Password" 
+                                                      Style="{DynamicResource MaterialDesignFloatingHintPasswordBox}" 
+                                                      Name="TextBoxPass" 
+                                                      VerticalAlignment="Top"
+                                                      Margin="10"/>
+                                </StackPanel>
+                            </GroupBox>
+
+
+                            <!--Work details-->
+                            <GroupBox Style="{DynamicResource MaterialDesignCardGroupBox}" 
+                                      Header="Work details" 
+                                      BorderBrush="#ED3D3D"
+                                      Margin="20">
+
+                                <Border Padding="5">
+                                    <StackPanel>
+                                        <TextBlock Text="Occupation" FontSize="15" />
+                                        <ComboBox SelectionChanged="MyComboBox_OnSelectionChanged" 
+                                                  Name="MyComboBox"
+                                                  Margin="0 10 0 0"
+                                                  materialDesign:HintAssist.Hint="Select from following option" >
+                                            <ComboBoxItem Content="Employee" />
+                                            <ComboBoxItem Content="Self-Employee"/>
+                                            <ComboBoxItem Content="Student"/>
+                                            <ComboBoxItem Content="Others"/>
+                                        </ComboBox>
+                                        <TextBox Name="WorkDetailsTextBox" Margin="0 40 0 0" />
+                                    </StackPanel>
+                                </Border>
+                            </GroupBox>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid Grid.Column="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Button Background="DarkRed" 
+                                            BorderBrush="DarkRed"
+                                            Click="Btn_clear_details_OnClick"
+                                            ClipToBounds="False"
+                                            HorizontalAlignment="Stretch"
+                                            Margin="10"
+                                            Grid.Column="0">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="50*"/>
+                                                <ColumnDefinition Width="100*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <materialDesign:PackIcon Grid.Column="0" 
+                                                                     Kind="UndoVariant"
+                                                                     Margin="-10,0,0,-1"
+                                                                     Height="25"
+                                                                     Width="25"/>
+                                            <TextBlock  Grid.Column="1" 
+                                                        FontSize="17" 
+                                                        Text="RESET"
+                                                        Height="26" />
+
+                                        </Grid>
+                                    </Button>
+
+
+                                    <Button Grid.Column="1" Name="btn_save" 
+                                            ClipToBounds="False" 
+                                            Click="BtnSaveClick">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="50*"/>
+                                                <ColumnDefinition Width="100*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <materialDesign:PackIcon Grid.Column="0" 
+                                                                     Kind="ContentSave"
+                                                                     Margin="-10,0,0,-1"
+                                                                     Height="25"
+                                                                     Width="25"/>
+                                            <TextBlock  Grid.Column="1" 
+                                                        FontSize="20" 
+                                                        Text="SUBMIT"
+                                                        Height="26" />
+
+                                        </Grid>
+                                    </Button>
+                                </Grid>
+
+                            </Grid>
+
+
+
+                        </StackPanel>
                     </Grid>
-                    
                 </Grid>
-
-
-
-
-
-
-
-
-                <Grid>
-                    <GroupBox Style="{DynamicResource MaterialDesignCardGroupBox}" materialDesign:ShadowAssist.ShadowDepth="Depth3" Header="          Account Details" BorderBrush="#ED3D3D" HorizontalAlignment="Left" Height="235" VerticalAlignment="Top" Width="350"   Margin="443,339,0,0" >
-                        <Grid>
-                            <CheckBox Content="Need ATM Card" Margin="18,8,106,142"/>
-                            <CheckBox Content="Need check book" Margin="18,33,106,117"/>
-                            <PasswordBox TabIndex="6" materialDesign:HintAssist.Hint="Password" Style="{DynamicResource MaterialDesignFloatingHintPasswordBox}" Height="39" HorizontalAlignment="Left"  x:Name="textBox_pass" VerticalAlignment="Top" Width="279" Margin="20,114,0,0" />
-                            <CheckBox Name="CheckBoxMobileNotification" Content="Mobile notifications" Margin="18,62,106,88"/>
-                        </Grid>
-
-
-
-                    </GroupBox>
-                    <materialDesign:PackIcon Kind="Account" Margin="447,343,0,0" Height="26" Width="39"/>
-                </Grid>
-
-
-
-                <GroupBox Style="{DynamicResource MaterialDesignCardGroupBox}" materialDesign:ShadowAssist.ShadowDepth="Depth3" Header="Work details" BorderBrush="#ED3D3D" HorizontalAlignment="Left" Height="232" VerticalAlignment="Top" Width="350"  Margin="441,87,0,0" >
-                    <Grid Name="WorkDetailsGrid">
-                        <ComboBox SelectionChanged="MyComboBox_OnSelectionChanged" Name="MyComboBox" materialDesign:HintAssist.Hint="Select from following option" Margin="20,44,31,104" Height="32" >
-                            <ComboBoxItem Content="Employee" HorizontalAlignment="Left" Width="280" />
-                            <ComboBoxItem Content="Self-Employee" HorizontalAlignment="Left" Width="280"/>
-                            <ComboBoxItem Content="Student" HorizontalAlignment="Left" Width="280"/>
-                            <ComboBoxItem Content="Others" HorizontalAlignment="left" Width="280"/>
-                        </ComboBox>
-                        <TextBox Name="WorkDetailsTextBox" Margin="20,100,31,39" />
-                    </Grid>
-                </GroupBox>
-                <Button Height="39" Background="DarkRed" BorderBrush="DarkRed" HorizontalAlignment="Left" Margin="492,612,0,0" x:Name="btn_clear_details" Click="Btn_clear_details_OnClick" VerticalAlignment="Top" Width="58" ClipToBounds="False" >
-                    <materialDesign:PackIcon Kind="UndoVariant"  Height="23" Width="28" />
-                </Button>
-                <Button Height="39"  HorizontalAlignment="Left" Margin="588,612,0,0" x:Name="btn_save" VerticalAlignment="Top" Width="203" ClipToBounds="False" Click="BtnSaveClick">
-                    <Grid>
-                        <TextBlock FontSize="20" Margin="0,-1,0,-5"><Run Text="SUBMIT"/></TextBlock>
-                        <materialDesign:PackIcon Kind="ContentSave" Margin="-44,2,0,-1" Height="20" Width="30" />
-                    </Grid>
-                </Button>
-
-                <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="MainSnackbar"
-        />
 
             </StackPanel>
         </Border>
