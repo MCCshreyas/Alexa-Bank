@@ -47,7 +47,7 @@
                     </Grid>
                 </materialDesign:ColorZone>
 
-
+                
                 <Grid>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -292,14 +292,23 @@
                                         </Grid>
                                     </Button>
                                 </Grid>
-
+                                
                             </Grid>
-
-
-
+                            
+                            
+                            
                         </StackPanel>
                     </Grid>
                 </Grid>
+
+
+
+                
+                
+               
+
+                <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="MainSnackbar"
+        />
 
             </StackPanel>
         </Border>
