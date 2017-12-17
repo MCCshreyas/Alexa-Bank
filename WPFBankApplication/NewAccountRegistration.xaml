@@ -232,7 +232,7 @@
                                 </Border>
                             </GroupBox>
 
-                            <Grid>
+                            <Grid Margin="0 0 20 0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition />
                                     <ColumnDefinition />
@@ -270,7 +270,7 @@
                                     </Button>
 
 
-                                    <Button Grid.Column="1" Name="btn_save" 
+                                    <Button Grid.Column="1"
                                             ClipToBounds="False" 
                                             Click="BtnSaveClick">
                                         <Grid>

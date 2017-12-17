@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WPFBankApplication"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="WithdrawMoney" Height="500" Width="500" WindowStartupLocation="CenterScreen">
+        Title="WithdrawMoney" Height="500" Width="500" WindowStartupLocation="CenterScreen" AllowsTransparency="True" WindowStyle="None">
 
     <StackPanel>
         <!-- Titale color zone-->
