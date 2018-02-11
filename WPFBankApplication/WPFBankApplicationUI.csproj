@@ -155,6 +155,8 @@
     <Compile Include="LoadingWindow.xaml.cs">
       <DependentUpon>LoadingWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LogIn.cs" />
+    <Compile Include="LogInViewModel.cs" />
     <Compile Include="Operations.cs" />
     <Compile Include="EditAccountHolderName.xaml.cs">
       <DependentUpon>EditAccountHolderName.xaml</DependentUpon>
@@ -171,6 +173,7 @@
     <Compile Include="OTPVerification.xaml.cs">
       <DependentUpon>OTPVerification.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -307,6 +310,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="person.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BankApplicationLibrary\BankApplicationLibrary.csproj">
+      <Project>{73d51ac4-e4c7-4e4f-be58-244f85f506fb}</Project>
+      <Name>BankApplicationLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

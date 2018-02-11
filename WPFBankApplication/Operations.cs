@@ -12,7 +12,7 @@ namespace WPFBankApplication
 
     public static class Operations
     {
-        private static Connection connection;
+        private static Connection _connection;
 
         // please check method name of each. Method name is itself explanetory about what it does. 
         // It's JAVA code
@@ -25,12 +25,12 @@ namespace WPFBankApplication
             {
                 Class.forName("com.mysql.jdbc.Driver");
 
-                connection = (Connection)DriverManager.getConnection(
+                _connection = (Connection)DriverManager.getConnection(
                     Resource.DATABASE_URL,
                     Resource.USERNAME,
                     Resource.PASSWORD);
 
-                var ps = connection.prepareStatement("select MobileVerification from info where account_number = ?");
+                var ps = _connection.prepareStatement("select MobileVerification from info where account_number = ?");
                 ps.setString(1, accountNumber);
                 var rs = ps.executeQuery();
                 while (rs.next())
@@ -52,12 +52,12 @@ namespace WPFBankApplication
             try
             {
                 Class.forName("com.mysql.jdbc.Driver");
-                connection = (Connection)DriverManager.getConnection(
+                _connection = (Connection)DriverManager.getConnection(
                     Resource.DATABASE_URL,
                     Resource.USERNAME,
                     Resource.PASSWORD);
 
-                var ps = connection.prepareStatement("select phone_number from info where account_number = ?");
+                var ps = _connection.prepareStatement("select phone_number from info where account_number = ?");
                 ps.setString(1, accountNumber);
                 var rs = ps.executeQuery();
                 while (rs.next())
@@ -106,12 +106,12 @@ namespace WPFBankApplication
             try
             {
                 Class.forName("com.mysql.jdbc.Driver");
-                connection = (Connection)DriverManager.getConnection(
+                _connection = (Connection)DriverManager.getConnection(
                     Resource.DATABASE_URL,
                     Resource.USERNAME,
                     Resource.PASSWORD);
 
-                var ps = connection.prepareStatement("select Password from info where account_number = ?");
+                var ps = _connection.prepareStatement("select Password from info where account_number = ?");
                 ps.setString(1, accountNumber);
                 var result = ps.executeQuery();
                 while (result.next())
@@ -132,12 +132,12 @@ namespace WPFBankApplication
             try
             {
                 Class.forName("com.mysql.jdbc.Driver");
-                connection = (Connection)DriverManager.getConnection(
+                _connection = (Connection)DriverManager.getConnection(
                     Resource.DATABASE_URL,
                     Resource.USERNAME,
                     Resource.PASSWORD);
 
-                var ps = connection.prepareStatement("select Name from info where account_number = ?");
+                var ps = _connection.prepareStatement("select Name from info where account_number = ?");
                 ps.setString(1, accountNumber);
                 var result = ps.executeQuery();
 

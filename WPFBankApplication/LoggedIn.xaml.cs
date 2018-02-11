@@ -1,20 +1,15 @@
-﻿using MaterialDesignThemes.Wpf;
+﻿using java.lang;
+using java.sql;
+using ExtraTools;
+using System.Text.RegularExpressions;
+using System.Windows;
+using System.Windows.Input;
+using Exception = System.Exception;
+using Process = System.Diagnostics.Process;
+using BankApplicationLibrary;
 
 namespace WPFBankApplication
 {
-    using System.Text.RegularExpressions;
-    using System.Windows;
-    using System.Windows.Input;
-    using ExtraTools;
-
-    using java.lang;
-    using java.sql;
-    using Exception = System.Exception;
-    using Process = System.Diagnostics.Process;
-
-    /// <summary>
-    /// Interaction logic for LoggedIn.xaml
-    /// </summary>
     public partial class LoggedIn
     {
         public LoggedIn()
@@ -23,28 +18,42 @@ namespace WPFBankApplication
             ShowWelcomeSnakbar();
         }
 
-        private LoadingWindow lw = new LoadingWindow();
-
         private void ShowWelcomeSnakbar() => MainSnackbar.MessageQueue.Enqueue("Welcome to Alexa Bank Of India");
-
 
         private bool DoValidation()
         {
-            if (TextBoxAcc.Text.Equals(string.Empty) && PasswordBox.Password.Equals(string.Empty))
+            if (TextBoxAcc.Text.Equals(string.Empty) && PasswordBox.Text.Equals(string.Empty))
             {
-                DialogHostMessage.Text = "Please fill all the fields";
-                DialogHostCaption.Text = "Error";
-                DialogHostRightButton.Content = "OK";
-                MyDialogHost.IsOpen = true;
+                DialogBox.Show("ERROR", "Please fill fields", "OK");
                 return false;
             }
             return true;
         }
 
-
-        private void DoLogIn()
+        private void Button1Click(object sender, RoutedEventArgs e)
         {
-            var pass = string.Empty;
+            try
+            {
+                if (DoValidation())
+                {
+                    if (AuthenticateLogIn())
+                    {
+                        new Welcome(TextBoxAcc.Text).Show();
+                        Hide();
+                    }
+
+                    var login = new Customer();
+                }
+            }
+            catch (Exception error)
+            {
+                DialogBox.Show("Exception", "Something went wrong " + error.Message, "OK");
+            }
+        }
+
+        private bool AuthenticateLogIn()
+        {
+            string databasePassword = string.Empty;
             try
             {
                 Class.forName("com.mysql.jdbc.Driver");
@@ -53,52 +62,24 @@ namespace WPFBankApplication
                 var ps = connection.prepareStatement("select Password from info where account_number = ?");
                 ps.setString(1, TextBoxAcc.Text);
                 var rs = ps.executeQuery();
-                
+
                 while (rs.next())
                 {
-                    pass = rs.getString("Password");
+                    databasePassword = rs.getString("Password");
                 }
 
             }
             catch (SQLException exception)
             {
-                DialogBox.Show("Error", "Something went wrong - " + exception.Message, "OK");
+                throw new Exception("Something went wrong " + exception);
             }
 
-            // Getting password from user password box
-            var userPassword = PasswordBox.Password;
+            if (PasswordBox.Text.Equals(databasePassword))
+            {
+                return true;
+            }
 
-            // checking the input password and the password saved in database
-            if (userPassword == pass)
-            {
-                
-                DialogHostMessage.Text = "Sign in sucessfully";
-                DialogHostCaption.Text = "Sucess";
-                DialogHostRightButton.Content = "OK";
-                MyDialogHost.IsOpen = true;
-                new Welcome(TextBoxAcc.Text).Show();
-                Hide();
-            }
-            else
-            {
-                DialogBox.Show("Error", "Please enter valid account number and password", "OK");
-            }
-        }
-
-
-        private void Button1Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (DoValidation())
-                {
-                    DoLogIn();
-                }
-            }
-            catch (Exception error)
-            {
-                DialogBox.Show("Exception", "Something went wrong " + error.Message, "OK");
-            }
+            return false;
         }
 
         private void Hyperlink_OnClick(object sender, RoutedEventArgs e)
@@ -113,6 +94,8 @@ namespace WPFBankApplication
             e.Handled = regex.IsMatch(e.Text);
         }
 
+        #region ForgetModulesClickEvent
+
         private void ForgetAccountNumberHyperLink_OnClick(object sender, RoutedEventArgs e)
         {
             new ForgetAccountNumber().Show();
@@ -124,10 +107,14 @@ namespace WPFBankApplication
             new ForgetPassword().Show();
             Hide();
         }
+        #endregion
+
+        #region FloatingButtonControls
 
         private void ButtonGitHub_OnClick(object sender, RoutedEventArgs e)
         {
             Process.Start("https://github.com/MCCshreyas");
+
         }
 
         private void ButtonEmail_OnClick(object sender, RoutedEventArgs e)
@@ -140,18 +127,15 @@ namespace WPFBankApplication
             Process.Start("https://twitter.com/MCCshreyas");
         }
 
+        #endregion
+
         private void LoggedIn_OnLoaded(object sender, RoutedEventArgs e)
         {
-          /*  while(!Resource.IsInternetAvailable())
-            {
-                DialogBox.Show("Warning", "Please check internet connectivity", "OK");
-            }
-            */
-        }
-
-        private void DialogHostRightButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            MyDialogHost.IsOpen = false;
+            /*  while(!Resource.IsInternetAvailable())
+              {
+                  DialogBox.Show("Warning", "Please check internet connectivity", "OK");
+              }
+              */
         }
     }
 }

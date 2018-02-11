@@ -1,25 +1,73 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.3
+VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFBankApplication", "WPFBankApplication\WPFBankApplication.csproj", "{608D2BDB-B804-430C-B1C7-7AFA43DA543B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFBankApplicationUI", "WPFBankApplication\WPFBankApplicationUI.csproj", "{608D2BDB-B804-430C-B1C7-7AFA43DA543B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankApplicationLibrary", "BankApplicationLibrary\BankApplicationLibrary.csproj", "{73D51AC4-E4C7-4E4F-BE58-244F85F506FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseConnectivity", "DatabaseConnectivity\DatabaseConnectivity.csproj", "{F8B72432-BCB7-471E-B660-5B0CD97CFC82}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineMySQL", "..\..\..\..\source\repos\OnlineMySQL\OnlineMySQL\OnlineMySQL.csproj", "{7EF007A5-22F7-445B-A65B-B9BD3EDE0E9B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySQLOnline", "..\..\..\..\source\repos\OnlineMySQL\MySQLOnline\MySQLOnline.csproj", "{C184D736-9EE1-4398-ADFB-9140BE206BC3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
 		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{608D2BDB-B804-430C-B1C7-7AFA43DA543B}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{608D2BDB-B804-430C-B1C7-7AFA43DA543B}.Debug|x86.ActiveCfg = Debug|x86
 		{608D2BDB-B804-430C-B1C7-7AFA43DA543B}.Debug|x86.Build.0 = Debug|x86
+		{608D2BDB-B804-430C-B1C7-7AFA43DA543B}.Release|Any CPU.ActiveCfg = Release|x86
 		{608D2BDB-B804-430C-B1C7-7AFA43DA543B}.Release|x86.ActiveCfg = Release|x86
 		{608D2BDB-B804-430C-B1C7-7AFA43DA543B}.Release|x86.Build.0 = Release|x86
+		{73D51AC4-E4C7-4E4F-BE58-244F85F506FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73D51AC4-E4C7-4E4F-BE58-244F85F506FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73D51AC4-E4C7-4E4F-BE58-244F85F506FB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{73D51AC4-E4C7-4E4F-BE58-244F85F506FB}.Debug|x86.Build.0 = Debug|Any CPU
+		{73D51AC4-E4C7-4E4F-BE58-244F85F506FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73D51AC4-E4C7-4E4F-BE58-244F85F506FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73D51AC4-E4C7-4E4F-BE58-244F85F506FB}.Release|x86.ActiveCfg = Release|Any CPU
+		{73D51AC4-E4C7-4E4F-BE58-244F85F506FB}.Release|x86.Build.0 = Release|Any CPU
+		{F8B72432-BCB7-471E-B660-5B0CD97CFC82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8B72432-BCB7-471E-B660-5B0CD97CFC82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8B72432-BCB7-471E-B660-5B0CD97CFC82}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F8B72432-BCB7-471E-B660-5B0CD97CFC82}.Debug|x86.Build.0 = Debug|Any CPU
+		{F8B72432-BCB7-471E-B660-5B0CD97CFC82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8B72432-BCB7-471E-B660-5B0CD97CFC82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8B72432-BCB7-471E-B660-5B0CD97CFC82}.Release|x86.ActiveCfg = Release|Any CPU
+		{F8B72432-BCB7-471E-B660-5B0CD97CFC82}.Release|x86.Build.0 = Release|Any CPU
+		{7EF007A5-22F7-445B-A65B-B9BD3EDE0E9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EF007A5-22F7-445B-A65B-B9BD3EDE0E9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EF007A5-22F7-445B-A65B-B9BD3EDE0E9B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7EF007A5-22F7-445B-A65B-B9BD3EDE0E9B}.Debug|x86.Build.0 = Debug|Any CPU
+		{7EF007A5-22F7-445B-A65B-B9BD3EDE0E9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EF007A5-22F7-445B-A65B-B9BD3EDE0E9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EF007A5-22F7-445B-A65B-B9BD3EDE0E9B}.Release|x86.ActiveCfg = Release|Any CPU
+		{7EF007A5-22F7-445B-A65B-B9BD3EDE0E9B}.Release|x86.Build.0 = Release|Any CPU
+		{C184D736-9EE1-4398-ADFB-9140BE206BC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C184D736-9EE1-4398-ADFB-9140BE206BC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C184D736-9EE1-4398-ADFB-9140BE206BC3}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{C184D736-9EE1-4398-ADFB-9140BE206BC3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C184D736-9EE1-4398-ADFB-9140BE206BC3}.Debug|x86.Build.0 = Debug|Any CPU
+		{C184D736-9EE1-4398-ADFB-9140BE206BC3}.Debug|x86.Deploy.0 = Debug|Any CPU
+		{C184D736-9EE1-4398-ADFB-9140BE206BC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C184D736-9EE1-4398-ADFB-9140BE206BC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C184D736-9EE1-4398-ADFB-9140BE206BC3}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{C184D736-9EE1-4398-ADFB-9140BE206BC3}.Release|x86.ActiveCfg = Release|Any CPU
+		{C184D736-9EE1-4398-ADFB-9140BE206BC3}.Release|x86.Build.0 = Release|Any CPU
+		{C184D736-9EE1-4398-ADFB-9140BE206BC3}.Release|x86.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {6B802194-C488-405D-8FD4-473F0803E0BC}
+		SolutionGuid = {CEAE48D8-74B7-48E2-8BF8-A7E97EC0E646}
 	EndGlobalSection
 EndGlobal

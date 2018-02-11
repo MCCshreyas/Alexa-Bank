@@ -20,7 +20,7 @@ namespace WPFBankApplication
 
         public static bool IsInternetAvailable()
         {
-            return InternetGetConnectedState(out int description, 0);
+            return InternetGetConnectedState(out int _, 0);
         }
     }
 }

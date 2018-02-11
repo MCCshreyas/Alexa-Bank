@@ -6,11 +6,17 @@
         xmlns:local="clr-namespace:WPFBankApplication"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="ForgetAccountNumber" Height="368.571" Width="512.214" WindowStartupLocation="CenterScreen" AllowsTransparency="True" WindowStyle="None" >
+        Title="ForgetAccountNumber" Height="368.571" Width="512.214" WindowStartupLocation="CenterScreen">
+
     <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition  Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
         <materialDesign:ColorZone materialDesign:ShadowAssist.ShadowDepth="Depth2"
-                                  Mode="Accent"
-                                  Padding="5">
+                                      Mode="Accent"
+                                      Grid.Row="0">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <!--Back button width -->
@@ -23,43 +29,71 @@
 
                 <!-- back button -->
                 <Button BorderBrush="#FF00B8D4" 
-                        HorizontalAlignment="Center"
-                        Background="#FF00B8D4" 
-                        Click="ButtonBase_OnClick"
-                        ToolTip="Go back"
-                        materialDesign:ShadowAssist.ShadowDepth="Depth0" 
-                        Grid.Column="0"
-                        Height="Auto" >
+                            HorizontalAlignment="Center"
+                            Background="#FF00B8D4" 
+                            Click="ButtonBase_OnClick"
+                            ToolTip="Go back"
+                            materialDesign:ShadowAssist.ShadowDepth="Depth0" 
+                            Grid.Column="0"
+                            Height="Auto" >
                     <materialDesign:PackIcon Kind="ArrowLeft"
-                                             Width="55"
-                                             Height="40"
-                                             Foreground="Black"/>
+                                                 Width="55"
+                                                 Height="30"
+                                                 Foreground="Black"/>
                 </Button>
 
                 <TextBlock Text="Forget account number"
-                           Grid.Column="1"
-                           FontSize="30"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           Style="{DynamicResource MaterialDesignHeadlineTextBlock}"/>
+                               Grid.Column="1"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Style="{DynamicResource MaterialDesignHeadlineTextBlock}"/>
             </Grid>
         </materialDesign:ColorZone>
-        
-        <StackPanel>
-            <Button Click="ButtonSubmit_OnClick">
+
+        <StackPanel Grid.Row="1" Margin="10">
+
+            <TextBlock FontSize="19"
+                       Margin="0 20 0 0"
+                       Style="{DynamicResource MaterialDesignSubheadingTextBlock}" 
+                       HorizontalAlignment="Left" 
+                       Text="Enter following information to retrive account number" 
+                       VerticalAlignment="Center"/>
+
+            <TextBox materialDesign:HintAssist.IsFloating="True" 
+                     Name="TextBoxEmailAddresss" 
+                     HorizontalAlignment="Stretch"
+                     materialDesign:HintAssist.Hint="Registered email address" 
+                     VerticalAlignment="Top" 
+                     Margin="10"/>
+
+            <PasswordBox materialDesign:HintAssist.IsFloating="True" 
+                         materialDesign:HintAssist.Hint="Password" 
+                         Style="{DynamicResource MaterialDesignFloatingHintPasswordBox}" 
+                         HorizontalAlignment="Stretch"  
+                         Name="TextBoxPassword" 
+                         VerticalAlignment="Top"
+                         Margin="10"/>
+
+            <Button Click="ButtonSubmit_OnClick" Margin="10">
                 <Grid>
                     <TextBlock Text="SUBMIT" Margin="10,0,-10,0"></TextBlock>
                     <materialDesign:PackIcon Kind="Check" Margin="-20,2,0,0" />
                 </Grid>
             </Button>
 
-            <TextBlock FontSize="19"  Style="{DynamicResource MaterialDesignSubheadingTextBlock}" HorizontalAlignment="Left" Margin="28,94,0,0" TextWrapping="Wrap" Text="Enter following information to retrive account number" VerticalAlignment="Top" Height="33" Width="458"/>
-            <TextBox materialDesign:HintAssist.IsFloating="True" Name="TextBoxEmailAddresss" HorizontalAlignment="Left" Height="49" Margin="28,132,0,0" TextWrapping="Wrap" Text="" materialDesign:HintAssist.Hint="Registered email address" VerticalAlignment="Top" Width="452"/>
-            <PasswordBox materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Hint="Password" Style="{DynamicResource MaterialDesignFloatingHintPasswordBox}" Height="51" HorizontalAlignment="Left"  Name="TextBoxPassword" VerticalAlignment="Top" Width="452" Margin="28,193,0,0" />
+
         </StackPanel>
 
 
 
 
+
+
+
+
+
+
+
     </Grid>
+
 </Window>
