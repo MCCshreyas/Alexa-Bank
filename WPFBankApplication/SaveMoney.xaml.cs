@@ -3,8 +3,6 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
 using ExtraTools;
-using java.lang;
-using java.sql;
 using Twilio.Rest.Api.V2010.Account;
 using Twilio.Types;
 using Connection = com.mysql.jdbc.Connection;
@@ -88,22 +86,22 @@ namespace WPFBankApplication
 
         private void SaveFinalBalance()
         {
-            try
-            {
-                Class.forName("com.mysql.jdbc.Driver");
-                var connection = (Connection) DriverManager.getConnection(Resource.DATABASE_URL, Resource.USERNAME,
-                    Resource.PASSWORD);
+            //try
+            //{
+            //    Class.forName("com.mysql.jdbc.Driver");
+            //    var connection = (Connection) DriverManager.getConnection(Resource.DATABASE_URL, Resource.USERNAME,
+            //        Resource.PASSWORD);
 
-                var ps = connection.prepareStatement("update info set Balance = ? where account_number = ?");
-                ps.setString(1, _remainingBalance);
-                ps.setString(2, _accountNum);
-                ps.executeUpdate();
-            }
-            catch (SQLException exception)
-            {
-                MessageBox.Show("Something went wrong. " + exception.Message, "Error", MessageBoxButton.OK,
-                    MessageBoxImage.Error);
-            }
+            //    var ps = connection.prepareStatement("update info set Balance = ? where account_number = ?");
+            //    ps.setString(1, _remainingBalance);
+            //    ps.setString(2, _accountNum);
+            //    ps.executeUpdate();
+            //}
+            //catch (SQLException exception)
+            //{
+            //    MessageBox.Show("Something went wrong. " + exception.Message, "Error", MessageBoxButton.OK,
+            //        MessageBoxImage.Error);
+            //}
         }
 
         private void SaveMoneyTextBox_OnPreviewTextInput(object sender, TextCompositionEventArgs e)

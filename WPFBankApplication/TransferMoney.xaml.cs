@@ -4,8 +4,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using ExtraTools;
-using java.lang;
-using java.sql;
 using Twilio;
 using Twilio.Rest.Api.V2010.Account;
 using Twilio.Types;
@@ -92,10 +90,10 @@ namespace WPFBankApplication
 
                     DialogBox.Show("Sucess", "Transfer done sucessfully.", "OK");
                 }
-                catch (SQLException error)
-                {
-                    DialogBox.Show("Error", "Something went wrong. " + error.Message, "OK");
-                }
+                //catch (SQLException error)
+                //{
+                //    DialogBox.Show("Error", "Something went wrong. " + error.Message, "OK");
+                //}
         }
 
         /// <summary>
@@ -136,72 +134,72 @@ namespace WPFBankApplication
 
         private void UpdateSenderAccount(string bal)
         {
-            try
-            {
-                Class.forName("com.mysql.jdbc.Driver");
-                var connection =
-                    (Connection) DriverManager.getConnection(Resource.DATABASE_URL, Resource.USERNAME,
-                        Resource.PASSWORD);
+            //try
+            //{
+            //    Class.forName("com.mysql.jdbc.Driver");
+            //    var connection =
+            //        (Connection) DriverManager.getConnection(Resource.DATABASE_URL, Resource.USERNAME,
+            //            Resource.PASSWORD);
 
-                var ps =
-                    connection.prepareStatement("update info set Balance = ? where account_number = ?");
-                ps.setString(1, bal);
-                ps.setString(2, accountNum);
-                ps.executeUpdate();
-            }
-            catch (SQLException exception)
-            {
-                DialogBox.Show("Error", "Something went wrong " + exception.Message, "OK");
-            }
+            //    var ps =
+            //        connection.prepareStatement("update info set Balance = ? where account_number = ?");
+            //    ps.setString(1, bal);
+            //    ps.setString(2, accountNum);
+            //    ps.executeUpdate();
+            //}
+            //catch (SQLException exception)
+            //{
+            //    DialogBox.Show("Error", "Something went wrong " + exception.Message, "OK");
+            //}
         }
 
 
-        private void UpdateReceiverAccount(string bal)
-        {
-            try
-            {
-                Class.forName("com.mysql.jdbc.Driver");
-                var connection =
-                    (Connection) DriverManager.getConnection(Resource.DATABASE_URL, Resource.USERNAME,
-                        Resource.PASSWORD);
+        //private void UpdateReceiverAccount(string bal)
+        //{
+        //    try
+        //    {
+        //        Class.forName("com.mysql.jdbc.Driver");
+        //        var connection =
+        //            (Connection) DriverManager.getConnection(Resource.DATABASE_URL, Resource.USERNAME,
+        //                Resource.PASSWORD);
 
-                var ps =
-                    connection.prepareStatement("update info set Balance = ? where account_number = ?");
-                ps.setString(1, bal);
-                ps.setString(2, TextBoxAccountNumber.Text);
-                ps.executeUpdate();
-            }
-            catch (SQLException exception)
-            {
-                DialogBox.Show("Error", "Something went wrong " + exception.Message, "OK");
-            }
-        }
+        //        var ps =
+        //            connection.prepareStatement("update info set Balance = ? where account_number = ?");
+        //        ps.setString(1, bal);
+        //        ps.setString(2, TextBoxAccountNumber.Text);
+        //        ps.executeUpdate();
+        //    }
+        //    catch (SQLException exception)
+        //    {
+        //        DialogBox.Show("Error", "Something went wrong " + exception.Message, "OK");
+        //    }
+        //}
 
-        private bool CheckReceiverAccountNumber()
-        {
-            try
-            {
-                Class.forName("com.mysql.jdbc.Driver");
-                var connection =
-                    (Connection) DriverManager.getConnection(Resource.DATABASE_URL, Resource.USERNAME,
-                        Resource.PASSWORD);
+        //private bool CheckReceiverAccountNumber()
+        //{
+        //    try
+        //    {
+        //        Class.forName("com.mysql.jdbc.Driver");
+        //        var connection =
+        //            (Connection) DriverManager.getConnection(Resource.DATABASE_URL, Resource.USERNAME,
+        //                Resource.PASSWORD);
 
-                var ps = connection.prepareStatement("select * from info where account_number = ?");
-                ps.setString(1, TextBoxAccountNumber.Text);
-                var result = ps.executeQuery();
+        //        var ps = connection.prepareStatement("select * from info where account_number = ?");
+        //        ps.setString(1, TextBoxAccountNumber.Text);
+        //        var result = ps.executeQuery();
 
-                if (result.next() == false)
-                {
-                    DialogBox.Show("Error", "Account does not exist", "OK");
-                    return false;
-                }
-            }
-            catch (SQLException exception)
-            {
-                DialogBox.Show("Error", "Something went wrong " + exception.Message, "OK");
-            }
-            return true;
-        }
+        //        if (result.next() == false)
+        //        {
+        //            DialogBox.Show("Error", "Account does not exist", "OK");
+        //            return false;
+        //        }
+        //    }
+        //    catch (SQLException exception)
+        //    {
+        //        DialogBox.Show("Error", "Something went wrong " + exception.Message, "OK");
+        //    }
+        //    return true;
+        //}
 
         /// <summary>
         ///     Following code will restrict textbox to only accepts numbers and not chars.

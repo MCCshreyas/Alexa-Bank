@@ -2,9 +2,6 @@
 
 using System.Windows;
 using ExtraTools;
-using java.lang;
-using java.sql;
-using Connection = com.mysql.jdbc.Connection;
 
 namespace WPFBankApplication
 {
@@ -50,29 +47,29 @@ namespace WPFBankApplication
 
         private void SaveNewPassword(string newPass)
         {
-            try
-            {
-                Class.forName("com.mysql.jdbc.Driver");
-                var connection =
-                    (Connection) DriverManager.getConnection(Resource.DATABASE_URL, Resource.USERNAME,
-                        Resource.PASSWORD);
+            //try
+            //{
+            //    Class.forName("com.mysql.jdbc.Driver");
+            //    var connection =
+            //        (Connection) DriverManager.getConnection(Resource.DATABASE_URL, Resource.USERNAME,
+            //            Resource.PASSWORD);
 
-                var ps = connection.prepareStatement("update info set Password = ? where account_number = ?");
-                ps.setString(1, newPass);
-                ps.setString(2, _acc);
-                ps.executeUpdate();
-                connection.close();
-                MessageBox.Show(
-                    "Password changed sucessfully",
-                    "Sucess",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Information);
-                new LoggedIn().Show();
-            }
-            catch (SQLException exception)
-            {
-                MessageBox.Show(exception.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Stop);
-            }
+            //    var ps = connection.prepareStatement("update info set Password = ? where account_number = ?");
+            //    ps.setString(1, newPass);
+            //    ps.setString(2, _acc);
+            //    ps.executeUpdate();
+            //    connection.close();
+            //    MessageBox.Show(
+            //        "Password changed sucessfully",
+            //        "Sucess",
+            //        MessageBoxButton.OK,
+            //        MessageBoxImage.Information);
+            //    new LoggedIn().Show();
+            //}
+            //catch (SQLException exception)
+            //{
+            //    MessageBox.Show(exception.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Stop);
+            //}
         }
 
         private void BackButtonClick(object sender, RoutedEventArgs e)

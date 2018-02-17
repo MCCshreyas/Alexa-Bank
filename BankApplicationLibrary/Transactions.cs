@@ -1,56 +1,21 @@
-﻿using MySql.Data.MySqlClient;
+﻿using System;
+using MySql.Data.MySqlClient;
 
 namespace BankApplicationLibrary
 {
-    public class Transactions
+    public class Transactions : ITransaction
     {
-        private string AccountNumber { get; }
         private DatabaseConnectivity _dbconnect;
-        
+
+        private string AccountNumber
+        {
+            get;
+        }
+
         public Transactions(Customer obj)
         {
             AccountNumber = obj.AccountNumber;
         }
-
-        #region MoneyTransactionOpertaions
-
-        public int WithdrawMoney(int amount = 0)
-        {
-            if (amount == 0 )
-            {
-                return -1;
-            }
-
-            if (amount < 0)
-            {
-                return -2;
-            }
-
-            long balance  = GetCurrentBalance();
-            balance = balance - amount;
-            SaveFinalBalance(balance);
-            return 0;
-        }
-
-        public int DepositeMoney(int amount = 0)
-        {
-            if (amount == 0)
-            {
-                return -1;
-            }
-
-            if (amount < 0)
-            {
-                return -2;
-            }
-
-            long balance = GetCurrentBalance();
-            balance = balance + amount;
-            SaveFinalBalance(balance);
-            return 0;
-        }
-
-        #endregion
 
         private void SaveFinalBalance(long balance)
         {
@@ -81,10 +46,61 @@ namespace BankApplicationLibrary
             return balance;
         }
 
-        private void TransferMoney()
+        public long WithdrawMoney(long amount)
         {
+            if (amount == 0)
+            {
+                return -1;
+            }
 
+            if (amount < 0)
+            {
+                return -2;
+            }
+
+            long balance = GetCurrentBalance();
+
+            if (balance < amount)
+            {
+                return -3;
+            }
+
+            balance = balance - amount;
+            SaveFinalBalance(balance);
+            return 0;
         }
 
+        public long DepositeMoney(long amount)
+        {
+            if (amount == 0)
+            {
+                return -1;
+            }
+
+            if (amount < 0)
+            {
+                return -2;
+            }
+
+            long balance = GetCurrentBalance();
+            if (balance < amount)
+            {
+                return -3;
+            }
+
+            balance = balance + amount;
+            SaveFinalBalance(balance);
+            return 0;
+        }
+
+        public long CheckBalance()
+        {
+            throw new NotImplementedException();
+        }
+
+        public long DeleteAccount()
+        {
+           throw new NotImplementedException();
+        }
     }
 }

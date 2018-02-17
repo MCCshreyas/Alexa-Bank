@@ -150,14 +150,19 @@ namespace BankApplicationLibrary
         #endregion
 
         private MySqlConnection conn;
-        
-        Customer(string name)
+
+        public Customer()
+        {
+            
+        }
+
+        public Customer(string name)
         {
             Name = name;
             this.Balance = "100";
         }
 
-        private bool AuthenticateLogin(string accountNumber, string enteredPassword)
+        public static bool AuthenticateLogin(string accountNumber, string enteredPassword)
         {
             var password = "";
             DatabaseConnectivity dbconnect = new DatabaseConnectivity();

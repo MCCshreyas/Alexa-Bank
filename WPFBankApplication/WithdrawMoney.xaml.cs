@@ -8,10 +8,6 @@ namespace WPFBankApplication
     using System.Windows.Input;
 
     using ExtraTools;
-
-    using java.lang;
-    using java.sql;
-
     using Twilio.Rest.Api.V2010.Account;
     using Twilio.Types;
 
@@ -118,23 +114,23 @@ namespace WPFBankApplication
         /// </summary>
         private void SaveFinalBalance()
         {
-            try
-            {
-                Class.forName("com.mysql.jdbc.Driver");
-                var connection = DriverManager.getConnection(
-                    Resource.DATABASE_URL,
-                    Resource.USERNAME,
-                    Resource.PASSWORD);
-                var ps =
-                    connection.prepareStatement("update info set Balance = ? where account_number = ?");
-                ps.setString(1, remainingBalance);
-                ps.setString(2, accountNum);
-                ps.executeUpdate();
-            }
-            catch (SQLException exception)
-            {
-                DialogBox.Show("Error", "Something went wrong. " + exception.Message, "OK");
-            }
+            //try
+            //{
+            //    Class.forName("com.mysql.jdbc.Driver");
+            //    var connection = DriverManager.getConnection(
+            //        Resource.DATABASE_URL,
+            //        Resource.USERNAME,
+            //        Resource.PASSWORD);
+            //    var ps =
+            //        connection.prepareStatement("update info set Balance = ? where account_number = ?");
+            //    ps.setString(1, remainingBalance);
+            //    ps.setString(2, accountNum);
+            //    ps.executeUpdate();
+            //}
+            //catch (SQLException exception)
+            //{
+            //    DialogBox.Show("Error", "Something went wrong. " + exception.Message, "OK");
+            //}
         }
 
         /// <summary>

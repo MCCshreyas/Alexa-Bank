@@ -8,9 +8,7 @@ namespace WPFBankApplication
 
     using ExtraTools;
 
-    using java.lang;
-    using java.sql;
-
+    
     using Connection = com.mysql.jdbc.Connection;
 
     /// <summary>
@@ -42,27 +40,27 @@ namespace WPFBankApplication
         {
             var imageFilePath = string.Empty;
 
-            try
-            {
-                Class.forName("com.mysql.jdbc.Driver");
-                var c = (Connection)DriverManager.getConnection(
-                    Resource.DATABASE_URL,
-                    Resource.USERNAME,
-                    Resource.PASSWORD);
+            //try
+            //{
+            //    Class.forName("com.mysql.jdbc.Driver");
+            //    var c = (Connection)DriverManager.getConnection(
+            //        Resource.DATABASE_URL,
+            //        Resource.USERNAME,
+            //        Resource.PASSWORD);
 
-                var ps = c.prepareStatement("select ImagePath from info where account_number = ?");
-                ps.setString(1, _accountNumber);
-                var rs = ps.executeQuery();
-                while (rs.next())
-                    imageFilePath = rs.getString("ImagePath");
+            //    var ps = c.prepareStatement("select ImagePath from info where account_number = ?");
+            //    ps.setString(1, _accountNumber);
+            //    var rs = ps.executeQuery();
+            //    while (rs.next())
+            //        imageFilePath = rs.getString("ImagePath");
 
-                var img = new ImageSourceConverter();
-                ImageBox.SetValue(Image.SourceProperty, img.ConvertFromString(imageFilePath));
-            }
-            catch (SQLException exception)
-            {
-                DialogBox.Show("Error", exception.ToString(), "OK");
-            }
+            //    var img = new ImageSourceConverter();
+            //    ImageBox.SetValue(Image.SourceProperty, img.ConvertFromString(imageFilePath));
+            //}
+            //catch (SQLException exception)
+            //{
+            //    DialogBox.Show("Error", exception.ToString(), "OK");
+            //}
         }
 
         private void ButtonWithdrawMoneyClick(object sender, RoutedEventArgs e)

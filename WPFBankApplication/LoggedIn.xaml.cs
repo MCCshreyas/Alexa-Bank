@@ -1,12 +1,10 @@
-﻿using java.lang;
-using java.sql;
+﻿using BankApplicationLibrary;
 using ExtraTools;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
 using Exception = System.Exception;
 using Process = System.Diagnostics.Process;
-using BankApplicationLibrary;
 
 namespace WPFBankApplication
 {
@@ -36,13 +34,11 @@ namespace WPFBankApplication
             {
                 if (DoValidation())
                 {
-                    if (AuthenticateLogIn())
+                    if (Customer.AuthenticateLogin(TextBoxAcc.Text,PasswordBox.Text))
                     {
                         new Welcome(TextBoxAcc.Text).Show();
                         Hide();
                     }
-
-                    var login = new Customer();
                 }
             }
             catch (Exception error)
@@ -54,25 +50,25 @@ namespace WPFBankApplication
         private bool AuthenticateLogIn()
         {
             string databasePassword = string.Empty;
-            try
-            {
-                Class.forName("com.mysql.jdbc.Driver");
-                var connection = DriverManager.getConnection(Resource.DATABASE_URL, Resource.USERNAME, Resource.PASSWORD);
+            //try
+            //{
+            //    Class.forName("com.mysql.jdbc.Driver");
+            //    var connection = DriverManager.getConnection(Resource.DATABASE_URL, Resource.USERNAME, Resource.PASSWORD);
 
-                var ps = connection.prepareStatement("select Password from info where account_number = ?");
-                ps.setString(1, TextBoxAcc.Text);
-                var rs = ps.executeQuery();
+            //    var ps = connection.prepareStatement("select Password from info where account_number = ?");
+            //    ps.setString(1, TextBoxAcc.Text);
+            //    var rs = ps.executeQuery();
 
-                while (rs.next())
-                {
-                    databasePassword = rs.getString("Password");
-                }
+            //    while (rs.next())
+            //    {
+            //        databasePassword = rs.getString("Password");
+            //    }
 
-            }
-            catch (SQLException exception)
-            {
-                throw new Exception("Something went wrong " + exception);
-            }
+            //}
+            //catch (SQLException exception)
+            //{
+            //    throw new Exception("Something went wrong " + exception);
+            //}
 
             if (PasswordBox.Text.Equals(databasePassword))
             {

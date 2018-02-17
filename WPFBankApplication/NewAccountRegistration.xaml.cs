@@ -8,9 +8,7 @@
     using System.Windows.Media;
 
     using ExtraTools;
-
-    using java.lang;
-    using java.sql;
+    
 
     using MaterialDesignThemes.Wpf;
 

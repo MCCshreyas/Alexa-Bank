@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Title="Alexa Bank of India" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:vm="clr-namespace:WPFBankApplication"
         Height="652.354" Width="1178.608" WindowStartupLocation="CenterScreen"
         FontFamily="{DynamicResource MaterialDesignFont}" ResizeMode="CanResize"
         Loaded="LoggedIn_OnLoaded"
@@ -11,9 +10,7 @@
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal" 
         TextOptions.TextRenderingMode="Auto">
-    <Window.Resources>
-       <vm:LogIn x:Key="In" ></vm:LogIn>
-    </Window.Resources>
+    
 
     <Border  Padding="0.5" 
              Background="Blue">

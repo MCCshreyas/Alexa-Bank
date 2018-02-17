@@ -24,10 +24,10 @@ namespace BankApplicationLibrary
             {
                 var data = File.ReadAllText("Database.txt");
                 var obj = JsonConvert.DeserializeObject<JObject>(data);
-                this.Server = (string)obj["Server"];
-                this.UserName = (string) obj["Username"];
-                this.Password = (string)obj["Password"];
-                this.DatabaseName = (string)obj["DatabaseName"];
+                Server = (string)obj["Server"];
+                UserName = (string) obj["Username"];
+                Password = (string)obj["Password"];
+                DatabaseName = (string)obj["DatabaseName"];
             }
             catch (JsonException e)
             {
