@@ -31,66 +31,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="IKVM.AWT.WinForms">
-      <HintPath>..\WPFBankApplication\bin\Debug\IKVM.AWT.WinForms.dll</HintPath>
+    <Reference Include="MySql.Data, Version=6.10.6.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Documents\Visual Studio 2017\Projects\MySQLUI\MySQLUI\bin\Debug\MySql.Data.dll</HintPath>
     </Reference>
-    <Reference Include="IKVM.OpenJDK.Beans">
-      <HintPath>..\WPFBankApplication\bin\Debug\IKVM.OpenJDK.Beans.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="IKVM.OpenJDK.Charsets">
-      <HintPath>..\WPFBankApplication\bin\Debug\IKVM.OpenJDK.Charsets.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Corba">
-      <HintPath>..\WPFBankApplication\bin\Debug\IKVM.OpenJDK.Corba.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Core">
-      <HintPath>..\WPFBankApplication\bin\Debug\IKVM.OpenJDK.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Jdbc">
-      <HintPath>..\WPFBankApplication\bin\Debug\IKVM.OpenJDK.Jdbc.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Management">
-      <HintPath>..\WPFBankApplication\bin\Debug\IKVM.OpenJDK.Management.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Media">
-      <HintPath>..\WPFBankApplication\bin\Debug\IKVM.OpenJDK.Media.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Misc">
-      <HintPath>..\WPFBankApplication\bin\Debug\IKVM.OpenJDK.Misc.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Naming">
-      <HintPath>..\WPFBankApplication\bin\Debug\IKVM.OpenJDK.Naming.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Remoting">
-      <HintPath>..\WPFBankApplication\bin\Debug\IKVM.OpenJDK.Remoting.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Security">
-      <HintPath>..\WPFBankApplication\bin\Debug\IKVM.OpenJDK.Security.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.SwingAWT">
-      <HintPath>..\WPFBankApplication\bin\Debug\IKVM.OpenJDK.SwingAWT.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Text">
-      <HintPath>..\WPFBankApplication\bin\Debug\IKVM.OpenJDK.Text.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Util">
-      <HintPath>..\WPFBankApplication\bin\Debug\IKVM.OpenJDK.Util.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.XML.API">
-      <HintPath>..\WPFBankApplication\bin\Debug\IKVM.OpenJDK.XML.API.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.Runtime">
-      <HintPath>..\WPFBankApplication\bin\Debug\IKVM.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.Runtime.JNI">
-      <HintPath>..\WPFBankApplication\bin\Debug\IKVM.Runtime.JNI.dll</HintPath>
-    </Reference>
-    <Reference Include="JVM">
-      <HintPath>..\WPFBankApplication\bin\Debug\JVM.DLL</HintPath>
-    </Reference>
-    <Reference Include="MySql.Data, Version=6.10.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.ValueTuple, Version=4.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>packages\System.ValueTuple.4.3.0\lib\portable-net40+sl4+win8+wp8\System.ValueTuple.dll</HintPath>
@@ -122,6 +80,10 @@
       <Project>{f8b72432-bcb7-471e-b660-5b0cd97cfc82}</Project>
       <Name>DatabaseConnectivity</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
